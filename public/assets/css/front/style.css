@@ -1,0 +1,1563 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: arabic-bold;;
+}
+@font-face {
+  font-family: arabic-bold;
+  src: url('../../fonts/DIN\ NEXT™\ ARABIC\ BOLD.otf');
+}
+.chat-box{
+  position: relative;
+}
+#fileupload{
+  display: none;
+}
+#fileupload2{
+  display: none;
+}
+.profile-images img{
+  height: 100px !important;
+  width: 100px !important;
+  border-radius: 100%;
+}
+
+/* .profile-image{
+  margin-top: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #8080806b;
+  padding: 14px 8px;
+  background-color: #F7F3F4;
+  border-radius: 10px;
+  margin: 25px 2px 2px 2px;
+} */
+.custom-file label .uimg-icon{
+  bottom: 50px;
+    position: absolute;
+    font-size: 12px;
+    padding: 0px 8px;
+    right: 9%;
+    background: #0CA81F;
+  color: white;
+  border: 2px solid;
+}
+.custom-file label .uimg-icon1{
+  bottom: 20px;
+    position: absolute;
+    font-size: 12px;
+    padding: 0px 8px;
+    right: 9%;
+    background: #0CA81F;
+  color: white;
+  border: 2px solid;
+}
+.container-fluid {
+  font-family: 'DIN NEXT™';
+  font-style: ARABIC LIGHT;
+  background: #5d001d;
+}
+.login_page{
+  height: 100vh;
+}
+.form-col div .twi{
+  background-color: #EDF8FE;
+  color: #1DA1F3;
+  height: 33px;
+  margin-right: -10px ;
+  border-radius: 100%;
+  padding-top: 10px;
+  width: 35px;
+  margin-top: 1.5px;
+}
+.form-col div .good{
+  background-color: #E7E3C6;
+
+  color: #8A683E;
+  height: 33px;
+  margin-right: -10px ;
+  border-radius: 100%;
+  padding-top: 10px;
+  width: 35px;
+  margin-top: 1.5px;
+}
+.nav-btn {
+
+  border: none !important;
+  background-color: hsl(126deg 87% 35%);
+  padding-right: 1px;
+}
+.nav1-btn{
+  background-color: hsl(126deg 87% 35%);
+  padding-right: 1px;
+}
+.nav-btn i {
+  background-color: hsl(126deg 83% 33%);
+  border-radius: 0 15px 15px 0px;
+  padding: 9px 10px !important;
+  margin-left: 10px;
+}
+.nav1-btn i {
+  background-color: hsl(126deg 83% 33%);
+  border-radius: 0 15px 15px 0px;
+  padding: 8px 10px 8px 10px;
+  margin-left: 10px;
+}
+
+.main {
+  background: #f3ece4;
+  justify-content: center;
+
+}
+.main form div {
+  background: #fff;
+  padding-top: 2px;
+  padding-left: 2px;
+}
+.main form div input {
+  width: 100%;
+  padding: 5px;
+  border: none;
+}
+.main form div input:focus {
+  outline: none;
+}
+.main form div .search {
+  background: #F4F4F4;
+  font-size: 20px;
+  padding: 7px 15px;
+  color: #5C2E3D;
+}
+.post-container {
+  background: #fff;
+  border-radius: 20px;
+}
+.post-container .user-img {
+  border-radius: 50%;
+  display: inline-block;
+}
+.user-info {
+  position: absolute;
+
+  margin-top: -10px;
+}
+.post-container .user-info h6 a{
+  color: #5d001d !important;
+  font-weight: bold !important;
+}
+.user-img {
+  position: absolute;
+  margin: -10px;
+}
+.butn button {
+  width:86px;
+  padding-bottom: 4px !important;
+  background: #F6EBEF;
+  color: #5d001d;
+  border: 1px solid #5d001d;
+  font-weight: bold;
+}
+.butnsell button {
+  width:86px;
+  padding-bottom: 4px !important;
+  background: #dcf3d7;
+  color: #15cf34;
+  border: 1px solid #15cf34;
+  font-weight: bold;
+}
+.butnborrow button {
+  width:86px;
+  padding-bottom: 4px !important;
+  background: #fff3dc;
+  color: #f0b944;
+  border: 1px solid #f0b944;
+  font-weight: bold;
+}
+.butnexchange button {
+  width:86px;
+  padding-bottom: 4px !important;
+  background: #d1e0f7;
+  color: #1e45c5;
+  border: 1px solid #1e45c5;
+  font-weight: bold;
+}
+
+.post-img img {
+  border: 1px solid rgb(207, 217, 222);
+  border-radius: 15px;
+  width: 100%;
+  
+}
+.post_images{
+  border: 1px solid rgb(207, 217, 222);
+  border-radius: 15px;
+  overflow: hidden;
+}
+.post-icon {
+  display: flex;
+  width: 100%;
+  font-weight: 500;
+}
+.post-icon .whatsapp {
+  width: 50%;
+
+  text-align: left;
+}
+.post-icon p {
+  width: 25%;
+  text-align: right;
+}
+.post-icon p img {
+  margin-bottom: 4px;
+}
+.user-name p {
+  padding-bottom: 0px !important;
+}
+.user-name {
+  vertical-align: middle;
+}
+#user-icon{
+  border-radius: 50px !important;
+}
+.login-nav .user-profile-img {
+  width: 40%;
+  text-align: right;
+  vertical-align: middle;
+}
+.login-nav div {
+  width: 25%;
+}
+.notifaction-icon {
+  justify-content: space-evenly;
+}
+.notifaction-icon div {
+  height: 28px;
+  width: 25px;
+  border-radius: 50%;
+  background: #68122d;
+  vertical-align: middle;
+  text-align: center;
+  margin-right: 17px !important;
+}
+.notifaction-icon div img {
+  position: relative;
+  height: 20px;
+  width: 20px;
+  padding: 5px;
+}
+
+i.badge1 {
+  position: relative;
+  padding: 2px 7px;
+  left: 12px;
+  bottom: 39px;
+  border-radius: 50%;
+  color: white;
+  background-color: green !important;
+  font-size: 10px;
+}
+.profile {
+  background: #fff;
+  border-radius: 20px;
+  margin-top: 100px;
+  padding: 20px;
+}
+.profile-info .profile-img {
+  margin-top: -60px;
+}
+.profile-info h6 {
+  font-weight: bold;
+}
+.social-links {
+  justify-content: space-evenly;
+  padding-top: 20px;
+}
+.good-reads {
+  background: #f8f3f0;
+  border-radius: 10px;
+  padding: 15px 30px;
+}
+.twitter {
+  padding: 10px 70px;
+  background: #edf8fe;
+  font-size: 30px;
+  border-radius: 10px;
+}
+.counting {
+  background: #fff6d5 !important;
+  padding: 10px 50px !important;
+  border-radius: 10px !important;
+  font-size: 20px !important;
+  font-weight: bold !important;
+}
+.counting span {
+  font-size: 16px;
+  font-weight: normal;
+}
+.main-div{
+  position: inherit !important;
+  padding-left: 25px !important;
+  padding-right: 0px !important;
+  padding-bottom: 30px;
+}
+.add-head{
+  padding-top: 10px;
+  border-start-start-radius: 20px;
+  border-start-end-radius: 20px;
+  background-color: #F1FBF3;
+  margin-top: -24px;
+}
+
+.form-row{
+  padding: 0px 15px !important;
+}
+.form-col{
+  padding: 0px 15px !important;
+  border: 1px solid !important;
+   border-radius: 50px !important;
+}
+.form-col .form-bor{
+  border:none !important
+}
+.form-col .form-width{
+  width: 60% !important;
+}
+
+.form-link{
+  padding-right: 5px !important
+}
+.form-col select{
+  float: right;
+  border:none !important
+}
+.upload-img{
+  margin-top: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #8080806b;
+  padding: 20px 10px;
+  background-color: #F7F3F4;
+  border-radius: 10px;
+}
+.submit-btn{
+  background-color: #0DA81E !important;
+  color: #fff !important;
+  border-radius: 50px !important;
+}
+.login_btn{
+  background-color: #0DA81E !important;
+  color: #fff !important;
+  border-radius: 50px !important;
+}
+.submit-btn1{
+  background-color:#f3f8f4 !important;
+   color:#6A686C !important;
+   border-radius: 50px !important;
+}
+.form-control:focus {
+  color: #495057;
+  background-color: #fff !important;
+  border-color: none !important;
+  outline: 0 !important;
+  box-shadow: none !important;
+}
+.navbar-collapse ul li{
+  font-size: 12px !important;
+  font-weight: bold;
+  border: 1.5px solid #ffffff99 !important;
+}
+.post-container .row div .nav2-btn{
+  padding: 0px 9px;
+  font-size:10px;
+}
+@media(max-width: 320px)
+{
+  .nav2{
+    padding-right: 0 !important;
+  }
+  .notifaction-icon{
+    display: none;
+  }
+  .profile-image img{
+    height: 50px !important;
+    width: 50px !important;
+    border-radius: 10px;
+  }
+  .custom-file label .uimg-icon{
+    right: -40%;
+  }
+  .custom-file label .uimg-icon1{
+    right: 10%;
+  }
+  .main form div{
+    width: 93%;
+  }
+  .users-img{
+    padding-left: 0px !important;
+    padding-right: 0 !important;
+  }
+  .nav-btnn{
+    margin-left: 10px !important;
+  }
+  .login-nav1{
+    display: none;
+  }
+  .post-container .user-img{
+    width: 40px;
+    height: 40px;
+  }
+  .form-col .code{
+    border: none !important;
+    width: 30% !important;
+    height: 30px !important;
+    border-left: 2px solid gainsboro !important;
+
+  }
+  .btn-div .nav-btn span{
+    margin-top: 4px !important;
+  }
+  .f-post{
+    font-size: 8px;
+    font-weight: bold;
+  }
+  .post-title h4{
+    font-size: 17px !important;
+  }
+  .post-title p{
+    font-size: 11px !important;
+  }
+
+  .post-icon .whatsapp{
+    width: 100%;
+    display: flex;
+  }
+  .post-icon .message{
+    width: 100%;
+    display: flex;
+  }
+  .post-icon .heart{
+    width: 100%;
+    display: flex;
+  }
+  .user-info{
+    right: 26% !important;
+    font-size: 13px !important;
+  }
+  .user-img{
+    right: 15% !important;
+
+  }
+  .main form div .search-input{
+    width: 77%;
+  }
+
+  .nav-btn{
+    font-size: 8px;
+  }
+  .nav1-btn{
+    font-size: 11px;
+    display: inline-flex;
+  }
+  .butn button{
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    font-size: 12px;
+  }
+  .plus-icon{
+    line-height: 27.5px !important;
+    margin-right: 5px !important;
+  }
+  .login-user{
+    padding-left: 2.25rem !important;
+  }
+  .login-user1{
+    font-size: 10px !important;
+    padding-left: 1.25rem !important;
+  }
+  .social-links{
+    display: block;
+  }
+  .twitter{
+    line-height: 120px !important;
+  }
+  .u-img{
+    padding-right: 23px;
+  }
+  .upload-icon{
+    padding: 3px;
+  }
+  .user-menu{
+    top: 16%;
+    left: 3%;
+    width: 40%;
+    height: 20%;
+  }
+  .menu{
+    top: 16%;
+    left: 2%;
+    width: 40%;
+    height: 20%;
+  }
+  .menu h4{
+    font-size: 17px;
+  }
+  .user-menu h4{
+    font-size: 17px;
+  }
+
+  .user-profile-img{
+    width: 15%;
+  }
+  .user-profile-img img{
+    width: 35px;
+    height: 35px;
+  }
+  .btn1-div{
+    padding-left: 33px !important;
+    padding-right: 0px !important;
+  }
+  .login_btn{
+    font-size: 10px !important;
+    padding: 10px 7px !important;
+  }
+}
+@media(min-width: 321px)
+{
+  .user-profile-img img{
+    width: 45px;
+
+  }
+  .users-img{
+    padding-right: 0px !important;
+  }
+  .nav2{
+    padding-right: 0 !important;
+  }
+  .notifaction-icon{
+    display: none;
+  }
+  .profile-image img{
+    height: 70px !important;
+    width: 70px !important;
+    border-radius: 10px;
+  }
+  .form-col div .twi{
+    margin-right: -15px ;
+  }
+  .form-col div .good{
+    margin-right: -15px ;
+  }
+  .custom-file label .uimg-icon{
+    right: -5%;
+  }
+  .custom-file label .uimg-icon1{
+    right: 22%;
+  }
+  .main form div{
+    width: 93%;
+  }
+  .login-user1{
+    font-size: 10px !important;
+    padding-left: 1.25rem !important;
+  }
+  .users-img{
+    padding-left: 0px !important;
+  }
+  .nav-btnn{
+    margin-left: 15px !important;
+  }
+  .login-nav1{
+    display: none;
+  }
+  .f-post{
+    font-size: 11px;
+    font-weight: bold;
+  }
+  .post-container .user-img{
+    width: 45px;
+    height: 45px;
+  }
+  .form-col .code{
+    border: none !important;
+    width: 25% !important;
+    height: 30px !important;
+    border-left: 2px solid gainsboro !important;
+
+  }
+  .btn-div .nav-btn span{
+    margin-top: 4px !important;
+  }
+  .post-title h4{
+    font-size: 17px !important;
+  }
+  .post-title p{
+    font-size: 11px !important;
+  }
+
+  .post-icon .whatsapp{
+    width: 100%;
+    display: flex;
+  }
+  .post-icon .message{
+    width: 100%;
+    display: flex;
+  }
+  .post-icon .heart{
+    width: 100%;
+    display: flex;
+  }
+  .user-info{
+    right: 24% !important;
+    font-size: 13px !important;
+  }
+  .user-img{
+    right: 14% !important;
+  }
+  .main form div .search-input{
+    width: 78%;
+  }
+
+  .nav-btn{
+    font-size: 8px;
+  }
+  .nav1-btn{
+    font-size: 15px;
+    display: inline-flex;
+  }
+  .butn button{
+    padding-left: 15px !important;
+    padding-right: 15px !important;
+    font-size: 15px;
+  }
+  .plus-icon{
+    line-height: 27.5px !important;
+    margin-right: 5px !important;
+  }
+  .login-user{
+    padding-left: 2.25rem !important;
+  }
+  .social-links{
+    display: block;
+  }
+  .twitter{
+    line-height: 110px !important;
+  }
+  .u-img{
+    padding-right: 10px;
+  }
+  .upload-icon{
+    padding: 3px;
+  }
+  .main form div i{
+    margin-right: 10px;
+  }
+  .user-menu{
+    top: 17%;
+    width: 40%;
+    height: 20%;
+    left: 2%;
+  }
+  .menu{
+    top: 16%;
+    left: 2%;
+    width: 40%;
+    height: 20%;
+  }
+  .menu h4{
+    font-size: 17px;
+  }
+  .user-menu h4{
+    font-size: 17px;
+  }
+  .login_btn{
+    font-size: 10px;
+    padding: 10px 7px;
+  }
+  .login_btn{
+    font-size: 12px !important;
+    padding: 10px 13px !important;
+  }
+}
+@media(min-width: 376px)
+{
+  .notifaction-icon{
+    display: none;
+  }
+  .profile-image img{
+    height: 85px !important;
+    width: 85px !important;
+    border-radius: 10px;
+  }
+  .form-col div .twi{
+    margin-right: -15px ;
+  }
+  .form-col div .good{
+    margin-right: -15px ;
+  }
+
+  .custom-file label .uimg-icon{
+    right: 8%;
+  }
+  .custom-file label .uimg-icon1{
+    right: 28%;
+  }
+  .main form div{
+    width: 94%;
+  }
+  .login-user1{
+    font-size: 12px !important;
+    padding-left: 1.25rem !important;
+  }
+  .users-img{
+    padding-left: 0px !important;
+  }
+  .nav-btnn{
+    margin-left: 40px !important;
+  }
+  .login-nav1{
+    display: none;
+  }
+  .main form div i{
+    margin-right: 20px;
+  }
+  .f-post{
+    font-size: 11px;
+    font-weight: bold;
+  }
+  .form-col .code{
+    border: none !important;
+    width: 10% !important;
+    height: 30px !important;
+    border-left: 2px solid gainsboro !important;
+
+  }
+  .btn-div .nav-btn span{
+    margin-top: 4px !important;
+  }
+  .user-info{
+    right: 24% !important;
+  }
+  .user-img{
+    right: 14% !important;
+  }
+  .main form div .search-input{
+    width: 78%;
+  }
+
+  .nav-btn{
+    font-size: 8px;
+  }
+  .nav1-btn{
+    font-size: 9px;
+    display: inline-flex;
+  }
+  .butn button{
+    padding-left: 15px !important;
+    padding-right: 15px !important;
+    font-size: 15px;
+  }
+  .plus-icon{
+    line-height: 27.5px !important;
+    margin-right: 5px !important;
+  }
+  .login-user{
+    padding-left: 2.25rem !important;
+  }
+  .social-links{
+    display: block;
+  }
+  .twitter{
+    line-height: 120px !important;
+  }
+  .u-img{
+    padding-left: 12px;
+  }
+  .upload-icon{
+    padding: 3px;
+  }
+  .user-menu{
+    top: 17%;
+    width: 40%;
+    height: 20%;
+    left: 2%;
+  }
+  .user-menu h4{
+    font-size: 17px;
+  }
+  .menu{
+    top: 16%;
+    left: 2%;
+    width: 30%;
+    height: 20%;
+  }
+  .menu h4{
+    font-size: 17px;
+  }
+  .login_btn{
+    font-size: 12px !important;
+    padding: 10px 13px !important;
+  }
+}
+@media(min-width: 426px)
+{
+  .notifaction-icon{
+    display: none;
+  }
+  .profile-image img{
+    height: 85px !important;
+    width: 85px !important;
+    border-radius: 10px;
+  }
+  .form-col div .twi{
+    margin-right: -10px ;
+  }
+  .form-col div .good{
+    margin-right: -10px ;
+  }
+  .custom-file label .uimg-icon{
+    right: 4%;
+  }
+  .custom-file label .uimg-icon1{
+    right: 25%;
+  }
+  .main form div{
+    width: 96%;
+  }
+  .login-user1{
+    font-size: 12px !important;
+    padding-left: 14px !important;
+  }
+  .login-nav1{
+    display: none;
+  }
+  .main form div i{
+    margin-right: 15px;
+  }
+  .f-post{
+    font-size: 13px;
+    font-weight: bold;
+  }
+  .form-col .code{
+    border: none !important;
+    width: 10% !important;
+    height: 30px !important;
+    border-left: 2px solid gainsboro !important;
+
+  }
+  .btn-div .nav-btn span{
+    margin-top: 4px !important;
+  }
+  .user-info{
+    font-size: 16px !important;
+    right: 15% !important;
+  }
+  .user-img{
+    right: 4% !important;
+  }
+  .nav-btn{
+    font-size: 8px;
+  }
+  .nav1-btn{
+    font-size: 9px;
+  }
+  .btn1-div button span{
+    font-size: 10px;
+    padding-left: 12px !important;
+    padding-right: 12px !important;
+  }
+  .plus-icon{
+    line-height: 27.5px !important;
+    margin-right: 5px !important;
+  }
+  .social-links{
+    display: block !important;
+  }
+  .u-img{
+    padding-left: 8px;
+  }
+  .upload-icon{
+    padding: 3px;
+  }
+  .menu{
+    top: 16%;
+    left: 2%;
+    width: 30%;
+    height: 20%;
+  }
+  .menu h4{
+    font-size: 17px;
+  }
+  .login_btn{
+    font-size: 12px !important;
+    padding: 10px 13px !important;
+  }
+
+}
+
+@media(min-width: 768px)
+{
+  .btn1-div button span{
+    font-size: 14px;
+    padding-left: 12px !important;
+    padding-right: 12px !important;
+  }
+  .notifaction-icon{
+    display: flex;
+  }
+  .profile-image img{
+    height: 80px !important;
+    width: 80px !important;
+    border-radius: 10px;
+  }
+  .custom-file label .uimg-icon{
+    right: 3%;
+  }
+  .custom-file label .uimg-icon1{
+    right: 25%;
+  }
+  .main form div{
+    width: 95%;
+  }
+  .login-nav1{
+    display: flex;
+}
+.notifaction-icon div img {
+  position: relative;
+  height: 25px;
+  width: 25px;
+  padding: 5px;
+}
+
+.login-nav2{
+  padding-left: 8px !important;
+}
+  .login-user1{
+    font-size: 13px !important;
+    padding-left: 8px !important;
+  }
+  .users-img{
+    padding-left: 0px !important;
+  }
+  .main form div i{
+    margin-right: 15px;
+  }
+  .f-post{
+    font-size: 15px;
+    font-weight: bold;
+  }
+  .form-col .code{
+    border: none !important;
+    width: 16% !important;
+    height: 30px !important;
+    border-left: 2px solid gainsboro !important;
+
+  }
+  .btn-div .nav-btn span{
+    margin-top: 4px !important;
+  }
+  .user-info{
+    font-size: 16px !important;
+    right: 37% !important;
+  }
+  .user-img{
+    right: 32% !important;
+  }
+  .btn-div{
+    padding-right: 50px !important;
+  }
+  .nav-btn{
+    font-size: 18px;
+  }
+  .nav1-btn{
+    font-size: 15px;
+  }
+  .plus-icon{
+    line-height: 28.5px !important;
+    margin-right: 5px !important;
+  }
+  .u-img{
+    padding-left: 6px;
+  }
+  .upload-icon{
+    padding: 3px;
+  }
+  .user-menu{
+    top: 17%;
+    width: 18%;
+    height: 20%;
+    left: 2%;
+  }
+  .notification_dd{
+    top: 17%;
+    left: 15%;
+    width: 41%;
+    height: 75%;
+  }
+  .user-menu h4{
+    font-size: 17px;
+  }
+  .menu{
+    top: 16%;
+    left: 1%;
+    width: 18%;
+    height: 20%;
+  }
+  .menu h4{
+    font-size: 17px;
+  }
+  .login_btn{
+    font-size: 14px !important;
+    padding: 12px 15px !important;
+  }
+}
+@media(min-width: 1024px)
+{
+  .user-profile-img{
+    padding-left: 79px !important;
+  }
+  .profile-image img{
+    height: 100px !important;
+    width: 120px !important;
+    border-radius: 10px;
+  }
+  .custom-file label .uimg-icon{
+    right: 28%;
+  }
+  .custom-file label .uimg-icon1{
+    right: 28%;
+  }
+  .main form div{
+    width: 97%;
+  }
+  .login-user1{
+    font-size: 13px !important;
+    padding-left: 15px !important;
+  }
+  .btn1-div{
+    padding-left: 120px !important;
+  }
+  .main form div i{
+    margin-right: 28px;
+  }
+  .form-col .code{
+    border: none !important;
+    width: 0% !important;
+    height: 30px !important;
+    border-left: 2px solid gainsboro !important;
+
+  }
+  .btn-div .nav-btn span{
+    margin-top: 4px !important;
+  }
+  .nav-btn{
+    font-size: 18px;
+  }
+  .user-info{
+    right: 34% !important;
+  }
+  .user-img{
+    right: 30% !important;
+  }
+  .main form div .search-input{
+    width: 85%;
+  }
+  .btn-div{
+    padding-right: 70px !important;
+  }
+  .u-img{
+    padding-left: 10px;
+  }
+  .upload-icon{
+    padding: 3px;
+  }
+  .btn-div .nav-btn{
+    margin-left: 180px !important;
+  }
+  .add-img{
+    padding-left: 55px !important;
+  }
+  .user-menu{
+    top: 13%;
+    width: 13%;
+    height: 20%;
+    left: 7%;
+  }
+  #menu{
+    display: none;
+  }
+  .menu{
+    display: none !important;
+  }
+  
+  .notification_dd{
+    top: 14%;
+    left: 19%;
+    width: 32%;
+    height: 75%;
+  }
+  .login-nav2{
+    padding-left: 50px !important;
+  }
+  .login_btn{
+    font-size: 14px !important;
+    padding: 12px 15px !important;
+  }
+}
+@media(min-width: 1440px)
+{
+  .profile-image img{
+    height: 140px !important;
+    width: 140px !important;
+    border-radius: 10px;
+  }
+  .custom-file label .uimg-icon{
+    right: 33%;
+  }
+  .custom-file label .uimg-icon1{
+    right: 37%;
+  }
+  .main form div{
+    width: 98%;
+  }
+  .login-nav .user-profile-img {
+    width: 100%;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .main form div i{
+    margin-right: 40px;
+  }
+  .user-info{
+    right: 32% !important;
+  }
+  .user-img{
+    right: 29% !important;
+  }
+  .form-col .code{
+    border: none !important;
+    width: 0% !important;
+    height: 30px !important;
+    border-left: 2px solid gainsboro !important;
+
+  }
+  .btn-div .nav-btn span{
+    margin-top: 4px !important;
+  }
+  .btn-div{
+    padding-right: 100px !important;
+  }
+  .u-img{
+    padding-left: 20px;
+  }
+  .upload-icon{
+    padding: 3px;
+  }
+  .user-menu{
+    top: 14%;
+    width: 11%;
+    height: 20%;
+    left: 7%;
+  }
+  
+ 
+  .notification_dd{
+    top: 14%;
+    left: 17%;
+    width: 22%;
+    height: 75%;
+  }
+  .user-profile-img{
+    padding-left: 100px !important;
+  }
+  .login_btn {
+    font-size: 16px !important;
+    padding: 14px 18px !important;
+}
+}
+@media(min-width: 2560px)
+{
+  .profile-image img{
+    height: 140px !important;
+    width: 140px !important;
+    border-radius: 10px;
+  }
+  .custom-file label .uimg-icon{
+    right: 42%;
+  }
+  .custom-file label .uimg-icon1{
+    right: 42%;
+  }
+  .form-col .code{
+    border: none !important;
+    width: 0% !important;
+    height: 30px !important;
+    border-left: 2px solid gainsboro !important;
+
+  }
+  .btn-div .nav-btn span{
+    margin-top: 4px !important;
+  }
+  .btn-div{
+    padding-right: 180px !important;
+  }
+  .user-menu {
+    top: 8%;
+    width: 7%;
+    height: 10%;
+    left: 4%;
+}
+.notification_dd {
+  top: 8%;
+  left: 10%;
+  width: 15%;
+  height: 68%;
+}
+}
+
+
+
+/* .upload-icon {
+  margin-top: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #8080806b;
+
+  background-color: #F7F3F4;
+  border-radius: 10px;
+  margin: 25px 2px 2px 2px;
+} */
+
+.upload-input {
+  position: relative;
+  top: -62px;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+}
+
+.toggel{
+	display: none;
+
+}
+.toggle{
+  display: none;
+}
+.togel{
+  display: none;
+}
+.active{
+	display: inline;
+}
+.nav2{
+  position: relative;
+}
+.notification_dd{
+  position: absolute;
+  background: white;
+  border-radius: 10px;
+  overflow: auto;
+  z-index: 1;
+}
+.chat_contacts{
+  background: white;
+  border-radius: 10px;
+  overflow: auto;
+  z-index: 1;
+}
+.starbucks{
+  display: flex;
+  list-style: none;
+  padding: 10px 15px;
+}
+.notify_status{
+  color: #0DA81E;
+  font-weight: normal;
+}
+.notify_data {
+  margin-left: 10px !important;
+}
+.notify_data .sub_title{
+  font-size: 12px;
+  color: #808080ba;
+}
+
+.user-menu{
+  position: absolute;
+  background: white;
+  border-radius: 10px;
+  padding: 18px 25px;
+}
+.menu{
+    position: absolute;
+    background: white;
+    border-radius: 10px;
+    padding: 18px 25px;
+    z-index: 1;
+
+  }
+
+.chat{
+  position: fixed;
+    bottom: 0px;
+    right: 0;
+    background: white;
+    border-radius: 10px;
+    padding: 18px 25px;
+}
+.msg-box{
+  position: fixed;
+  bottom: 0;
+  width: 30%;
+  background-color: #F1FBF3;
+}
+
+.nav-toggle-menu{
+  background: none;
+    font-size: 30px;
+    border: none;
+}
+
+.contacts{
+  display: flex;
+    justify-content: space-between;
+}
+.user_data{
+  display: flex;
+  float: right;
+}
+.contacts .chat_title i{
+  color: gray;
+}
+.contacts .chat_title {
+  color: #5D001D;
+}
+.contacts .date{
+  font-size: 10px;
+    color: gray;
+}
+.user_data .user_name .desc{
+  line-height: 0px;
+    font-size: 12px;
+    color: gray;
+}
+.user_data .user_name p span{
+  font-size: 11px;
+  color: gray;
+}
+.chat-header .user-avatar h5{
+  margin-left: 175px;
+}
+.notification_ul hr{
+  margin-top: 2rem;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#chat-bubble {
+  height: 55px;
+  overflow: hidden;
+  min-width: 285px;
+  background-color: #fff;
+  position: fixed;
+  bottom: 0;
+  
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border: 1px solid #e4e4e4;
+}
+
+#chat-bubble.open {
+  min-height: 350px;
+}
+
+.chat-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 25px;
+  z-index: 10;
+  position: relative;
+  padding: 8px;
+  box-shadow:  0 2px 1px rgba(0, 0, 0, .1);
+  cursor: pointer;
+  background-color: #fff;
+  transition: background-color 0.3s ease-in;
+}
+
+.chat-header:hover {
+  background-color: #f7f7f7;
+}
+
+.user-avatar {
+  display: flex;
+  flex: 1;
+}
+
+.user-avatar img {
+  border-radius: 50%;
+  margin-right: 8px;
+}
+
+.user-avatar .img-container {
+  position: relative;
+}
+
+.user-avatar .img-container::after {
+  content: '';
+  width: 10px;
+  height: 10px;
+  background-color: #1ba71b;
+  position: absolute;
+  right: 4px;
+  bottom: 4px;
+  border-radius: 50%;
+  border: 2px solid #fff;
+}
+
+.user-avatar .user-status-info a {
+  font-size: 13px;
+  margin: 0;
+  text-decoration: none;
+  font-weight: bold;
+  color: #000;
+}
+
+.user-avatar .user-status-info p {
+  font-size: 11px;
+  color: gray;
+} 
+
+.chat-comm {
+  display: none;
+}
+
+#chat-bubble.open .chat-comm {
+  display: block;
+}
+
+.chat-comm a {
+  text-decoration: none;
+}
+
+.chat-comm a:not(:last-child) {
+  margin-right: 8px;
+}
+
+.chat-body {
+  padding: 8px;
+}
+
+.sender-other .user-avatar .img-container img {
+  width: 25px;
+}
+
+.sender-other .user-avatar .img-container::after {
+  width: 7px;
+  height: 7px;
+  right: 4px;
+  bottom: 6px;
+}
+
+.sender-other .other-message {
+  background-color: #f1f0f0;
+  border-radius: 25px;
+  padding: 8px 11px;
+  font-size: 14px;
+}
+
+.sender-me {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.sender-me .my-message {
+  background-color: #3578e5;
+  color: #fff;
+  border-radius: 25px;
+  padding: 8px 11px;
+  font-size: 14px;
+}
+
+.sender-me .seen-at {
+  display: flex;
+  align-items: center;
+  color: #90949C;
+  font-size: 11px;
+  margin-top: 8px;
+}
+
+.sender-me .seen-at img.check {
+  width: 12px;
+  margin-right: 4px;
+}
+
+.chat-footer {
+  border-top: 1px solid #e4e4e4;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  padding-top: 8px;
+}
+
+.chat-footer input[type=textarea] {
+  width: 100%;
+  border: none;
+  padding: 0 8px;
+}
+
+.chat-footer svg path {
+  fill: #bec2c9;
+}
+
+.chat-footer input[type=textarea]:focus {
+  outline: none;
+}
+.chat-media {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px;
+}
+
+.chat-media a {
+  text-decoration: none;
+}
+
+.chat-media a:not(:last-child) {
+  margin-right: 8px;
+}
+
+.chat-media img {
+  width: 18px;
+}
+
+.chat-media img.game {
+  width: 20px;
+}
+
+.chat-media img.attach {
+  width: 14px;
+}
+
+.chat-media img.camera {
+  width: 16px;
+}
+
