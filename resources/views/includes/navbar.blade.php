@@ -28,20 +28,20 @@
             <div class="collapse navbar-collapse" id="sidenav-collapse-main">
                 <!-- Nav items -->
                 <ul class="navbar-nav">
-                    <li class="nav-item">
+                    {{-- <li class="nav-item">
                         <a class="nav-link {{ (request()->is('home*')) ? 'active' : '' }}" href="{{route('home')}}">
                             <i class="ni ni-shop text-primary"></i>
                             <span class="nav-link-text">Dashboard</span>
                         </a>
-                    </li>
-                    @can('update-settings')
+                    </li> --}}
+                    {{-- @can('update-settings')
                         <li class="nav-item">
                             <a class="nav-link {{ (request()->is('settings*')) ? 'active' : '' }}" href="{{route('settings.index')}}">
                                 <i class="ni ni-settings-gear-65 text-primary"></i>
                                 <span class="nav-link-text">Manage Settings</span>
                             </a>
                         </li>
-                    @endcan
+                    @endcan --}}
 
                     {{-- @canany(['view-category', 'create-category'])
                         <li class="nav-item">
@@ -90,7 +90,7 @@
                             </div>
                         </li>
                     @endcan --}}
-                    @canany(['view-user', 'create-user'])
+                    {{-- @canany(['view-user', 'create-user'])
 
                         <li class="nav-item">
                             <a class="nav-link {{ (request()->is('users*')) ? 'active' : '' }}" href="#navbar-users"  data-toggle="collapse" role="button" aria-expanded="true" aria-controls="navbar-users">
@@ -112,9 +112,9 @@
                                 </ul>
                             </div>
                         </li>
-                    @endcan
+                    @endcan --}}
 
-                    @canany(['view-permission', 'create-permission'])
+                    {{-- @canany(['view-permission', 'create-permission'])
                         <li class="nav-item">
                             <a class="nav-link {{ (request()->is('permissions*')) ? 'active' : '' }}" href="{{route('permissions.index')}}">
                                 <i class="fas fa-lock-open text-primary"></i>
@@ -129,7 +129,47 @@
                                 <span class="nav-link-text">Manage Roles</span>
                             </a>
                         </li>
-                    @endcan
+                    @endcan --}}
+
+                    <li class="nav-item">
+                        <a class="nav-link {{ (request()->is('companies*')) ? 'active' : '' }}" href="#navbar-users"  data-toggle="collapse" role="button" aria-expanded="true" aria-controls="navbar-users">
+                            <i class="fas text-primary fa-tasks"></i>
+                            <span class="nav-link-text">Basic assets info</span>
+                        </a>
+                        <div class="collapse" id="navbar-users">
+                            <ul class="nav nav-sm flex-column">
+                                <li class="nav-item">
+                                    <a href="{{route('companies.index')}}" class="nav-link"><span class="sidenav-mini-icon"></span><span class="sidenav-normal">Company</span></a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{route('locations.index')}}" class="nav-link"><span class="sidenav-mini-icon"></span><span class="sidenav-normal">Location</span></a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{route('siem.index')}}" class="nav-link"><span class="sidenav-mini-icon"></span><span class="sidenav-normal">SEM</span></a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link {{ (request()->is('companies*')) ? 'active' : '' }}" href="#navbar-assets"  data-toggle="collapse" role="button" aria-expanded="true" aria-controls="navbar-assets">
+                            <i class="fas text-primary fa-tasks"></i>
+                            <span class="nav-link-text">Assets</span>
+                        </a>
+                        <div class="collapse" id="navbar-assets">
+                            <ul class="nav nav-sm flex-column">
+                                <li class="nav-item">
+                                    <a href="{{route('vendors.index')}}" class="nav-link"><span class="sidenav-mini-icon"></span><span class="sidenav-normal">Vendor</span></a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{route('assetcategorydetail.index')}}" class="nav-link"><span class="sidenav-mini-icon"></span><span class="sidenav-normal">Assets Category Details</span></a>
+                                </li>
+                                {{-- <li class="nav-item">
+                                    <a href="{{route('siem.index')}}" class="nav-link"><span class="sidenav-mini-icon"></span><span class="sidenav-normal">SEM</span></a>
+                                </li> --}}
+                            </ul>
+                        </div>
+                    </li>
 
                     {{-- @canany(['media'])
                         <li class="nav-item">

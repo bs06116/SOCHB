@@ -58,7 +58,7 @@ class LoginController extends Controller
 
         $credentials = $request->only('email', 'password');
         if(Auth::attempt(['email' => $credentials['email'], 'password' => $credentials['password']], $request->remember)){
-            $userStatus = Auth::User()->status;
+            $userStatus = Auth::User()->active;
             if($userStatus==1) {
                 return redirect()->intended(url('/admin/home'));
             }else{

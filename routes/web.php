@@ -20,7 +20,7 @@ Auth::routes(['verify'=>true]);
 
 });
 
-Route::group(['prefix' => 'admin','namespace' => 'Admin', 'middleware' => ['auth','verified']], function () {
+Route::group(['prefix' => 'admin','namespace' => 'Admin', 'middleware' => ['auth']], function () {
 
     Route::get('/home', 'HomeController@index')->name('home');
 
@@ -30,23 +30,29 @@ Route::group(['prefix' => 'admin','namespace' => 'Admin', 'middleware' => ['auth
 
 
     Route::resource('users', 'UserController');
-
     Route::get('/profile/{user}', 'UserController@profile')->name('profile.edit');
-
     Route::post('/profile/{user}', 'UserController@profileUpdate')->name('profile.update');
-
     Route::resource('roles', 'RoleController')->except('show');
-
     Route::resource('permissions', 'PermissionController')->except(['show','destroy','update']);
-
     Route::resource('category', 'CategoryController')->except('show');
 
     Route::resource('post', 'PostController');
+    Route::resource('companies', 'CompanyController');
+    Route::resource('locations', 'LocationController');
+    Route::resource('locationstype', 'LocationTypeController');
+    Route::resource('siem', 'SIEMController');
+    Route::resource('siemtype', 'SIEMTypeController');
+    Route::resource('vendors', 'VendorsController');
+    Route::resource('assetcategorydetail', 'AssetCategoryDetailController');
+    Route::resource('assetcategorymaintype', 'AssetCategoryMainTypeController');
+    Route::resource('assetcategorysubtype', 'AssetCategorySubTypeController');
+
+
+
+
 
     Route::get('/activity-log', 'SettingController@activity')->name('activity-log.index');
-
     Route::get('/settings', 'SettingController@index')->name('settings.index');
-
     Route::post('/settings', 'SettingController@update')->name('settings.update');
 
 

@@ -14,6 +14,7 @@ class User extends Authenticatable implements MustVerifyEmail
 {
     use Notifiable, HasRoles, LogsActivity, ThrottlesLogins;
     //protected static $ignoreChangedAttributes = ['password'];
+    protected $table = 'tbl_users';
 
     /**
      * The attributes that are mass assignable.

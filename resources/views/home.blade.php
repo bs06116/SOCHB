@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-    <div class="row">
+    {{-- <div class="row">
         <div class="col-xl-3 col-md-6">
             <div class="card card-stats">
                 <!-- Card body -->
@@ -96,7 +96,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
 
 
     {{-- ============= --}}

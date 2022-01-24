@@ -66,7 +66,6 @@ class UserController extends Controller
         $user->assignRole($request->role);
         flash('User created successfully!')->success();
         return redirect()->route('users.index');
-
     }
 
     /**
