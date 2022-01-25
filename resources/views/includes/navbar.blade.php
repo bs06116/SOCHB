@@ -164,6 +164,10 @@
                                 <li class="nav-item">
                                     <a href="{{route('assetcategorydetail.index')}}" class="nav-link"><span class="sidenav-mini-icon"></span><span class="sidenav-normal">Assets Category Details</span></a>
                                 </li>
+                                <li class="nav-item">
+                                    <a href="{{route('applicationresourcecategory.index')}}" class="nav-link"><span class="sidenav-mini-icon"></span><span class="sidenav-normal">Application Resource Category
+                                    </span></a>
+                                </li>
                                 {{-- <li class="nav-item">
                                     <a href="{{route('siem.index')}}" class="nav-link"><span class="sidenav-mini-icon"></span><span class="sidenav-normal">SEM</span></a>
                                 </li> --}}

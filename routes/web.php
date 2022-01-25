@@ -46,6 +46,9 @@ Route::group(['prefix' => 'admin','namespace' => 'Admin', 'middleware' => ['auth
     Route::resource('assetcategorydetail', 'AssetCategoryDetailController');
     Route::resource('assetcategorymaintype', 'AssetCategoryMainTypeController');
     Route::resource('assetcategorysubtype', 'AssetCategorySubTypeController');
+    Route::resource('assetresourcemaintype', 'AssetResourceMainTypeController');
+    Route::resource('applicationresourcecategory', 'ApplicationResourceCategoryController');
+
 
 
 
