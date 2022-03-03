@@ -86,6 +86,7 @@ class ApplicationResourceCategoryController extends Controller
     {
          $request->validate([
             'sub_cat_code' => 'required|unique:tbl_asset_sub_category,sub_cat_code|max:15',
+            'sub_cat_desc'  => 'max:50'
          ]);
          ApplicationResourceCategory::create([
             'app_res_cat_id' => $request->app_res_cat_id,
@@ -135,6 +136,7 @@ class ApplicationResourceCategoryController extends Controller
     {
         $request->validate([
             'sub_cat_code' => 'required|unique:tbl_asset_main_category,main_cat_code,' . $applicationresourcecategory->asset_sub_cat_id . ',asset_main_cat_id|max:15',
+            'sub_cat_desc'  => 'max:50'
         ]);
 
         $applicationresourcecategory->update([

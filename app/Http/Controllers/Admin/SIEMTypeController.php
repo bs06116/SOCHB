@@ -83,6 +83,7 @@ class SIEMTypeController extends Controller
     {
          $request->validate([
             'siem_type_code' => 'required|unique:tbl_siem_type,siem_type_code|max:15',
+            'siem_type_desc' => 'max:50',
          ]);
         SIEMType::create([
             'siem_type_code' => strtoupper($request->siem_type_code),
@@ -128,6 +129,7 @@ class SIEMTypeController extends Controller
     {
         $request->validate([
             'siem_type_code' => 'required|unique:tbl_siem_type,siem_type_code,' . $siemtype->id . ',siem_type_id|max:15',
+            'siem_type_desc' => 'max:50',
         ]);
 
         $siemtype->update([

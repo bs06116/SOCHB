@@ -95,6 +95,7 @@ class AssetApplicationController extends Controller
     {
          $request->validate([
             'asset_app_code' => 'required|unique:tbl_asset_application,asset_app_code|max:15',
+            'asset_app_desc' => 'max:50'
          ]);
 
          AssetApplication::create([
@@ -152,6 +153,7 @@ class AssetApplicationController extends Controller
     {
         $request->validate([
             'asset_app_code' => 'required|unique:tbl_asset_application,asset_app_code,' . $assetapplication->asset_app_id . ',asset_app_id|max:15',
+            'asset_app_desc' => 'max:50'
         ]);
 
         $assetapplication->update([

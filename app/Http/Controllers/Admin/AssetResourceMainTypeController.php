@@ -85,6 +85,7 @@ class AssetResourceMainTypeController extends Controller
     {
          $request->validate([
             'res_cat_code' => 'required|unique:tbl_app_resource_category,res_cat_code|max:15',
+            'res_cat_desc' => 'max:50',
          ]);
 
          AssetResourceMainType::create([
@@ -133,6 +134,7 @@ class AssetResourceMainTypeController extends Controller
     {
         $request->validate([
             'res_cat_code' => 'required|unique:tbl_app_resource_category,res_cat_code,' . $assetresourcemaintype->app_res_cat_id . ',app_res_cat_id|max:15',
+            'res_cat_desc' => 'max:50',
         ]);
 
         $assetresourcemaintype->update([

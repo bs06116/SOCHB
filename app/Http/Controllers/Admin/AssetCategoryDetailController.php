@@ -106,7 +106,6 @@ class AssetCategoryDetailController extends Controller
             'cat_detail_enabled' => $request->cat_detail_enabled,
             'user_name' =>   Auth::user()->username,
             'time_stamp' => Carbon::now()
-
         ]);
         flash('AssetCategoryDetail created successfully!')->success();
         return redirect()->route('assetcategorydetail.index');
@@ -150,7 +149,6 @@ class AssetCategoryDetailController extends Controller
         $request->validate([
             'cat_detail_code' => 'required|unique:tbl_asset_category_detail,cat_detail_code,' . $assetcategorydetail->asset_cat_detail_id . ',asset_cat_detail_id|max:15',
         ]);
-
         $assetcategorydetail->update([
             'vendor_id' => $request->vendor_id,
             'asset_sub_main_id' => $request->asset_sub_main_id,

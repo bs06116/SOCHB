@@ -85,6 +85,7 @@ class VendorsController extends Controller
     {
         $request->validate([
             'vendor_code' => 'required|unique:tbl_vendor,vendor_code|max:15',
+            'vendor_desc' => 'max:50',
         ]);
 
         Vendors::create([
@@ -133,6 +134,7 @@ class VendorsController extends Controller
     {
         $request->validate([
             'vendor_code' => 'required|unique:tbl_vendor,vendor_code,' . $vendor->vendor_id . ',vendor_id|max:15',
+            'vendor_desc' => 'max:50'
         ]);
 
         $vendor->update([

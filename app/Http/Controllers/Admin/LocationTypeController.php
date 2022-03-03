@@ -88,6 +88,7 @@ class LocationTypeController extends Controller
     {
          $request->validate([
             'loc_type_code' => 'required|unique:tbl_location_type,loc_type_code|max:15',
+            'loc_type_desc' => 'max:50',
          ]);
 
               LocationType::create([
@@ -136,6 +137,8 @@ class LocationTypeController extends Controller
     {
         $request->validate([
             'loc_type_code' => 'required|unique:tbl_location_type,loc_type_code,' . $locationstype->location_type_id . ',location_type_id|max:15',
+            'loc_type_desc' => 'max:50',
+
         ]);
 
         $locationstype->update([

@@ -104,6 +104,7 @@ class LocationController extends Controller
     {
         $request->validate([
             'location_code' => 'required|unique:tbl_location,location_code|max:15',
+            'location_desc' => 'max:50',
         ]);
 
         Location::create([
@@ -164,6 +165,8 @@ class LocationController extends Controller
     {
         $request->validate([
             'location_code' => 'required|unique:tbl_location,location_code,' . $location->location_id . ',location_id|max:15',
+            'location_desc' => 'max:50',
+
         ]);
 
         $location->update([

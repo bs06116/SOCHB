@@ -70,8 +70,6 @@ class CompanyController extends Controller
             ];
         }
         $users = User::where('id', '!=',1)->get();
-
-
         return view('company.index',compact('users'));
     }
 
@@ -162,6 +160,8 @@ class CompanyController extends Controller
     {
         $request->validate([
             'company_code' => 'required|unique:tbl_company,company_code,' . $company->company_id . ',company_id|max:15',
+            'company_desc' => 'max:50',
+
         ]);
         $company->update([
             'company_code' => strtoupper($request->company_code),

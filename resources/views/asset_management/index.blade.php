@@ -145,7 +145,6 @@
                         <div class="form-group">
                             {{ Form::label('process_seq', 'SIEM', ['class' => 'form-control-label']) }}
                             {{ Form::select('process_seq',$siem, null, ['class' => 'form-control']) }}
-
                         </div>
                     </div>
                     <div class="col-lg-6">
@@ -154,7 +153,6 @@
                             {{ Form::text('process_ref', null, ['class' => 'form-control']) }}
                         </div>
                     </div>
-
                     {{ Form::submit('Save', ['class' => 'mt-5 btn btn-primary']) }}
                     {!! Form::close() !!}
                 </div>

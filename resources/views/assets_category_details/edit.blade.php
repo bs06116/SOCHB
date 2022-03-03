@@ -104,10 +104,9 @@
 @push('scripts')
 <script>
        $( document ).ready(function() {
-        getSubCategory('<?php echo $assetcategorydetail->asset_sub_main_id; ?>');
+            getSubCategory('<?php echo $assetcategorydetail->asset_sub_main_id; ?>');
         });
     function getSubCategory(categoryId) {
-
             $.ajax({
                 url: "{{ route('assetcategorydetail.loadSubType') }}",
                 type: "POST",

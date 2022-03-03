@@ -114,6 +114,10 @@ class AssetManagementController extends Controller
     {
          $request->validate([
             'asset_code' => 'required|unique:tbl_asset,asset_code|max:15',
+            'ip_address' => 'max:50',
+            'host_name' => 'max:50',
+            'domain_name' => 'max:50',
+            'asset_desc' => 'max:50',
          ]);
 
          AssetManagement::create([
@@ -180,6 +184,10 @@ class AssetManagementController extends Controller
     {
         $request->validate([
             'asset_code' => 'required|unique:tbl_asset,asset_code,' . $assetmanagement->asset_id . ',asset_id|max:15',
+            'ip_address' => 'max:50',
+            'host_name' => 'max:50',
+            'domain_name' => 'max:50',
+            'asset_desc' => 'max:50',
         ]);
 
         $assetmanagement->update([

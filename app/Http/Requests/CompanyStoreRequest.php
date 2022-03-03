@@ -24,7 +24,8 @@ class CompanyStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'company_code' => 'required|unique:tbl_company,company_code|max:50',
+            'company_code' => 'required|unique:tbl_company,company_code|max:15',
+            'company_desc' => 'max:50',
             'users' => 'required',
 
         ];

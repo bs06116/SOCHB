@@ -104,6 +104,7 @@ class SIEMController extends Controller
     {
          $request->validate([
             'siem_code' => 'required|unique:tbl_siem,siem_code|max:15',
+            'siem_desc' => 'max:50',
          ]);
 
          SIEM::create([
@@ -163,7 +164,9 @@ class SIEMController extends Controller
     public function update(Request $request, SIEM $siem)
     {
         $request->validate([
-            'siem_code' => 'required|unique:tbl_siem,siem_code,' . $siem->siem_id . ',siem_id|max:255',
+            'siem_code' => 'required|unique:tbl_siem,siem_code,' . $siem->siem_id . ',siem_id|max:15',
+            'siem_desc' => 'max:50',
+
         ]);
 
         $siem->update([
