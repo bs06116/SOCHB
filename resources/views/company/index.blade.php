@@ -16,7 +16,7 @@
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     {{ Form::label('company_code', 'Code', ['class' => 'form-control-label']) }}
-                                    {{ Form::text('company_code', null, ['class' => 'form-control']) }}
+                                    {{ Form::text('company_code', null, ['class' => 'form-control captail_word']) }}
                                 </div>
                             </div>
                             {{-- <div class="col-lg-6">
@@ -39,6 +39,20 @@
                         <div class="row">
                             <div class="col-lg-6">
                                 <div class="form-group">
+                                    {{ Form::label('company_desc', 'Users', ['class' => 'form-control-label']) }}
+                                    <select class="js-example-basic-multiple" name="users[]" multiple="multiple">
+                                        @foreach($users as $u):
+                                        <option value="{{$u->id}}">{{$u->first_name}} {{$u->last_name}}</option>
+                                        @endforeach
+                                      </select>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="form-group">
                                     {{ Form::label('company_enabled', 'Enabled', ['class' => 'form-control-label']) }}
                                     {{ Form::checkbox('company_enabled', 'Y', true) }}
 
@@ -52,6 +66,8 @@
 
                                 <div class="col-md-12">
                                     {{ Form::submit('Submit', ['class' => 'mt-5 btn btn-primary']) }}
+
+
                                 </div>
                             </div>
                         </div>
@@ -80,8 +96,10 @@
                             <table class="table table-hover align-items-center data-table">
                                 <thead class="thead-light">
                                     <tr>
+                                        <th scope="col">Id</th>
                                         <th scope="col">Code</th>
                                         <th scope="col">Descripton</th>
+                                        <th scope="col">Users</th>
                                         <th scope="col">Status</th>
                                         <th scope="col" class="text-center">Action</th>
                                     </tr>
@@ -99,6 +117,8 @@
     </div>
 @endsection
 @push('scripts')
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
     <script type="text/javascript">
         $(function() {
             var table = $('.data-table').DataTable({
@@ -111,13 +131,21 @@
                         //  d.search = $('input[type="search"]').val()
                     }
                 },
-                columns: [{
+                columns: [
+                    {
+                        data: 'company_id',
+                        name: 'company_id'
+                    },
+                    {
                         data: 'company_code',
                         name: 'company_code'
                     },
                     {
                         data: 'company_desc',
                         name: 'company_desc'
+                    },
+                    {
+                        data: 'users',
                     },
                     {
                         data: 'company_enabled',
@@ -159,5 +187,9 @@
                 });
 
         });
+        $(document).ready(function() {
+            $('.js-example-basic-multiple').select2();
+        });
+
     </script>
 @endpush

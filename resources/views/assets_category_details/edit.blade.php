@@ -14,7 +14,7 @@
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     {{ Form::label('cat_detail_code', 'Code', ['class' => 'form-control-label']) }}
-                                    {{ Form::text('cat_detail_code', $assetcategorydetail->cat_detail_code, ['class' => 'form-control']) }}
+                                    {{ Form::text('cat_detail_code', $assetcategorydetail->cat_detail_code, ['class' => 'form-control captail_word']) }}
                                 </div>
                             </div>
                             {{-- <div class="col-lg-6">
@@ -47,8 +47,14 @@
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     {{ Form::label('asset_sub_main_id', 'Main Type', ['class' => 'form-control-label']) }}
-                                    {{ Form::select('asset_sub_main_id',$assetcategorymaintype,$assetcategorydetail->asset_main_cat_id, ['class' => 'form-control']) }}
+                                    {{-- {{ Form::select('asset_sub_main_id',$assetcategorymaintype,$assetcategorydetail->asset_main_cat_id, ['class' => 'form-control']) }} --}}
+                                    <select name="asset_sub_main_id" id="main_catgory" onchange="getSubCategory(this.value)"
+                                    class="form-control">
+                                    @foreach ($assetcategorymaintype as $acm)
+                                        <option <?php if($assetcategorydetail->asset_sub_main_id ==  $acm->asset_main_cat_id){echo 'selected';} ?>  value="{{ $acm->asset_main_cat_id }}">{{ $acm->main_cat_code }}</option>
+                                    @endforeach
 
+                                </select>
                                 </div>
                             </div>
 
@@ -57,8 +63,10 @@
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     {{ Form::label('asset_sub_cat_id', 'Sub Type', ['class' => 'form-control-label']) }}
-                                    {{ Form::select('asset_sub_cat_id',$assetcategorysubtype, $assetcategorydetail->asset_sub_cat_id, ['class' => 'form-control']) }}
+                                    {{-- {{ Form::select('asset_sub_cat_id',$assetcategorysubtype, $assetcategorydetail->asset_sub_cat_id, ['class' => 'form-control']) }} --}}
+                                    <select name="asset_sub_cat_id"  id="select-subcategory" data-required="required" class="form-control" >
 
+                                    </select>
                                 </div>
                             </div>
 
@@ -86,6 +94,7 @@
                     </div>
 
                 {!! Form::close() !!}
+                <input type="hidden" value="<?php echo $assetcategorydetail->asset_sub_cat_id; ?>" id="asset_sub_id">
             </div>
         </div>
     </div>
@@ -93,5 +102,33 @@
 @endsection
 
 @push('scripts')
+<script>
+       $( document ).ready(function() {
+        getSubCategory('<?php echo $assetcategorydetail->asset_sub_main_id; ?>');
+        });
+    function getSubCategory(categoryId) {
+
+            $.ajax({
+                url: "{{ route('assetcategorydetail.loadSubType') }}",
+                type: "POST",
+                data: {
+                    category_id: categoryId,
+                    _token: "{{ csrf_token() }}"
+                },
+                success: function(response) {
+                    if (response) {
+                        var opts =
+                        `<option value="Select a model" disabled="" selected="">Select Sub Type</option>`;
+                        for (var i = 0; i < response.result.length; i++) {
+                            if($("#asset_sub_id").val() == response.result[i].asset_sub_cat_id){ selected_subtype = 'selected';}else{ selected_subtype = '';}
+                            opts +=
+                                `<option ${selected_subtype} value="${response.result[i].asset_sub_cat_id}">${response.result[i].sub_cat_code}</option>`;
+                        }
+                        $("#select-subcategory").html(opts);
+                    }
+                },
+            });
+        }
+</script>
 
 @endpush

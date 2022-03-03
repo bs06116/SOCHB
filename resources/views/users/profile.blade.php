@@ -10,27 +10,43 @@
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="form-group">
-                                        {{ Form::label('name', 'Name', ['class' => 'form-control-label']) }}
-                                        {{ Form::text('name', $user->name, ['class' => 'form-control']) }}
+                                        {{ Form::label('first_name', 'First Name', ['class' => 'form-control-label']) }}
+                                        {{ Form::text('first_name', $user->first_name, ['class' => 'form-control']) }}
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="form-group">
-                                        {{ Form::label('email', 'E-mail', ['class' => 'form-control-label']) }}
-                                        {{ Form::email('email', $user->email, ['class' => 'form-control']) }}
+                                        {{ Form::label('last_name', 'Last Name', ['class' => 'form-control-label']) }}
+                                        {{ Form::text('last_name', $user->last_name, ['class' => 'form-control']) }}
                                     </div>
                                 </div>
+
+                            </div>
+                            <div class="row">
+
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    {{ Form::label('email', 'E-mail', ['class' => 'form-control-label']) }}
+                                    {{ Form::email('email', $user->email, ['class' => 'form-control']) }}
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    {{ Form::label('city', 'City', ['class' => 'form-control-label']) }}
+                                    {{ Form::text('city', $user->city, ['class' => 'form-control']) }}
+                                </div>
+                            </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        {{ Form::label('phone_number', 'Phone number', ['class' => 'form-control-label']) }}
-                                        {{ Form::text('phone_number', $user->phone_number, ['class' => 'form-control']) }}
+                                        {{ Form::label('phone', 'Phone number', ['class' => 'form-control-label']) }}
+                                        {{ Form::text('phone', $user->phone, ['class' => 'form-control']) }}
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        {{ Form::label('profile_photo', 'Photo', ['class' => 'form-control-label d-block']) }}
+                                        {{ Form::label('img_path', 'Photo', ['class' => 'form-control-label d-block']) }}
                                         <div class="d-inline">
                                             <div class="input-group">
                                                 <span class="input-group-btn">
@@ -38,19 +54,19 @@
                                                     <i class="fa fa-picture-o"></i> Choose Logo
                                                   </a>
                                                 </span>
-                                                <input id="thumbnail" class="form-control d-none" type="text" name="profile_photo">
+                                                <input id="thumbnail" class="form-control d-none" type="text" name="img_path">
                                             </div>
                                         </div>
 
                                     </div>
                                 </div>
                                 <div class="col-md-2">
-                                    @if ($user->profile_photo)
-                                        <a href="{{ asset($user->profile_photo) }}" target="_blank">
+                                    @if ($user->img_path)
+                                        <a href="{{ $user->img_path }}" target="_blank">
                                             <img alt="Image placeholder"
                                             class="avatar avatar-xl  rounded-circle"
-                                            data-toggle="tooltip" data-original-title="{{ $user->name }} Logo"
-                                            src="{{ asset($user->profile_photo) }}">
+                                            data-toggle="tooltip" data-original-title="{{ $user->first_name }} Logo"
+                                            src="{{ $user->img_path }}">
                                         </a>
                                     @endif
                             </div>

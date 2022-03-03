@@ -15,14 +15,30 @@
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="form-group">
-                                        {{ Form::label('name', 'Name', ['class' => 'form-control-label']) }}
-                                        {{ Form::text('name', $user->name, ['class' => 'form-control']) }}
+                                        {{ Form::label('first_name', 'First Name', ['class' => 'form-control-label']) }}
+                                        {{ Form::text('first_name', $user->first_name, ['class' => 'form-control']) }}
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="form-group">
+                                        {{ Form::label('last_name', 'Last Name', ['class' => 'form-control-label']) }}
+                                        {{ Form::text('last_name', $user->last_name, ['class' => 'form-control']) }}
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="row">
+
+                                <div class="col-lg-6">
+                                    <div class="form-group">
                                         {{ Form::label('email', 'E-mail', ['class' => 'form-control-label']) }}
                                         {{ Form::email('email', $user->email, ['class' => 'form-control']) }}
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        {{ Form::label('city', 'City', ['class' => 'form-control-label']) }}
+                                        {{ Form::text('city', $user->city, ['class' => 'form-control']) }}
                                     </div>
                                 </div>
                             </div>
@@ -30,10 +46,24 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         {{ Form::label('phone_number', 'Phone number', ['class' => 'form-control-label']) }}
-                                        {{ Form::text('phone_number', $user->phone_number, ['class' => 'form-control']) }}
+                                        {{ Form::text('phone', $user->phone, ['class' => 'form-control']) }}
                                     </div>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+
+                                        {{-- {{$user->roles->sync([1])                                    }} --}}
+                                        {{ Form::label('role', 'Select Role', ['class' => 'form-control-label']) }}
+                                        <select class="js-example-basic-multiple" name="role[]" multiple="multiple">
+                                            @foreach($roles as $r):
+                                            <option <?php echo (in_array($r->id,$userRole))?'selected':'';?> value="{{$r->id}}">{{$r->name}} </option>
+                                            @endforeach
+                                          </select>
+                                        {{-- {{ Form::select('role', $roles, $user->roles, [ 'class'=> 'selectpicker form-control', 'placeholder' => 'Select role...']) }} --}}
+                                    </div>
+                                </div>
+
+                                {{-- <div class="col-md-4">
                                     <div class="form-group">
                                         {{ Form::label('profile_photo', 'Photo', ['class' => 'form-control-label d-block']) }}
                                         <div class="input-group">
@@ -44,10 +74,10 @@
                                             </span>
                                             <input id="thumbnail" class="form-control d-none" type="text" name="profile_photo">
                                         </div>
-                                </div>
+                                </div> --}}
                             </div>
 
-                                        <div class="col-md-2">
+                                        {{-- <div class="col-md-2">
                                             @if ($user->profile_photo)
                                                 <a href="{{ asset($user->profile_photo) }}" target="_blank">
                                                     <img alt="Image placeholder"
@@ -56,42 +86,27 @@
                                                     src="{{ asset($user->profile_photo) }}">
                                                 </a>
                                             @endif
+                                    </div> --}}
+                                    <div class="row">
+
+
+                                        <div class="col-lg-6">
+                                            <div class="form-group">
+                                                {{ Form::label('company', 'Assing Company', ['class' => 'form-control-label']) }}
+                                                <select class="js-example-basic-multiple" name="company[]" multiple="multiple">
+                                                    @foreach($company as $c):
+                                                    <option  <?php echo (in_array($c->company_id,$compyUser))?'selected':'';?> value="{{$c->company_id}}">{{$c->company_code}}</option>
+                                                    @endforeach
+                                                  </select>
+                                                {{-- {{ Form::select2('role', $roles, null, [ 'class'=> 'selectpicker form-control', 'placeholder' => 'Select role...']) }} --}}
+                                            </div>
+                                        </div>
+
                                     </div>
-                                <div class="col-lg-6">
-                                    <div class="form-group">
-                                        {{ Form::label('role', 'Select Role', ['class' => 'form-control-label']) }}
-                                        {{ Form::select('role', $roles, $user->roles, [ 'class'=> 'selectpicker form-control', 'placeholder' => 'Select role...']) }}
-                                    </div>
-                                </div>
+
                             </div>
-                            <div class="row">
-                                <div class="col-lg-6">
-                                    <div class="form-group">
-                                        {{ Form::label('position', 'Position', ['class' => 'form-control-label']) }}
-                                        {{ Form::text('position',  $user->position, ['class' => 'form-control']) }}
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="form-group">
-                                        {{ Form::label('ssn', 'SSN', ['class' => 'form-control-label']) }}
-                                        {{ Form::text('ssn', $user->ssn, ['class' => 'form-control']) }}
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-6">
-                                    <div class="form-group">
-                                        {{ Form::label('date_of_hiring', 'Date of Hiring', ['class' => 'form-control-label']) }}
-                                        {{ Form::date('date_of_hiring', $user->date_of_hiring, ['class' => 'form-control']) }}
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="form-group">
-                                        {{ Form::label('date_of_end', 'Date of End', ['class' => 'form-control-label']) }}
-                                        {{ Form::date('date_of_end', $user->date_of_end, ['class' => 'form-control']) }}
-                                    </div>
-                                </div>
-                            </div>
+
+
                         </div>
                         <hr class="my-4" />
                         <!-- Address -->
@@ -112,17 +127,21 @@
                                     </div>
                                 </div>
                             </div>
+
                         </div>
                         <hr class="my-4" />
                         <div class="pl-lg-4">
                             <div class="row">
-                                <div class="col-md-12">
-                                    <div class="custom-control custom-checkbox">
-                                        {!! Form::hidden('status', 0) !!}
-                                        <input type="checkbox" name="status" value="1" {{ $user->status ? 'checked' : ''}} class="custom-control-input" id="status">
-                                        {{ Form::label('status', 'Status', ['class' => 'custom-control-label']) }}
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        {{ Form::label('status', 'Status', ['class' => 'form-control-label']) }}
+                                        {{ Form::checkbox('active', 1, $user->active!=''?true:false) }}
+
                                     </div>
                                 </div>
+
+                            </div>
+
                                 @can('update-user')
                                 <div class="col-md-12">
                                     {{ Form::submit('Submit', ['class'=> 'mt-5 btn btn-primary']) }}
@@ -142,8 +161,12 @@
 
 @push('scripts')
     <script src="{{ asset('vendor/laravel-filemanager/js/stand-alone-button.js') }}"></script>
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
     <script>
         jQuery(document).ready(function(){
+            $('.js-example-basic-multiple').select2();
+
             jQuery('#uploadFile').filemanager('file');
         })
     </script>

@@ -17,7 +17,7 @@
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     {{ Form::label('sub_cat_code', 'Code', ['class' => 'form-control-label']) }}
-                                    {{ Form::text('sub_cat_code', null, ['class' => 'form-control']) }}
+                                    {{ Form::text('sub_cat_code', null, ['class' => 'form-control captail_word']) }}
                                 </div>
                             </div>
                             {{-- <div class="col-lg-6">
@@ -90,9 +90,12 @@
                             <table class="table table-hover align-items-center data-table">
                                 <thead class="thead-light">
                                     <tr>
+                                        <th scope="col">Sr</th>
                                         <th scope="col">Code</th>
                                         <th scope="col">Descripton</th>
                                         <th scope="col">Status</th>
+                                        <th scope="col">Type</th>
+
                                         <th scope="col" class="text-center">Action</th>
                                     </tr>
                                 </thead>
@@ -121,7 +124,12 @@
                         //  d.search = $('input[type="search"]').val()
                     }
                 },
-                columns: [{
+                columns: [
+                    {
+                        data: 'app_res_sub_cat_id',
+                        name: 'app_res_sub_cat_id'
+                    },
+                    {
                         data: 'sub_cat_code',
                         name: 'sub_cat_code'
                     },
@@ -132,6 +140,11 @@
                     {
                         data: 'sub_cat_enabled',
                         name: 'sub_cat_enabled'
+                    },
+
+                    {
+                        data: 'res_cat_code',
+                        name: 'res_cat_code_txt'
                     },
                     {
                         data: 'action',

@@ -9,11 +9,14 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Hash;
 use Spatie\Activitylog\Traits\LogsActivity;
 use Spatie\Permission\Traits\HasRoles;
+use Carbon\Carbon;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
     use Notifiable, HasRoles, LogsActivity, ThrottlesLogins;
     //protected static $ignoreChangedAttributes = ['password'];
+    public $timestamps = false;
+
     protected $table = 'tbl_users';
 
     /**
@@ -22,7 +25,7 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'phone_number','profile_photo', 'position', 'ssn','date_of_hiring','date_of_end'];
+        'first_name', 'last_name', 'email', 'password', 'phone', 'city', 'img_path','active','reg_date'];
 
     /**
      * The attributes that should be hidden for arrays.
@@ -46,15 +49,19 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function setStatusAttribute($status)
     {
-        $this->attributes['status'] = ($status)? 1 : 0;
+        $this->attributes['active'] = ($status)? 1 : 0;
     }
-    // public function setPasswordAttribute($password)
+    // public function setRegdataAttribute()
     // {
-    //     if(Hash::needsRehash($password)){
-    //         $password = Hash::make($password);
-    //         $this->attributes['password'] = $password;
-    //     }
+    //     $this->attributes['reg_date'] = Carbon::now();
     // }
+    public function setPasswordAttribute($password)
+    {
+        if(Hash::needsRehash($password)){
+            $password = Hash::make($password);
+            $this->attributes['password'] = $password;
+        }
+    }
     public function categories()
     {
         return $this->hasMany('App\Category');

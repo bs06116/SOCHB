@@ -43,6 +43,8 @@ class AssetResourceMainTypeController extends Controller
             $recordsFiltered = $query->count();
             $data = $query->orderBy($order_by, $order_dir)->skip($skip)->take($take)->get();
             foreach ($data as $index=>&$d) {
+                $d->res_cat_enabled =   $d->res_cat_enabled == 'Y'? "Yes":"No";
+
                 $d->action = '
                 <form method="POST" action="' . route('assetresourcemaintype.destroy', $d->app_res_cat_id) . '" accept-charset="UTF-8" class="d-inline-block dform">
                 <input name="_method" type="hidden" value="DELETE">
@@ -82,11 +84,11 @@ class AssetResourceMainTypeController extends Controller
     public function store(Request $request)
     {
          $request->validate([
-            'res_cat_code' => 'required|unique:tbl_app_resource_category,res_cat_code|max:255',
+            'res_cat_code' => 'required|unique:tbl_app_resource_category,res_cat_code|max:15',
          ]);
 
          AssetResourceMainType::create([
-            'res_cat_code' => $request->res_cat_code,
+            'res_cat_code' => strtoupper($request->res_cat_code),
             'res_cat_desc' => $request->res_cat_desc,
             'res_cat_enabled' => $request->res_cat_enabled,
             'user_name' =>   Auth::user()->username,
@@ -130,11 +132,11 @@ class AssetResourceMainTypeController extends Controller
     public function update(Request $request, AssetResourceMainType $assetresourcemaintype)
     {
         $request->validate([
-            'res_cat_code' => 'required|unique:tbl_app_resource_category,res_cat_code,' . $assetresourcemaintype->app_res_cat_id . ',app_res_cat_id|max:255',
+            'res_cat_code' => 'required|unique:tbl_app_resource_category,res_cat_code,' . $assetresourcemaintype->app_res_cat_id . ',app_res_cat_id|max:15',
         ]);
 
         $assetresourcemaintype->update([
-            'res_cat_code' => $request->res_cat_code,
+            'res_cat_code' => strtoupper($request->res_cat_code),
             'res_cat_desc' => $request->res_cat_desc,
             'res_cat_enabled' => $request->res_cat_enabled,
             'last_user_name' =>   Auth::user()->username,

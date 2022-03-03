@@ -28,10 +28,11 @@
                             <table class="table table-hover align-items-center">
                                 <thead class="thead-light">
                                 <tr>
-                                    <th scope="col">Name</th>
+                                    <th scope="col">First Name</th>
                                     <th scope="col">Email</th>
                                     <th scope="col">Status</th>
-                                    <th scope="col">Verified at</th>
+                                    <th scope="col">Roles</th>
+                                    {{-- <th scope="col">Companies</th> --}}
                                     <th scope="col">Photo</th>
                                     <th scope="col" class="text-center">Action</th>
                                 </tr>
@@ -40,28 +41,36 @@
                                 @foreach($users as $user)
                                     <tr>
                                         <th scope="row">
-                                            {{$user->name}}
+                                            {{$user->first_name}}
                                         </th>
                                         <td class="budget">
                                             {{$user->email}}
                                         </td>
                                         <td>
-                                            @if($user->status)
+                                            @if($user->active)
                                                 <span class="badge badge-pill badge-lg badge-success">Active</span>
                                             @else
                                                 <span class="badge badge-pill badge-lg badge-danger">Disabled</span>
                                             @endif
                                         </td>
                                         <td>
-                                            {{$user->email_verified_at}}
+                                            @foreach($user->getRoleNames() as $u)
+                                            {{$u }},
+                                            @endforeach
+                                            {{-- {{
+                                            }} --}}
+                                            {{-- {{$user->getRoleNames()}} --}}
                                         </td>
+                                        {{-- <td>
+                                            {{$user->getRoleNames()}}
+                                        </td> --}}
                                         <td>
                                             <div class="avatar-group">
-                                                @if ($user->profile_photo)
+                                                @if ($user->img_path)
                                                 <img alt="Image placeholder"
                                                     class="avatar avatar-sm rounded-circle"
-                                                    data-toggle="tooltip" data-original-title="{{$user->name}}"
-                                                    src="{{ asset($user->profile_photo) }}">
+                                                    data-toggle="tooltip" data-original-title="{{$user->first_name}}"
+                                                    src="{{ $user->img_path }}">
                                                 @else
                                                 <i class="far avatar avatar-sm rounded-circle fa-user"></i>
                                                 @endif

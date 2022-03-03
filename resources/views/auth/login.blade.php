@@ -1,6 +1,7 @@
 @extends('layouts.auth')
 
 @section('content')
+<script src="https://www.google.com/recaptcha/api.js"></script>
 
     <div class="header bg-gradient-primary py-7 py-lg-8 pt-lg-9">
         <div class="container">
@@ -36,7 +37,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="ni ni-email-83"></i></span>
                                     </div>
-                                    <input id="email" type="email" value="admin@email.com" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                                    <input id="email" type="email"  class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
 
                                     @error('email')
                                     <span class="invalid-feedback" role="alert">
@@ -50,7 +51,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
                                     </div>
-                                    <input id="password" type="password" value="secret" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+                                    <input id="password" type="password"  class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
 
                                     @error('password')
                                     <span class="invalid-feedback" role="alert">
@@ -58,15 +59,27 @@
                                     </span>
                                     @enderror                                </div>
                             </div>
+                            {{-- <div class="form-group">
+                                <div class="input-group input-group-merge input-group-alternative">
+
+                                   <?php
+                                   $company = App\Company::pluck('company_code', 'company_id');
+                                ?>
+                                    {{ Form::select('company_id', $company
+                                    , null, ['class' => 'form-control','placeholder' => 'Select Company']) }}
+
+                               </div>
+                            </div>
                             <div class="custom-control custom-control-alternative custom-checkbox">
                                 <input class="custom-control-input" id=" customCheckLogin"  name="remember" {{ old('remember') ? 'checked' : '' }} type="checkbox">
                                 <label class="custom-control-label" for=" customCheckLogin">
                                     <span>Remember me</span>
                                 </label>
-                            </div>
+                            </div> --}}
                             <div class="text-center">
                                 <button type="submit" class="btn btn-primary mt-4">Login</button>
                             </div>
+
                             {{-- <div class="form-group mt-4 mb-0">
                                 <div class="alert alert-info">
                                    Admin Email : admin@email.com , Password: secret
@@ -101,3 +114,15 @@
     </div>
 
 @endsection
+
+{{-- <script>
+         grecaptcha.ready(function() {
+             grecaptcha.execute('{{ config('services.recaptcha.sitekey') }}', {action: 'contact'}).then(function(token) {
+                console.info("Adfs");
+
+                if (token) {
+                  document.getElementById('recaptcha').value = token;
+                }
+             });
+         });
+</script> --}}

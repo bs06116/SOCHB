@@ -2,3 +2,6 @@
 .mx-w-440{
     max-width: 340px;
 }
+.captail_word {
+    text-transform: uppercase;
+  }

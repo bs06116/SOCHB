@@ -30,9 +30,9 @@
                         aria-expanded="false">
                         <div class="media align-items-center">
                             <span class="avatar avatar-sm rounded-circle">
-                                @if (Auth::user()->profile_photo)
+                                @if (Auth::user()->img_path)
                                     <img width="45" height="45" class="img-fluid rounded-pill"
-                                        src="{{ asset(Auth::user()->profile_photo) }}" alt="">
+                                        src="{{ Auth::user()->img_path }}" alt="">
                                 @else
                                     <i class="far avatar avatar-sm rounded-circle fa-user"></i>
 
@@ -51,13 +51,13 @@
                             <i class="ni ni-single-02"></i>
                             <span>My profile</span>
                         </a>
-                        @can('settings.update')
+                        {{-- @can('settings.update')
 
                             <a href="{{ route('settings.index') }}" class="dropdown-item">
                                 <i class="ni ni-settings-gear-65"></i>
                                 <span>Settings</span>
                             </a>
-                        @endcan
+                        @endcan --}}
                         {{-- <a href="#!" class="dropdown-item">
                             <i class="ni ni-support-16"></i>
                             <span>Support</span>

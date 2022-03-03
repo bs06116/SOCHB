@@ -12,5 +12,9 @@ class Location extends Model
     protected $fillable = ['location_code','location_desc','location_enabled','company_id','location_type_id','user_name',
     'time_stamp','last_user_name','last_time_stamp'];
 
+    function company(){
+        return $this->belongsTo('App\Company');
+      }
+
     //
 }

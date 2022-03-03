@@ -24,13 +24,11 @@ class UserStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'=> 'required',
-            'email' => 'required|unique:users,email|email',
+            'first_name'=> 'required',
+            'last_name'=> 'required',
+            'email' => 'required|unique:tbl_users,email|email',
             'password' => 'required|confirmed|min:6',
-            'position' => 'required',
-            'ssn' => 'required',
-            'date_of_hiring' => 'required',
-            'date_of_end' => 'required',
+
 
         ];
     }

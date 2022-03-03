@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Storage;
 use Spatie\Permission\Models\Role;
 use App\Http\Requests\CompanyStoreRequest;
 use Carbon\Carbon;
+use DB;
 
 
 class LocationController extends Controller
@@ -33,7 +34,12 @@ class LocationController extends Controller
             $skip = request('start');
             $take = request('length');
             $search = request('search');
-            $query = Location::query();
+            $query = Location::query()->join('tbl_company', 'tbl_company.company_id', "=", "tbl_location.company_id");
+                $query->when(Auth::id() !=1, function ($q) {
+                $q->join('tbl_user_company', 'tbl_company.company_id', '=', 'tbl_user_company.company_id');
+                    $q->where('tbl_user_company.user_id',Auth::id());
+            });
+            $query->join('tbl_location_type', 'tbl_location_type.location_type_id', "=", "tbl_location.location_type_id");
             $query->orderBy('location_id', 'DESC')->get();
             $recordsTotal = $query->count();
             if (isset($search['value'])) {
@@ -43,7 +49,12 @@ class LocationController extends Controller
             }
             $recordsFiltered = $query->count();
             $data = $query->orderBy($order_by, $order_dir)->skip($skip)->take($take)->get();
+
             foreach ($data as &$d) {
+                $d->location_id = $d->location_id;
+                $d->company_txt =  $d->company_code;
+                $d->location_type_txt =  $d->loc_type_code;
+                $d->location_enabled =   $d->location_enabled == 'Y'? "Yes":"No";
                 $d->action = '
                 <form method="POST" action="' . route('locations.destroy', $d->location_id) . '" accept-charset="UTF-8" class="d-inline-block dform">
                 <input name="_method" type="hidden" value="DELETE">
@@ -62,9 +73,16 @@ class LocationController extends Controller
                 "data" => $data,
             ];
         }
-        $companies = Company::pluck('company_code', 'company_id');
-        $locationType = LocationType::pluck('loc_type_code', 'location_type_id');
-        return view('location.index', compact('companies', 'locationType'));
+      //  $companies = Company::pluck('company_code', 'company_id');
+      if(Auth::id() !=1){
+            $companies = Company::join('tbl_user_company', 'tbl_company.company_id', '=', 'tbl_user_company.company_id');
+            $companies->where('tbl_user_company.user_id',Auth::id());
+            $companies = $companies->pluck('tbl_company.company_code','tbl_company.company_id');
+        }else{
+            $companies = Company::pluck('company_code', 'company_id');
+        }
+      $locationType = LocationType::pluck('loc_type_code', 'location_type_id');
+      return view('location.index', compact('companies', 'locationType'));
     }
 
     /**
@@ -85,11 +103,11 @@ class LocationController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'location_code' => 'required|unique:tbl_location,location_code|max:255',
+            'location_code' => 'required|unique:tbl_location,location_code|max:15',
         ]);
 
         Location::create([
-            'location_code' => $request->location_code,
+            'location_code' =>strtoupper($request->location_code),
             'location_desc' => $request->location_desc,
             'location_enabled' => $request->location_enabled,
             'company_id' => $request->company_id,
@@ -123,7 +141,14 @@ class LocationController extends Controller
     public function edit(Location $location)
     {
         $title =  'Update Location';
-        $companies = Company::pluck('company_code', 'company_id');
+       // $companies = Company::pluck('company_code', 'company_id');
+       if(Auth::id() !=1){
+        $companies = Company::join('tbl_user_company', 'tbl_company.company_id', '=', 'tbl_user_company.company_id');
+        $companies->where('tbl_user_company.user_id',Auth::id());
+        $companies = $companies->pluck('tbl_company.company_code','tbl_company.company_id');
+        }else{
+            $companies = Company::pluck('company_code', 'company_id');
+        }
         $locationType = LocationType::pluck('loc_type_code', 'location_type_id');
         return view('location.edit', compact('location', 'title', 'companies', 'locationType'));
     }
@@ -138,11 +163,11 @@ class LocationController extends Controller
     public function update(Request $request, Location $location)
     {
         $request->validate([
-            'location_code' => 'required|unique:tbl_location,location_code,' . $location->location_id . ',location_id|max:255',
+            'location_code' => 'required|unique:tbl_location,location_code,' . $location->location_id . ',location_id|max:15',
         ]);
 
         $location->update([
-            'location_code' => $request->location_code,
+            'location_code' => strtoupper($request->location_code),
             'location_desc' => $request->location_desc,
             'location_enabled' => $request->location_enabled,
             'company_id' => $request->company_id,

@@ -16,7 +16,7 @@
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     {{ Form::label('vendor_code', 'Code', ['class' => 'form-control-label']) }}
-                                    {{ Form::text('vendor_code', null, ['class' => 'form-control']) }}
+                                    {{ Form::text('vendor_code', null, ['class' => 'form-control captail_word']) }}
                                 </div>
                             </div>
                             {{-- <div class="col-lg-6">
@@ -81,6 +81,8 @@
                             <table class="table table-hover align-items-center data-table">
                                 <thead class="thead-light">
                                     <tr>
+                                        <th scope="col">id</th>
+
                                         <th scope="col">Code</th>
                                         <th scope="col">Descripton</th>
                                         <th scope="col">Status</th>
@@ -112,7 +114,11 @@
                         //  d.search = $('input[type="search"]').val()
                     }
                 },
-                columns: [{
+                columns: [
+                    {
+                        data: 'vendor_id',
+                        name: 'vendor_id'
+                    },{
                         data: 'vendor_code',
                         name: 'vendor_code'
                     },

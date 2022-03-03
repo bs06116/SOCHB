@@ -9,14 +9,14 @@
         <div class="col-md-12">
             <div class="card mb-5">
                 <div class="card-body">
-                    {!! Form::open(['route' => 'siemtype.store']) !!}
-                    <h6 class="heading-small text-muted mb-4">SIEM Type information</h6>
+                    {!! Form::open(['route' => 'assetapplication.store']) !!}
+                    <h6 class="heading-small text-muted mb-4">Asset Application information</h6>
                     <div class="pl-lg-4">
                         <div class="row">
                             <div class="col-lg-6">
                                 <div class="form-group">
-                                    {{ Form::label('siem_type_code', 'Code', ['class' => 'form-control-label']) }}
-                                    {{ Form::text('siem_type_code', null, ['class' => 'form-control captail_word']) }}
+                                    {{ Form::label('asset_app_code', 'Code', ['class' => 'form-control-label']) }}
+                                    {{ Form::text('asset_app_code', null, ['class' => 'form-control']) }}
                                 </div>
                             </div>
                             {{-- <div class="col-lg-6">
@@ -29,19 +29,40 @@
                         <div class="row">
                             <div class="col-lg-6">
                                 <div class="form-group">
-                                    {{ Form::label('siem_type_desc', 'Description', ['class' => 'form-control-label']) }}
-                                    {{ Form::textarea('siem_type_desc', null, ['class' => 'form-control']) }}
+                                    {{ Form::label('asset_app_desc', 'Description', ['class' => 'form-control-label']) }}
+                                    {{ Form::textarea('asset_app_desc', null, ['class' => 'form-control']) }}
 
                                 </div>
                             </div>
 
                         </div>
-
                         <div class="row">
                             <div class="col-lg-6">
                                 <div class="form-group">
-                                    {{ Form::label('siem_type_enabled', 'Enabled', ['class' => 'form-control-label']) }}
-                                    {{ Form::checkbox('siem_type_enabled', 'Y', true) }}
+                                    {{ Form::label('company_id', 'Company', ['class' => 'form-control-label']) }}
+                                    {{ Form::select('company_id',$company, null, ['class' => 'form-control']) }}
+
+                                </div>
+                            </div>
+                            <a href="{{ route('companies.index')}}" class="form-group">Add</a>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    {{ Form::label('vendor_id', 'Vednor', ['class' => 'form-control-label']) }}
+                                    {{ Form::select('vendor_id',$vendor, null, ['class' => 'form-control']) }}
+
+                                </div>
+                            </div>
+                            <a href="{{ route('vendors.index')}}" class="form-group">Add</a>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    {{ Form::label('asset_app_enabled', 'Enabled', ['class' => 'form-control-label']) }}
+                                    {{ Form::checkbox('asset_app_enabled', 'Y', true) }}
 
                                 </div>
                             </div>
@@ -70,7 +91,7 @@
                 <div class="card-header bg-transparent">
                     <div class="row">
                         <div class="col-lg-8">
-                            <h3 class="mb-0">All SIEM Type</h3>
+                            <h3 class="mb-0">All Asset Application</h3>
                         </div>
 
                     </div>
@@ -81,10 +102,13 @@
                             <table class="table table-hover align-items-center data-table">
                                 <thead class="thead-light">
                                     <tr>
-                                        <th scope="col">ID</th>
+                                        <th scope="col">Sr</th>
                                         <th scope="col">Code</th>
                                         <th scope="col">Descripton</th>
                                         <th scope="col">Status</th>
+                                        <th scope="col">Vendor</th>
+                                        <th scope="col">Company</th>
+
                                         <th scope="col" class="text-center">Action</th>
                                     </tr>
                                 </thead>
@@ -107,7 +131,7 @@
                 processing: true,
                 serverSide: true,
                 ajax: {
-                    url: "{{ route('siemtype.index') }}",
+                    url: "{{ route('assetapplication.index') }}",
                     data: function(d) {
                         //   d.approved = $('#approved').val(),
                         //  d.search = $('input[type="search"]').val()
@@ -115,27 +139,38 @@
                 },
                 columns: [
                     {
-                        data: 'siem_type_id',
-                        name: 'siem_type_id'
+                        data: 'asset_app_id',
+                        name: 'asset_app_id'
                     },
-                                       {
-                        data: 'siem_type_code',
-                        name: 'siem_type_code'
-                    },
-                    {
-                        data: 'siem_type_desc',
-                        name: 'siem_type_desc'
+                     {
+                        data: 'asset_app_code',
+                        name: 'asset_app_code'
                     },
                     {
-                        data: 'siem_type_enabled',
-                        name: 'siem_type_enabled'
+                        data: 'asset_app_desc',
+                        name: 'asset_app_desc'
+                    },
+                    {
+                        data: 'asset_app_enabled',
+                        name: 'asset_app_enabled'
+                    },
+                    {
+                        data: 'vendor_code',
+                        name: 'vendor_code'
+                    },
+                    {
+                        data: 'company_code',
+                        name: 'company_code'
                     },
 
                     {
                         data: 'action',
                         name: 'actions'
                     }
-                ]
+                ],"fnRowCallback": function (nRow, aData, iDisplayIndex) {
+                    $("td:nth-child(1)", nRow).html(iDisplayIndex + 1);
+                    return nRow;
+                }
 
             }
 

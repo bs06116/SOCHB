@@ -17,7 +17,7 @@
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     {{ Form::label('main_cat_code', 'Code', ['class' => 'form-control-label']) }}
-                                    {{ Form::text('main_cat_code', null, ['class' => 'form-control']) }}
+                                    {{ Form::text('main_cat_code', null, ['class' => 'form-control captail_word']) }}
                                 </div>
                             </div>
                             {{-- <div class="col-lg-6">
@@ -82,7 +82,7 @@
                             <table class="table table-hover align-items-center data-table">
                                 <thead class="thead-light">
                                     <tr>
-                                        {{-- <th scope="col">Sr</th> --}}
+                                        <th scope="col">id</th>
                                         <th scope="col">Code</th>
                                         <th scope="col">Descripton</th>
                                         <th scope="col">Status</th>
@@ -115,6 +115,11 @@
                     }
                 },
                 columns: [
+
+                    {
+                        data: 'asset_main_cat_id',
+                        name: 'asset_main_cat_id'
+                    },
                                        {
                         data: 'main_cat_code',
                         name: 'main_cat_code'

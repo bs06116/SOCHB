@@ -43,6 +43,8 @@ class AssetCategorySubTypeController extends Controller
             $recordsFiltered = $query->count();
             $data = $query->orderBy($order_by, $order_dir)->skip($skip)->take($take)->get();
             foreach ($data as $index=>&$d) {
+                $d->sub_cat_enabled =   $d->sub_cat_enabled == 'Y'? "Yes":"No";
+
                 $d->action = '
                 <form method="POST" action="' . route('assetcategorysubtype.destroy', $d->asset_sub_cat_id) . '" accept-charset="UTF-8" class="d-inline-block dform">
                 <input name="_method" type="hidden" value="DELETE">
@@ -84,11 +86,11 @@ class AssetCategorySubTypeController extends Controller
     public function store(Request $request)
     {
          $request->validate([
-            'sub_cat_code' => 'required|unique:tbl_asset_sub_category,sub_cat_code|max:255',
+            'sub_cat_code' => 'required|unique:tbl_asset_sub_category,sub_cat_code|max:15',
          ]);
          AssetCategorySubType::create([
             'asset_main_cat_id' => $request->asset_main_cat_id,
-            'sub_cat_code' => $request->sub_cat_code,
+            'sub_cat_code' => strtoupper($request->sub_cat_code),
             'sub_cat_desc' => $request->sub_cat_desc,
             'sub_cat_enabled' => $request->sub_cat_enabled,
             'user_name' =>   Auth::user()->username,
@@ -134,11 +136,11 @@ class AssetCategorySubTypeController extends Controller
     public function update(Request $request, AssetCategorySubType $assetcategorysubtype)
     {
         $request->validate([
-            'sub_cat_code' => 'required|unique:tbl_asset_main_category,main_cat_code,' . $assetcategorysubtype->asset_sub_cat_id . ',asset_main_cat_id|max:255',
+            'sub_cat_code' => 'required|unique:tbl_asset_main_category,main_cat_code,' . $assetcategorysubtype->asset_sub_cat_id . ',asset_main_cat_id|max:15',
         ]);
 
         $assetcategorysubtype->update([
-            'sub_cat_code' => $request->sub_cat_code,
+            'sub_cat_code' => strtoupper($request->sub_cat_code),
             'sub_cat_desc' => $request->sub_cat_desc,
             'sub_cat_enabled' => $request->sub_cat_enabled,
             'last_user_name' =>   Auth::user()->username,

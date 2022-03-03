@@ -45,6 +45,9 @@ class LocationTypeController extends Controller
             $recordsFiltered = $query->count();
             $data = $query->orderBy($order_by, $order_dir)->skip($skip)->take($take)->get();
             foreach ($data as $index=>&$d) {
+                $d->location_type_id =  $d->location_type_id;
+                $d->loc_type_enabled =   $d->loc_type_enabled == 'Y'? "Yes":"No";
+
                 $d->action = '
                 <form method="POST" action="' . route('locationstype.destroy', $d->location_type_id) . '" accept-charset="UTF-8" class="d-inline-block dform">
                 <input name="_method" type="hidden" value="DELETE">
@@ -84,11 +87,11 @@ class LocationTypeController extends Controller
     public function store(Request $request)
     {
          $request->validate([
-            'loc_type_code' => 'required|unique:tbl_location_type,loc_type_code|max:255',
+            'loc_type_code' => 'required|unique:tbl_location_type,loc_type_code|max:15',
          ]);
 
               LocationType::create([
-            'loc_type_code' => $request->loc_type_code,
+            'loc_type_code' => strtoupper($request->loc_type_code),
             'loc_type_desc' => $request->loc_type_desc,
             'loc_type_enabled' => $request->loc_type_enabled,
             'user_name' =>   Auth::user()->username,
@@ -132,11 +135,11 @@ class LocationTypeController extends Controller
     public function update(Request $request, LocationType $locationstype)
     {
         $request->validate([
-            'loc_type_code' => 'required|unique:tbl_location_type,loc_type_code,' . $locationstype->location_type_id . ',location_type_id|max:255',
+            'loc_type_code' => 'required|unique:tbl_location_type,loc_type_code,' . $locationstype->location_type_id . ',location_type_id|max:15',
         ]);
 
         $locationstype->update([
-            'loc_type_code' => $request->loc_type_code,
+            'loc_type_code' => strtoupper($request->loc_type_code),
             'loc_type_desc' => $request->loc_type_desc,
             'loc_type_enabled' => $request->loc_type_enabled,
             'last_user_name' =>   Auth::user()->username,

@@ -42,6 +42,8 @@ class AssetCategoryMainTypeController extends Controller
             $recordsFiltered = $query->count();
             $data = $query->orderBy($order_by, $order_dir)->skip($skip)->take($take)->get();
             foreach ($data as $index=>&$d) {
+                $d->asset_main_cat_id = $d->asset_main_cat_id;
+                $d->main_cat_enabled =   $d->main_cat_enabled == 'Y'? "Yes":"No";
                 $d->action = '
                 <form method="POST" action="' . route('assetcategorymaintype.destroy', $d->asset_main_cat_id) . '" accept-charset="UTF-8" class="d-inline-block dform">
                 <input name="_method" type="hidden" value="DELETE">
@@ -81,11 +83,11 @@ class AssetCategoryMainTypeController extends Controller
     public function store(Request $request)
     {
          $request->validate([
-            'main_cat_code' => 'required|unique:tbl_asset_main_category,main_cat_code|max:255',
+            'main_cat_code' => 'required|unique:tbl_asset_main_category,main_cat_code|max:15',
          ]);
 
          AssetCategoryMainType::create([
-            'main_cat_code' => $request->main_cat_code,
+            'main_cat_code' => strtoupper($request->main_cat_code),
             'main_cat_desc' => $request->main_cat_desc,
             'main_cat_enabled' => $request->main_cat_enabled,
             'time_stamp' => Carbon::now()
@@ -128,11 +130,11 @@ class AssetCategoryMainTypeController extends Controller
     public function update(Request $request, AssetCategoryMainType $assetcategorymaintype)
     {
         $request->validate([
-            'main_cat_code' => 'required|unique:tbl_asset_main_category,main_cat_code,' . $assetcategorymaintype->location_tasset_main_cat_idype_id . ',asset_main_cat_id|max:255',
+            'main_cat_code' => 'required|unique:tbl_asset_main_category,main_cat_code,' . $assetcategorymaintype->asset_main_cat_id . ',asset_main_cat_id|max:15',
         ]);
 
         $assetcategorymaintype->update([
-            'main_cat_code' => $request->main_cat_code,
+            'main_cat_code' => strtoupper($request->main_cat_code),
             'main_cat_desc' => $request->main_cat_desc,
             'main_cat_enabled' => $request->main_cat_enabled,
             'last_user_name' =>   Auth::user()->username,

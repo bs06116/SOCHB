@@ -58,7 +58,7 @@ class RoleController extends Controller
     {
 
         $request->validate([
-            'name' => 'required|unique:roles|max:255',
+            'name' => 'required|unique:roles|max:15',
         ]);
 
         activity('role')
@@ -108,7 +108,7 @@ class RoleController extends Controller
     public function update(Request $request, Role $role)
     {
         $request->validate([
-            'name' => 'required|unique:roles,name,'.$role->id.'|max:255',
+            'name' => 'required|unique:roles,name,'.$role->id.'|max:15',
         ]);
 
         activity('role')

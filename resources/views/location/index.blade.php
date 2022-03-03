@@ -16,7 +16,7 @@
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     {{ Form::label('location_code', 'Code', ['class' => 'form-control-label']) }}
-                                    {{ Form::text('location_code', null, ['class' => 'form-control']) }}
+                                    {{ Form::text('location_code', null, ['class' => 'form-control captail_word']) }}
                                 </div>
                             </div>
                             {{-- <div class="col-lg-6">
@@ -101,9 +101,13 @@
                             <table class="table table-hover align-items-center data-table">
                                 <thead class="thead-light">
                                     <tr>
+                                        <th scope="col">Id</th>
                                         <th scope="col">Code</th>
                                         <th scope="col">Descripton</th>
                                         <th scope="col">Status</th>
+                                        <th scope="col">Company</th>
+                                        <th scope="col">Type</th>
+
                                         <th scope="col" class="text-center">Action</th>
                                     </tr>
                                 </thead>
@@ -132,7 +136,12 @@
                         //  d.search = $('input[type="search"]').val()
                     }
                 },
-                columns: [{
+                columns: [
+                    {
+                        data: 'location_id',
+                        name: 'location_id'
+                    },
+                    {
                         data: 'location_code',
                         name: 'location_code'
                     },
@@ -145,10 +154,25 @@
                         name: 'location_enabled'
                     },
                     {
+                        data: 'company_code',
+                        name: 'company_txt',
+                        orderable:false,searchable:false
+                    },
+                    {
+                        data: 'loc_type_code',
+                        name: 'location_type_txt',
+                        orderable:false,searchable:false
+                    },
+                    {
                         data: 'action',
-                        name: 'actions'
+                        name: 'action',
+                        orderable:false,searchable:false
                     }
                 ]
+                // ,"fnRowCallback": function (nRow, aData, iDisplayIndex) {
+                //     $("td:nth-child(1)", nRow).html(iDisplayIndex + 1);
+                //     return nRow;
+                // }
             });
 
             //   $('#approved').change(function(){

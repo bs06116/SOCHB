@@ -41,11 +41,13 @@ class SIEMTypeController extends Controller
             $recordsFiltered = $query->count();
             $data = $query->orderBy($order_by, $order_dir)->skip($skip)->take($take)->get();
             foreach ($data as $index=>&$d) {
+                $d->siem_type_enabled =   $d->siem_type_enabled == 'Y'? "Yes":"No";
+
                 $d->action = '
-                <form method="POST" action="' . route('seimtype.destroy', $d->siem_type_id) . '" accept-charset="UTF-8" class="d-inline-block dform">
+                <form method="POST" action="' . route('siemtype.destroy', $d->siem_type_id) . '" accept-charset="UTF-8" class="d-inline-block dform">
                 <input name="_method" type="hidden" value="DELETE">
                 <input name="_token" type="hidden" value="' . csrf_token() . '">
-                <a class="btn btn-info btn-sm m-1" data-toggle="tooltip" data-placement="top" title="Edit company details" href="' . route('seimtype.edit', $d->siem_type_id) . '">
+                <a class="btn btn-info btn-sm m-1" data-toggle="tooltip" data-placement="top" title="Edit company details" href="' . route('siemtype.edit', $d->siem_type_id) . '">
                 <i class="fa fa-edit" aria-hidden="true"></i>
             </a>
             <button type="submit" class="btn delete btn-danger btn-sm m-1" data-toggle="tooltip" data-placement="top" title="Delete company" href="javascript:void()">
@@ -80,10 +82,10 @@ class SIEMTypeController extends Controller
     public function store(Request $request)
     {
          $request->validate([
-            'siem_type_code' => 'required|unique:tbl_siem_type,siem_type_code|max:255',
+            'siem_type_code' => 'required|unique:tbl_siem_type,siem_type_code|max:15',
          ]);
         SIEMType::create([
-            'siem_type_code' => $request->siem_type_code,
+            'siem_type_code' => strtoupper($request->siem_type_code),
             'siem_type_desc' => $request->siem_type_desc,
             'siem_type_enabled' => $request->siem_type_enabled,
             'user_name' =>   Auth::user()->username,
@@ -125,11 +127,11 @@ class SIEMTypeController extends Controller
     public function update(Request $request, SIEMType $siemtype)
     {
         $request->validate([
-            'siem_type_code' => 'required|unique:tbl_siem_type,siem_type_code,' . $siemtype->id . ',siem_type_id|max:255',
+            'siem_type_code' => 'required|unique:tbl_siem_type,siem_type_code,' . $siemtype->id . ',siem_type_id|max:15',
         ]);
 
         $siemtype->update([
-            'siem_type_code' => $request->siem_type_code,
+            'siem_type_code' => strtoupper($request->siem_type_code),
             'siem_type_desc' => $request->siem_type_desc,
             'siem_type_enabled' => $request->siem_type_enabled,
             'last_user_name' =>   Auth::user()->username,

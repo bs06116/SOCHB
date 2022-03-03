@@ -31,7 +31,7 @@ class ApplicationResourceCategoryController extends Controller
             $skip = request('start');
             $take = request('length');
             $search = request('search');
-            $query = ApplicationResourceCategory::query();
+            $query = ApplicationResourceCategory::query()->join('tbl_app_resource_category', 'tbl_app_resource_category.app_res_cat_id', "=", "tbl_app_resource_sub_cat.app_res_cat_id");
             $query->orderBy('app_res_sub_cat_id', 'DESC')->get();
             $recordsTotal = $query->count();
             if (isset($search['value'])) {
@@ -42,6 +42,8 @@ class ApplicationResourceCategoryController extends Controller
             $recordsFiltered = $query->count();
             $data = $query->orderBy($order_by, $order_dir)->skip($skip)->take($take)->get();
             foreach ($data as $index=>&$d) {
+                $d->res_cat_code = $d->res_cat_code;
+                $d->sub_cat_enabled =   $d->sub_cat_enabled == 'Y'? "Yes":"No";
                 $d->action = '
                 <form method="POST" action="' . route('applicationresourcecategory.destroy', $d->app_res_sub_cat_id) . '" accept-charset="UTF-8" class="d-inline-block dform">
                 <input name="_method" type="hidden" value="DELETE">
@@ -83,11 +85,11 @@ class ApplicationResourceCategoryController extends Controller
     public function store(Request $request)
     {
          $request->validate([
-            'sub_cat_code' => 'required|unique:tbl_asset_sub_category,sub_cat_code|max:255',
+            'sub_cat_code' => 'required|unique:tbl_asset_sub_category,sub_cat_code|max:15',
          ]);
          ApplicationResourceCategory::create([
             'app_res_cat_id' => $request->app_res_cat_id,
-            'sub_cat_code' => $request->sub_cat_code,
+            'sub_cat_code' => strtoupper($request->sub_cat_code),
             'sub_cat_desc' => $request->sub_cat_desc,
             'sub_cat_enabled' => $request->sub_cat_enabled,
             'user_name' =>   Auth::user()->username,
@@ -132,11 +134,11 @@ class ApplicationResourceCategoryController extends Controller
     public function update(Request $request, ApplicationResourceCategory $applicationresourcecategory)
     {
         $request->validate([
-            'sub_cat_code' => 'required|unique:tbl_asset_main_category,main_cat_code,' . $applicationresourcecategory->asset_sub_cat_id . ',asset_main_cat_id|max:255',
+            'sub_cat_code' => 'required|unique:tbl_asset_main_category,main_cat_code,' . $applicationresourcecategory->asset_sub_cat_id . ',asset_main_cat_id|max:15',
         ]);
 
         $applicationresourcecategory->update([
-            'sub_cat_code' => $request->sub_cat_code,
+            'sub_cat_code' =>strtoupper( $request->sub_cat_code),
             'sub_cat_desc' => $request->sub_cat_desc,
             'sub_cat_enabled' => $request->sub_cat_enabled,
             'last_user_name' =>   Auth::user()->username,

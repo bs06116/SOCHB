@@ -9,8 +9,9 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Spatie\Permission\Models\Role;
 use App\Http\Requests\CompanyStoreRequest;
-
+use App\User;
 use Carbon\Carbon;
+use DB;
 
 class CompanyController extends Controller
 {
@@ -42,6 +43,13 @@ class CompanyController extends Controller
             $recordsFiltered = $query->count();
             $data = $query->orderBy($order_by, $order_dir)->skip($skip)->take($take)->get();
             foreach ($data as &$d) {
+                $firstName = [];
+                $result = User::select('tbl_users.first_name')->join('tbl_user_company', 'tbl_users.id', '=', 'tbl_user_company.user_id')->where('tbl_user_company.company_id',$d->company_id)->get()->toArray();
+                foreach($result as $r):
+                    $firstName[] = $r['first_name'];
+                endforeach;
+                $d->users =  $firstName;
+                $d->company_enabled =   $d->company_enabled == 'Y'? "Yes":"No";
                 $d->action = '
                 <form method="POST" action="' . route('companies.destroy', $d->company_id) . '" accept-charset="UTF-8" class="d-inline-block dform">
                 <input name="_method" type="hidden" value="DELETE">
@@ -61,7 +69,10 @@ class CompanyController extends Controller
                 "data" => $data,
             ];
         }
-        return view('company.index');
+        $users = User::where('id', '!=',1)->get();
+
+
+        return view('company.index',compact('users'));
     }
 
     /**
@@ -82,13 +93,22 @@ class CompanyController extends Controller
     public function store(CompanyStoreRequest $request)
     {
         //$companyData = $request;
-        $company = Company::create([
-            'company_code' => $request->company_code,
+        $company = Company::insertGetId([
+            'company_code' => strtoupper($request->company_code),
             'company_desc' => $request->company_desc,
             'company_enabled' => $request->company_enabled,
             'last_user_name' =>   Auth::user()->username,
             'last_time_stamp' => Carbon::now()
         ]);
+        $company_id = $company;
+        $all_users =  $request->users;
+        $data = [];
+        if(count($all_users)>0){
+            for($i=0;$i<count($all_users);$i++){
+                $data [] = array('user_id'=>$all_users[$i],'company_id'=>$company_id);
+               }
+            DB::table('tbl_user_company')->insert($data);
+        }
         flash('Company created successfully!')->success();
         return redirect()->route('companies.index');
     }
@@ -113,7 +133,22 @@ class CompanyController extends Controller
     public function edit(Company $company)
     {
         $title =  'Update Company';
-        return view('company.edit', compact('company', 'title'));
+        $users = User::where('id', '!=',1)->get();
+        // $company_users = DB::table('tbl_users1')
+        //     ->Leftjoin('tbl_user_company', 'tbl_users.id', '=', 'tbl_user_company.user_id')
+        //     ->where('tbl_user_company.company_id',$company)
+        //     ->select('tbl_user_company.*', 'tbl_user_company.user_id as company_userid')
+        //     ->get();
+        //     print_r($company_users);
+        //     die;
+
+        $compyUser = array();
+        $company_users =  DB::table('tbl_user_company')->select('user_id')->where('company_id', '=',$company->company_id)->get();
+        foreach($company_users as $cu):
+            $compyUser [] = $cu->user_id;
+        endforeach;
+
+        return view('company.edit', compact('company', 'title','users','compyUser'));
     }
 
     /**
@@ -126,16 +161,24 @@ class CompanyController extends Controller
     public function update(Request $request, Company $company)
     {
         $request->validate([
-            'company_code' => 'required|unique:tbl_company,company_code,' . $company->company_id . ',company_id|max:255',
+            'company_code' => 'required|unique:tbl_company,company_code,' . $company->company_id . ',company_id|max:15',
         ]);
-
         $company->update([
-            'company_code' => $request->company_code,
+            'company_code' => strtoupper($request->company_code),
             'company_desc' => $request->company_desc,
             'company_enabled' => $request->company_enabled,
             'user_name' =>   Auth::user()->username,
             'time_stamp' => Carbon::now()
         ]);
+        DB::table('tbl_user_company')->where('company_id', '=',$company->company_id)->delete();
+        $all_users =  $request->users;
+        $data = [];
+        if(count($all_users)>0){
+            for($i=0;$i<count($all_users);$i++){
+                $data [] = array('user_id'=>$all_users[$i],'company_id'=>$company->company_id);
+               }
+            DB::table('tbl_user_company')->insert($data);
+        }
         flash('Company updated successfully!')->success();
         return redirect()->route('companies.index');
     }

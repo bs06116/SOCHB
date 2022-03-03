@@ -6,11 +6,13 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\UserStoreRequest;
 use App\Http\Requests\UserUpdateRequest;
 use App\User;
+use App\Company;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Spatie\Permission\Models\Role;
-
+use Carbon\Carbon;
+use DB;
 class UserController extends Controller
 {
     public function __construct()
@@ -46,8 +48,10 @@ class UserController extends Controller
     public function create()
     {
         $title = 'Create user';
-        $roles = Role::pluck('name', 'id');
-        return view('users.create', compact('roles', 'title'));
+        $roles = Role::all('name', 'id');
+        $company = Company::all();
+
+        return view('users.create', compact('roles', 'title','company'));
     }
 
     /**
@@ -58,12 +62,21 @@ class UserController extends Controller
      */
     public function store(UserStoreRequest $request)
     {
-        $userData = $request->except(['role', 'profile_photo']);
+        $userData = $request->except(['profile_photo','company']);
         if ($request->profile_photo) {
             $userData['profile_photo'] = parse_url($request->profile_photo, PHP_URL_PATH);
         }
+        $userData['reg_date'] = Carbon::now();
         $user = User::create($userData);
         $user->assignRole($request->role);
+        $all_company =  $request->company;
+        $data = [];
+        if(count($all_company)>0){
+            for($i=0;$i<count($all_company);$i++){
+                $data [] = array('user_id'=>$user->id,'company_id'=>$all_company[$i]);
+               }
+            DB::table('tbl_user_company')->insert($data);
+        }
         flash('User created successfully!')->success();
         return redirect()->route('users.index');
     }
@@ -90,8 +103,18 @@ class UserController extends Controller
     public function edit(User $user)
     {
         $title = "User Details";
-        $roles = Role::pluck('name', 'id');
-        return view('users.edit', compact('user','title', 'roles'));
+        $roles = Role::all('name', 'id');
+        $company = Company::all();
+        $compyUser = array();
+        $company_users =  DB::table('tbl_user_company')->select('company_id')->where('user_id', '=',$user->id)->get();
+        foreach($company_users as $cu):
+            $compyUser [] = $cu->company_id;
+        endforeach;
+        $userRole = array();
+        foreach($user->roles as $ru):
+            $userRole [] = $ru->id;
+        endforeach;
+        return view('users.edit', compact('user','title', 'roles','userRole','company','compyUser'));
     }
 
     /**
@@ -103,12 +126,26 @@ class UserController extends Controller
      */
     public function update(UserUpdateRequest $request, User $user)
     {
-        $userData = $request->except(['role', 'profile_photo']);
+        $userData = $request->except(['role', 'profile_photo','company']);
         if ($request->profile_photo) {
             $userData['profile_photo'] = parse_url($request->profile_photo, PHP_URL_PATH);
         }
+       if(isset($userData['active'])){
+        $userData['active'] = 1;
+       }else{
+        $userData['active'] = 0;
+       }
         $user->update($userData);
         $user->syncRoles($request->role);
+        DB::table('tbl_user_company')->where('user_id', '=',$user->id)->delete();
+        $all_company =  $request->company;
+        $data = [];
+        if(count($all_company)>0){
+            for($i=0;$i<count($all_company);$i++){
+                $data [] = array('user_id'=>$user->id,'company_id'=>$all_company[$i]);
+               }
+            DB::table('tbl_user_company')->insert($data);
+        }
         flash('User updated successfully!')->success();
         return redirect()->route('users.index');
     }
@@ -128,7 +165,6 @@ class UserController extends Controller
         $user->delete();
         flash('User deleted successfully!')->info();
         return back();
-
     }
 
 
@@ -139,11 +175,10 @@ class UserController extends Controller
     }
     public function profileUpdate(UserUpdateRequest $request, User $user)
     {
-        $userData = $request->except('profile_photo');
-        if ($request->profile_photo) {
-            $userData['profile_photo'] = parse_url($request->profile_photo, PHP_URL_PATH);
+        $userData = $request->except('img_path');
+        if ($request->img_path) {
+            $userData['img_path'] = parse_url($request->img_path, PHP_URL_PATH);
         }
-
         $user->update($userData);
         flash('Profile updated successfully!')->success();
         return back();

@@ -16,7 +16,7 @@
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     {{ Form::label('sub_cat_code', 'Code', ['class' => 'form-control-label']) }}
-                                    {{ Form::text('sub_cat_code', null, ['class' => 'form-control']) }}
+                                    {{ Form::text('sub_cat_code', null, ['class' => 'form-control captail_word']) }}
                                 </div>
                             </div>
                             {{-- <div class="col-lg-6">

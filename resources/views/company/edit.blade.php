@@ -28,7 +28,20 @@
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     {{ Form::label('company_desc', 'Company Description', ['class' => 'form-control-label']) }}
-                                    {{ Form::textarea('company_desc', $company->company_desc, ['class' => 'form-control']) }}
+                                    {{ Form::textarea('company_desc', $company->company_desc, ['class' => 'form-control captail_word']) }}
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    {{ Form::label('company_desc', 'Users', ['class' => 'form-control-label']) }}
+                                    <select class="js-example-basic-multiple" name="users[]" multiple="multiple">
+                                        @foreach($users as $index=>$u):
+                                        <option <?php echo (in_array($u->id,$compyUser))?'selected':'';?> value="{{$u->id}}">{{$u->first_name}} {{$u->last_name}}</option>
+                                        @endforeach
+                                      </select>
                                 </div>
                             </div>
 
@@ -49,6 +62,8 @@
 
                                 <div class="col-md-12">
                                     {{ Form::submit('Submit', ['class'=> 'mt-5 btn btn-primary']) }}
+                                    <a href="{{route('companies.index')}}">{{  Form::button('Back', ['class' => 'mt-5 btn btn-primary']) }}</a>
+
                                 </div>
                             </div>
                         </div>
@@ -63,5 +78,12 @@
 @endsection
 
 @push('scripts')
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
 
+<script>
+     $(document).ready(function() {
+            $('.js-example-basic-multiple').select2();
+        });
+</script>
 @endpush

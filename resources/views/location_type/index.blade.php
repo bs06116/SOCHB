@@ -16,7 +16,7 @@
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     {{ Form::label('loc_type_code', 'Code', ['class' => 'form-control-label']) }}
-                                    {{ Form::text('loc_type_code', null, ['class' => 'form-control']) }}
+                                    {{ Form::text('loc_type_code', null, ['class' => 'form-control captail_word']) }}
                                 </div>
                             </div>
                             {{-- <div class="col-lg-6">
@@ -81,7 +81,7 @@
                             <table class="table table-hover align-items-center data-table">
                                 <thead class="thead-light">
                                     <tr>
-                                        {{-- <th scope="col">Sr</th> --}}
+                                        <th scope="col">Id</th>
                                         <th scope="col">Code</th>
                                         <th scope="col">Descripton</th>
                                         <th scope="col">Status</th>
@@ -114,6 +114,10 @@
                     }
                 },
                 columns: [
+                    {
+                        data: 'location_type_id',
+                        name: 'location_type_id'
+                    },
                                        {
                         data: 'loc_type_code',
                         name: 'loc_type_code'

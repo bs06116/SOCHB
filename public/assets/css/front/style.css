@@ -186,7 +186,7 @@
   border: 1px solid rgb(207, 217, 222);
   border-radius: 15px;
   width: 100%;
-  
+
 }
 .post_images{
   border: 1px solid rgb(207, 217, 222);
@@ -1087,7 +1087,7 @@ i.badge1 {
   .menu{
     display: none !important;
   }
-  
+
   .notification_dd{
     top: 14%;
     left: 19%;
@@ -1157,8 +1157,8 @@ i.badge1 {
     height: 20%;
     left: 7%;
   }
-  
- 
+
+
   .notification_dd{
     top: 14%;
     left: 17%;
@@ -1377,7 +1377,7 @@ i.badge1 {
   background-color: #fff;
   position: fixed;
   bottom: 0;
-  
+
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
   border: 1px solid #e4e4e4;
@@ -1442,7 +1442,7 @@ i.badge1 {
 .user-avatar .user-status-info p {
   font-size: 11px;
   color: gray;
-} 
+}
 
 .chat-comm {
   display: none;
@@ -1560,4 +1560,3 @@ i.badge1 {
 .chat-media img.camera {
   width: 16px;
 }
-

@@ -42,6 +42,8 @@ class VendorsController extends Controller
             $recordsFiltered = $query->count();
             $data = $query->orderBy($order_by, $order_dir)->skip($skip)->take($take)->get();
             foreach ($data as &$d) {
+                $d->vendor_enabled =   $d->vendor_enabled == 'Y'? "Yes":"No";
+
                 $d->action = '
                 <form method="POST" action="' . route('vendors.destroy', $d->vendor_id ) . '" accept-charset="UTF-8" class="d-inline-block dform">
                 <input name="_method" type="hidden" value="DELETE">
@@ -82,11 +84,11 @@ class VendorsController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'vendor_code' => 'required|unique:tbl_vendor,vendor_code|max:255',
+            'vendor_code' => 'required|unique:tbl_vendor,vendor_code|max:15',
         ]);
 
         Vendors::create([
-            'vendor_code' => $request->vendor_code,
+            'vendor_code' => strtoupper($request->vendor_code),
             'vendor_desc' => $request->vendor_desc,
             'vendor_enabled' => $request->vendor_enabled,
             'user_name' =>   Auth::user()->username,
@@ -130,11 +132,11 @@ class VendorsController extends Controller
     public function update(Request $request, Vendors $vendor)
     {
         $request->validate([
-            'vendor_code' => 'required|unique:tbl_vendor,vendor_code,' . $vendor->vendor_id . ',vendor_id|max:255',
+            'vendor_code' => 'required|unique:tbl_vendor,vendor_code,' . $vendor->vendor_id . ',vendor_id|max:15',
         ]);
 
         $vendor->update([
-            'vendor_code' => $request->vendor_code,
+            'vendor_code' => strtoupper($request->vendor_code),
             'vendor_desc' => $request->vendor_desc,
             'vendor_enabled' => $request->vendor_enabled,
             'last_user_name' =>   Auth::user()->username,

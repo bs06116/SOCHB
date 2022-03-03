@@ -16,7 +16,7 @@
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     {{ Form::label('siem_code', 'Code', ['class' => 'form-control-label']) }}
-                                    {{ Form::text('siem_code', null, ['class' => 'form-control']) }}
+                                    {{ Form::text('siem_code', null, ['class' => 'form-control captail_word']) }}
                                 </div>
                             </div>
                             {{-- <div class="col-lg-6">
@@ -111,9 +111,15 @@
                             <table class="table table-hover align-items-center data-table">
                                 <thead class="thead-light">
                                     <tr>
+                                        <th scope="col">ID</th>
+
                                         <th scope="col">Code</th>
                                         <th scope="col">Descripton</th>
                                         <th scope="col">Status</th>
+                                        <th scope="col">Company</th>
+                                        <th scope="col">Location</th>
+                                        <th scope="col">Type</th>
+
                                         <th scope="col" class="text-center">Action</th>
                                     </tr>
                                 </thead>
@@ -142,7 +148,12 @@
                         //  d.search = $('input[type="search"]').val()
                     }
                 },
-                columns: [{
+                columns: [
+                    {
+                        data: 'siem_id',
+                        name: 'siem_id'
+                    },
+                    {
                         data: 'siem_code',
                         name: 'siem_code'
                     },
@@ -153,6 +164,21 @@
                     {
                         data: 'siem_enabled',
                         name: 'siem_enabled'
+                    },
+                    {
+                        data: 'company_code',
+                        name: 'company_txt',
+                        orderable:false,searchable:false
+                    },
+                    {
+                        data: 'location_code',
+                        name: 'location_txt',
+                        orderable:false,searchable:false
+                    },
+                    {
+                        data: 'siem_type_code',
+                        name: 'siem_type_txt',
+                        orderable:false,searchable:false
                     },
                     {
                         data: 'action',

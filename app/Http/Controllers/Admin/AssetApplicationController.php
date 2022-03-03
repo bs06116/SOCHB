@@ -3,21 +3,19 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\AssetApplication;
 use App\Company;
-use App\Location;
-use App\SIEMType;
-use App\SIEM;
-
+use App\Vendors;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Spatie\Permission\Models\Role;
 use App\Http\Requests\CompanyStoreRequest;
 use Carbon\Carbon;
-use Auth;
 
 
 
-class SIEMController extends Controller
+class AssetApplicationController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -26,7 +24,6 @@ class SIEMController extends Controller
      */
     public function index(Request $request)
     {
-        $title =  'Location';
         if ($request->ajax()) {
             $_order = request('order');
             $_columns = request('columns');
@@ -36,33 +33,29 @@ class SIEMController extends Controller
             $skip = request('start');
             $take = request('length');
             $search = request('search');
-            $query = SIEM::query()->join('tbl_company', 'tbl_company.company_id', "=", "tbl_siem.company_id")
-            ->join('tbl_location', 'tbl_location.location_id', "=", "tbl_siem.location_id")
-            ->join('tbl_siem_type', 'tbl_siem_type.siem_type_id', "=", "tbl_siem.siem_type_id");
-            $query->orderBy('siem_id', 'DESC')->get();
+            $query = AssetApplication::query()->join('tbl_vendor', 'tbl_vendor.vendor_id', "=", "tbl_asset_application.vendor_id")
+            ->join('tbl_company', 'tbl_company.company_id', "=", "tbl_asset_application.company_id");
+            $query->orderBy('asset_app_id', 'DESC')->get();
             $recordsTotal = $query->count();
             if (isset($search['value'])) {
                 $query->where(function ($q) use ($search) {
-                    $q->whereRaw("siem_code LIKE '%" . $search['value'] . "%' ");
+                    $q->whereRaw("asset_app_code LIKE '%" . $search['value'] . "%' ");
                 });
             }
             $recordsFiltered = $query->count();
             $data = $query->orderBy($order_by, $order_dir)->skip($skip)->take($take)->get();
-            foreach ($data as &$d) {
-                $d->company_txt =  $d->company_code;
-                $d->location_txt =  $d->location_code;
-                $d->siem_type_txt =  $d->siem_type_code;
-                $d->siem_enabled =   $d->siem_enabled == 'Y'? "Yes":"No";
-
-
+            foreach ($data as $index=>&$d) {
+                $d->vendor_code =   $d->vendor_code;
+                $d->company_code =   $d->company_code;
+                $d->asset_app_enabled =   $d->asset_app_enabled == 'Y'? "Yes":"No";
                 $d->action = '
-                <form method="POST" action="' . route('siem.destroy', $d->siem_id) . '" accept-charset="UTF-8" class="d-inline-block dform">
+                <form method="POST" action="' . route('assetapplication.destroy', $d->asset_app_id) . '" accept-charset="UTF-8" class="d-inline-block dform">
                 <input name="_method" type="hidden" value="DELETE">
                 <input name="_token" type="hidden" value="' . csrf_token() . '">
-                <a class="btn btn-info btn-sm m-1" data-toggle="tooltip" data-placement="top" title="Edit siem details" href="' . route('siem.edit', $d->siem_id) . '">
+                <a class="btn btn-info btn-sm m-1" data-toggle="tooltip" data-placement="top" title="Edit company details" href="' . route('assetapplication.edit', $d->asset_app_id) . '">
                 <i class="fa fa-edit" aria-hidden="true"></i>
             </a>
-            <button type="submit" class="btn delete btn-danger btn-sm m-1" data-toggle="tooltip" data-placement="top" title="Delete SEI<" href="javascript:void()">
+            <button type="submit" class="btn delete btn-danger btn-sm m-1" data-toggle="tooltip" data-placement="top" title="Delete company" href="javascript:void()">
             <i class="fas fa-trash"></i>
         </button> </form>';
             }
@@ -76,13 +69,11 @@ class SIEMController extends Controller
         if(Auth::id() !=1){
             $companies = Company::join('tbl_user_company', 'tbl_company.company_id', '=', 'tbl_user_company.company_id');
             $companies->where('tbl_user_company.user_id',Auth::id());
-            $companies = $companies->pluck('tbl_company.company_code','tbl_company.company_id');
+            $company = $companies->pluck('tbl_company.company_code','tbl_company.company_id');
         }else{
-            $companies = Company::pluck('company_code', 'company_id');
-        }
-        $location = Location::pluck('location_code', 'location_id');
-        $siemType = SIEMType::pluck('siem_type_code', 'siem_type_id');
-        return view('siem.index',compact('companies','location','siemType'));
+            $company = Company::pluck('company_code', 'company_id');
+        }        $vendor = Vendors::pluck('vendor_code', 'vendor_id');
+        return view('asset_application.index',compact('company','vendor'));
     }
 
     /**
@@ -103,22 +94,21 @@ class SIEMController extends Controller
     public function store(Request $request)
     {
          $request->validate([
-            'siem_code' => 'required|unique:tbl_siem,siem_code|max:15',
+            'asset_app_code' => 'required|unique:tbl_asset_application,asset_app_code|max:15',
          ]);
 
-         SIEM::create([
+         AssetApplication::create([
             'company_id' => $request->company_id,
-            'location_id' => $request->location_id,
-            'siem_type_id' => $request->siem_type_id,
-            'siem_code' => strtoupper($request->siem_code),
-            'siem_desc' => $request->siem_desc,
-            'siem_enabled' => $request->siem_enabled,
+            'vendor_id' => $request->vendor_id,
+            'asset_app_code' => strtoupper($request->asset_app_code),
+            'asset_app_desc' => $request->asset_app_desc,
+            'asset_app_enabled' => $request->asset_app_enabled,
             'user_name' =>   Auth::user()->username,
             'time_stamp' => Carbon::now()
 
         ]);
-        flash('SEIM created successfully!')->success();
-        return redirect()->route('siem.index');
+        flash('Asset application created successfully!')->success();
+        return redirect()->route('assetapplication.index');
     }
 
     /**
@@ -138,19 +128,17 @@ class SIEMController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(SIEM $siem)
+    public function edit(AssetApplication $assetapplication)
     {
         if(Auth::id() !=1){
             $companies = Company::join('tbl_user_company', 'tbl_company.company_id', '=', 'tbl_user_company.company_id');
             $companies->where('tbl_user_company.user_id',Auth::id());
-            $companies = $companies->pluck('tbl_company.company_code','tbl_company.company_id');
+            $company = $companies->pluck('tbl_company.company_code','tbl_company.company_id');
         }else{
-            $companies = Company::pluck('company_code', 'company_id');
+            $company = Company::pluck('company_code', 'company_id');
         }
-        $location = Location::pluck('location_code', 'id');
-        $siemType = SIEMType::pluck('siem_type_code', 'siem_type_id');
-        return view('siem.edit',compact('siem','companies','location','siemType'));
-
+         $vendor = Vendors::pluck('vendor_code', 'vendor_id');
+        return view('asset_application.edit',compact('assetapplication','company','vendor'));
     }
 
     /**
@@ -160,24 +148,23 @@ class SIEMController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, SIEM $siem)
+    public function update(Request $request, AssetApplication $assetapplication)
     {
         $request->validate([
-            'siem_code' => 'required|unique:tbl_siem,siem_code,' . $siem->siem_id . ',siem_id|max:255',
+            'asset_app_code' => 'required|unique:tbl_asset_application,asset_app_code,' . $assetapplication->asset_app_id . ',asset_app_id|max:15',
         ]);
 
-        $siem->update([
+        $assetapplication->update([
             'company_id' => $request->company_id,
-            'location_id' => $request->location_id,
-            'siem_type_id' => $request->siem_type_id,
-            'siem_code' => strtoupper($request->siem_code),
-            'siem_desc' => $request->siem_desc,
-            'siem_enabled' => $request->siem_enabled,
+            'vendor_id' => $request->vendor_id,
+            'asset_app_code' => strtoupper($request->asset_app_code),
+            'asset_app_desc' => $request->asset_app_desc,
+            'asset_app_enabled' => $request->asset_app_enabled,
             'last_user_name' =>   Auth::user()->username,
             'last_time_stamp' => Carbon::now()
         ]);
-        flash('SIEM updated successfully!')->success();
-        return redirect()->route('siem.index');
+        flash('Asset applciation updated successfully!')->success();
+        return redirect()->route('assetapplication.index');
     }
 
     /**
@@ -186,10 +173,10 @@ class SIEMController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(SIEM $siem)
+    public function destroy(AssetApplication $assetapplication)
     {
-        $siem->delete();
-        flash('SIEM deleted successfully!')->info();
+        $assetapplication->delete();
+        flash('Asset Applciatione deleted successfully!')->info();
         return back();
     }
 }

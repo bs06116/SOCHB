@@ -16,14 +16,17 @@
                             Name
                         </div>
                         <div class="col-sm-3">
-                            <strong>{{ $user->name }}</strong>
+                            <strong>{{ $user->first_name }}</strong>
                         </div>
                         <div class="col-sm-8 text-right">
-                            @if ($user->profile_photo)
-                                <a href="{{ asset($user->profile_photo) }}" target="_blank">
-                                    <img width="100" height="100" class="img-fluid rounded-pill" src="{{ asset($user->profile_photo) }}" alt="">
-                                </a>
-                            @endif
+                            @if ($user->img_path)
+                                                <img alt="Image placeholder"
+                                                    class="avatar avatar-sm rounded-circle"
+                                                    data-toggle="tooltip" data-original-title="{{$user->first_name}}"
+                                                    src="{{ $user->img_path }}">
+                                                @else
+                                                <i class="far avatar avatar-sm rounded-circle fa-user"></i>
+                                                @endif
                         </div>
                     </div>
                     <div class="row">
@@ -34,14 +37,14 @@
                             <strong>{{ $user->email }}</strong>
                         </div>
                     </div>
-                    <div class="row">
+                    {{-- <div class="row">
                         <div class="col-sm-1">
                             Phone
                         </div>
                         <div class="col-sm-3">
                             <strong>{{ $user->phone_number }}</strong>
                         </div>
-                    </div>
+                    </div> --}}
                     <div class="row">
                         <div class="col-sm-1">
                             Role
@@ -57,7 +60,7 @@
                             Status
                         </div>
                         <div class="col-sm-3">
-                            {{ $user->status ? 'Active' : 'Disable'}}
+                            {{ $user->active ? 'Active' : 'Disable'}}
                         </div>
                     </div>
                 </div>

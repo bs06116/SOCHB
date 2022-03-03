@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\User;
 use App\Post;
+use App\Company;
+
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
@@ -20,7 +22,8 @@ class AuthController extends Controller
         if (Auth::check()) {
             return redirect()->to('/');
         }
-        return view('frontend.login');
+
+        return view('frontend.login'));
     }
     public function signup()
     {
@@ -40,6 +43,6 @@ class AuthController extends Controller
         //logout user
         auth()->logout();
         // redirect to homepage
-        return redirect('/');
+        return redirect('/admin/login');
     }
 }
