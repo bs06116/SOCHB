@@ -89,17 +89,21 @@
                         </li>
                     @endcan --}}
 
+
                         <li class="nav-item">
-                            <a class="nav-link {{ request()->is('users*') ? 'active' : '' }}" href="#navbar-users"
+                            <a class="nav-link" href="#navbar-users"
                                 data-toggle="collapse" role="button" aria-expanded="true" aria-controls="navbar-users">
                                 <i class="fas text-primary fa-tasks"></i>
                                 <span class="nav-link-text">System</span>
                             </a>
-                            <div class="collapse" id="navbar-users">
+                            <?php if(request()->is('admin/users*') || request()->is('admin/permissions*') ||  request()->is('admin/roles*')){
+                                $active = 'show';}else{$active = '';} ?>
+
+                            <div class="collapse {{$active}}" id="navbar-users">
                                 <ul class="nav nav-sm flex-column">
                                     @can('view-user')
                                         <li class="nav-item">
-                                            <a class="nav-link" href="{{ route('users.index') }}">
+                                            <a class="nav-link {{ request()->is('admin/users*') ? 'active' : '' }}" href="{{ route('users.index') }}">
                                                 <i class="fas fa-lock-open text-primary"></i>
                                                 <span class="nav-link-text">Users</span>
                                             </a>
@@ -107,7 +111,7 @@
                                     @endcan
                                     @canany(['view-permission', 'create-permission'])
                                         <li class="nav-item">
-                                            <a class="nav-link {{ request()->is('permissions*') ? 'active' : '' }}"
+                                            <a class="nav-link {{ request()->is('admin/permissions*') ? 'active' : '' }}"
                                                 href="{{ route('permissions.index') }}">
                                                 <i class="fas fa-lock-open text-primary"></i>
                                                 <span class="nav-link-text">Manage Permissions</span>
@@ -116,7 +120,7 @@
                                     @endcan
                                     @canany(['view-role', 'create-role'])
                                         <li class="nav-item">
-                                            <a class="nav-link {{ request()->is('roles*') ? 'active' : '' }}"
+                                            <a class="nav-link {{ request()->is('admin/roles*') ? 'active' : '' }}"
                                                 href="{{ route('roles.index') }}">
                                                 <i class="fas fa-lock text-primary"></i>
                                                 <span class="nav-link-text">Manage Roles</span>
@@ -135,12 +139,14 @@
 
 
                     <li class="nav-item">
-                        <a class="nav-link {{ request()->is('companies*') ? 'active' : '' }}" href="#navbar-basic"
+                        <a class="nav-link" href="#navbar-basic"
                             data-toggle="collapse" role="button" aria-expanded="true" aria-controls="navbar-users">
                             <i class="fas text-primary fa-tasks"></i>
                             <span class="nav-link-text">Basic Configurations</span>
                         </a>
-                        <div class="collapse" id="navbar-basic">
+                        <?php if(request()->is('admin/companies*') || request()->is('admin/locations*') ||  request()->is('admin/vendors*') ||  request()->is('admin/siem*')){
+                            $active = 'show';}else{$active = '';} ?>
+                        <div class="collapse {{$active}}" id="navbar-basic">
                             <ul class="nav nav-sm flex-column">
                                 @canany(['manage-company'])
 
@@ -177,14 +183,15 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link {{ request()->is('companies*') ? 'active' : '' }}" href="#navbar-assets"
+                        <a class="nav-link" href="#navbar-assets"
                             data-toggle="collapse" role="button" aria-expanded="true" aria-controls="navbar-assets">
                             <i class="fas text-primary fa-tasks"></i>
                             <span class="nav-link-text">Assets Management</span>
                         </a>
-                        <div class="collapse" id="navbar-assets">
+                        <?php if(request()->is('admin/assetcategorydetail*') || request()->is('admin/applicationresourcecategory*') ||  request()->is('admin/assetapplication*') ||  request()->is('admin/assetmanagement*')){
+                            $active = 'show';}else{$active = '';} ?>
+                        <div class="collapse {{$active}}" id="navbar-assets">
                             <ul class="nav nav-sm flex-column">
-
                                 @canany(['manage-asset-category-details'])
                                     <li class="nav-item">
                                         <a href="{{ route('assetcategorydetail.index') }}" class="nav-link"><span
