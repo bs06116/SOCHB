@@ -146,7 +146,6 @@
                           <th>Delete</th>
                         </tr>
                         <tbody id="tbody">
-
                         </tbody>
                       </table>
                         <hr class="my-4" />
@@ -323,7 +322,7 @@
             var siem = $('#select-siem').children(':selected').text();
             var siemVal = $('#select-siem').children(':selected').val();
             var ref = $('#ref').val();
-            var append_html = '<tr><input type="hidden" name="siem[]" value="'+siemVal+'"><input type="hidden" name="ref[]" value="'+ref+'"><td>'+siem+'</td><td>'+ref+'</td><td><button class="btn btn-danger" onclick="deleteRef(this)">Delete</button></td></tr>';
+            var append_html = '<tr><input type="hidden" name="siem[]" value="'+siemVal+'"><input type="hidden" name="ref[]" value="'+ref+'"><td>'+siem+'</td><td>'+ref+'</td><td><button onclick="deleteRef(this)">Delete</button></td></tr>';
             $('#tbody').append(append_html);
             $('#ref').val('');
         }

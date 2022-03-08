@@ -184,7 +184,9 @@ class AssetManagementController extends Controller
         $asetcategorydetail = AssetCategoryDetail::pluck('cat_detail_code', 'asset_cat_detail_id');
         $applicationresourcecategory = ApplicationResourceCategory::pluck('sub_cat_code', 'app_res_sub_cat_id');
         $assetapplication = AssetApplication::pluck('asset_app_code', 'asset_app_id');
-        return view('asset_management.edit',compact('assetmanagement','company','location','asetcategorydetail','applicationresourcecategory','assetapplication'));
+        $assetref = AssetSiem::join('tbl_siem', 'tbl_asset_siem_link.siem_id', '=', 'tbl_siem.siem_id')
+        ->select('tbl_asset_siem_link.siem_id','tbl_asset_siem_link.siem_id', 'tbl_asset_siem_link.siem_reference','tbl_siem.siem_code')->where('asset_id', $assetmanagement->asset_id)->get();
+        return view('asset_management.edit',compact('assetmanagement','company','location','asetcategorydetail','applicationresourcecategory','assetapplication','assetref'));
     }
 
     /**
