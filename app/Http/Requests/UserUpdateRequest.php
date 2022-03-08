@@ -27,7 +27,9 @@ class UserUpdateRequest extends FormRequest
             'first_name'=> 'required',
             'last_name'=> 'required',
             'email' => 'required|email|unique:tbl_users,email,'.$this->user->id,
-            'password' => 'nullable|confirmed|min:6'
+            'password' => 'nullable|confirmed|min:6',
+            'phone' => 'required|numeric|digits:11',
+
         ];
     }
 }

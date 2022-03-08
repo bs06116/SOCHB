@@ -13,6 +13,8 @@ use Illuminate\Support\Facades\Storage;
 use Spatie\Permission\Models\Role;
 use Carbon\Carbon;
 use DB;
+use Illuminate\Support\Facades\Hash;
+
 class UserController extends Controller
 {
     public function __construct()
@@ -30,7 +32,6 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
-
         if ($request->has('search')) {
             $users = User::where('name', 'like', '%'.$request->search.'%')->paginate(setting('record_per_page', 15));
         }else{
@@ -50,7 +51,6 @@ class UserController extends Controller
         $title = 'Create user';
         $roles = Role::all('name', 'id');
         $company = Company::all();
-
         return view('users.create', compact('roles', 'title','company'));
     }
 
@@ -126,7 +126,7 @@ class UserController extends Controller
      */
     public function update(UserUpdateRequest $request, User $user)
     {
-        $userData = $request->except(['role', 'profile_photo','company']);
+        $userData = $request->except(['role','password','profile_photo','company']);
         if ($request->profile_photo) {
             $userData['profile_photo'] = parse_url($request->profile_photo, PHP_URL_PATH);
         }
@@ -135,6 +135,10 @@ class UserController extends Controller
        }else{
         $userData['active'] = 0;
        }
+       if($request->password != ''){
+        $userData['password'] = $request->password;
+       }
+
         $user->update($userData);
         $user->syncRoles($request->role);
         DB::table('tbl_user_company')->where('user_id', '=',$user->id)->delete();

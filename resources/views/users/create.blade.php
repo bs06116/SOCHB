@@ -52,9 +52,10 @@
                                 <div class="col-lg-6">
                                     <div class="form-group">
                                         {{ Form::label('role', 'Assing Roles', ['class' => 'form-control-label']) }}
+
                                         <select class="js-example-basic-multiple" name="role[]" multiple="multiple">
                                             @foreach($roles as $r):
-                                            <option value="{{$r->id}}">{{$r->name}}</option>
+                                            <option  value="{{$r->id}}" {{in_array($r->id, old("role") ?: []) ? "selected": ""}}>{{$r->name}}</option>
                                             @endforeach
                                           </select>
                                         {{-- {{ Form::select2('role', $roles, null, [ 'class'=> 'selectpicker form-control', 'placeholder' => 'Select role...']) }} --}}
@@ -70,7 +71,7 @@
                                         {{ Form::label('company', 'Assing Company', ['class' => 'form-control-label']) }}
                                         <select class="js-example-basic-multiple" name="company[]" multiple="multiple">
                                             @foreach($company as $c):
-                                            <option value="{{$c->company_id}}">{{$c->company_code}}</option>
+                                            <option value="{{$c->company_id}}" {{in_array($c->company_id, old("company") ?: []) ? "selected": ""}}>{{$c->company_code}}</option>
                                             @endforeach
                                           </select>
                                         {{-- {{ Form::select2('role', $roles, null, [ 'class'=> 'selectpicker form-control', 'placeholder' => 'Select role...']) }} --}}

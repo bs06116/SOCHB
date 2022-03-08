@@ -28,6 +28,8 @@ class UserStoreRequest extends FormRequest
             'last_name'=> 'required',
             'email' => 'required|unique:tbl_users,email|email',
             'password' => 'required|confirmed|min:6',
+            'phone' => 'required|numeric|digits:11',
+
 
 
         ];

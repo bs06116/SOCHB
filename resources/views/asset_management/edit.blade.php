@@ -71,7 +71,10 @@
                         <div class="col-lg-6">
                             <div class="form-group">
                                 {{ Form::label('location_id', 'Location', ['class' => 'form-control-label']) }}
-                                {{ Form::select('location_id',$location,  $assetmanagement->location_id, ['class' => 'form-control']) }}
+                                {{-- {{ Form::select('location_id',$location,  $assetmanagement->location_id, ['class' => 'form-control']) }} --}}
+                                <select name="location_id"  id="select-location" data-required="required" class="form-control" >
+                                    {{-- <option selected disabled>Select City</option> --}}
+                                </select>
 
                             </div>
                         </div>
@@ -124,7 +127,7 @@
                     <div class="row">
 
                         <div class="col-md-12">
-                            <input class="mt-5 btn btn-primary" onclick="saveRef()" type="button" value="Save">
+                            <input class="mt-5 btn btn-primary" onclick="saveRef()" type="button" value="Add">
                         </div>
                     </div>
                     <table>
@@ -171,6 +174,29 @@
         }
         function getOhterData(id){
             getSIEM(id);
+            getLocation(id);
+        }
+        function getLocation(company_id ) {
+            $.ajax({
+                url: "{{ route('assetmanagement.loadLocation') }}",
+                type: "POST",
+                data: {
+                    company_id : company_id ,
+                    _token: "{{ csrf_token() }}"
+                },
+                success: function(response) {
+                    if (response) {
+                        var opts =
+                        `<option  disabled="" >Select Location</option>`;
+                        for (var i = 0; i < response.result.length; i++) {
+                            if(company_id== response.result[i].location_id){ selected_subtype = 'selected';}else{ selected_subtype = '';}
+                            opts +=
+                                `<option ${selected_subtype} value="${response.result[i].location_id }">${response.result[i].location_code}</option>`;
+                        }
+                        $("#select-location").html(opts);
+                    }
+                },
+            });
         }
         function getSIEM(company_id ) {
             $.ajax({

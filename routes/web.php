@@ -59,7 +59,9 @@ Route::group(['prefix' => 'admin','namespace' => 'Admin', 'middleware' => ['auth
     // Route::get('/AssetManagement/loadSIEMRef', 'AssetManagementController@loadSIEMRef')->name('assetmanagement.loadSIEMRef');
     // Route::delete('/AssetManagement/SIEMRefDestory', 'AssetManagementController@SIEMRefDestory')->name('assetmanagement.SIEMRefDestory');
     Route::post('load-subtype', 'AssetCategoryDetailController@loadSubType')->name('assetcategorydetail.loadSubType');
-    Route::post('load-loadsiem', 'AssetManagementController@loadSIEM')->name('assetmanagement.loadSIEM');
+    Route::post('load-siem', 'AssetManagementController@loadSIEM')->name('assetmanagement.loadSIEM');
+    Route::post('load-location', 'AssetManagementController@loadLocation')->name('assetmanagement.loadLocation');
+
 
 
 

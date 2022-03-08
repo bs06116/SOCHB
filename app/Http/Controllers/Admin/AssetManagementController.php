@@ -223,7 +223,9 @@ class AssetManagementController extends Controller
         $ref = $request->ref;
         $data = array();
         for( $i = 0; $i<count($siem); $i++){
-            $data [] = array('asset_id'=>$assetmanagement->asset_id,'siem_id'=>$siem[$i], 'siem_reference'=>$ref[$i],'user_name'=>Auth::user()->username, 'time_stamp'=>Carbon::now());
+            $data [] = array('asset_id'=>$assetmanagement->asset_id,'siem_id'=>$siem[$i], 'siem_reference'=>$ref[$i],
+            'last_user_name'=>Auth::user()->username,
+            'last_time_stamp'=>Carbon::now());
         }
         if(count($data)>0){
             AssetSiem::where('asset_id',$assetmanagement->asset_id)->delete();
@@ -242,6 +244,7 @@ class AssetManagementController extends Controller
     public function destroy(AssetManagement $assetmanagement)
     {
         $assetmanagement->delete('cascade');
+        AssetSiem::where('asset_id',$assetmanagement->asset_id)->delete();
         flash('Asset Management deleted successfully!')->info();
         return back();
     }
@@ -249,6 +252,12 @@ class AssetManagementController extends Controller
     {
         $company_id  = $request->company_id ;
         $result = SIEM::where('company_id', $company_id )->get();
+        return response()->json(['result' => $result]);
+    }
+    public function loadLocation(Request $request)
+    {
+        $company_id  = $request->company_id ;
+        $result = Location::where('company_id', $company_id )->get();
         return response()->json(['result' => $result]);
     }
 
