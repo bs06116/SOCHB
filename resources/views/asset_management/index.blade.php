@@ -59,7 +59,7 @@
                                     {{ Form::label('company_id', 'Company', ['class' => 'form-control-label']) }}
                                     <select name="company_id"  onchange="getOhterData(this.value)"
                                         class="form-control">
-                                        <option value="" selected disabled>Select Company</option>
+                                        <option value="" selected>Select Company</option>
                                         @foreach ($company as $c)
                                         <option value="{{ $c->company_id }}">{{ $c->company_code }}</option>
                                         @endforeach
@@ -102,7 +102,9 @@
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     {{ Form::label('asset_app_id', 'Application', ['class' => 'form-control-label']) }}
-                                    {{ Form::select('asset_app_id',$assetapplication, null, ['class' => 'form-control']) }}
+                                    {{-- {{ Form::select('asset_app_id',$assetapplication, null, ['class' => 'form-control']) }} --}}
+                                    <select name="asset_app_id"  id="select-assetapplication" data-required="required" class="form-control" >
+                                    </select>
 
                                 </div>
                             </div>
@@ -332,6 +334,7 @@
         function getOhterData(id){
             getSIEM(id);
             getLocation(id);
+            getAssetApplication(id);
 
         }
         function getLocation(company_id ) {
@@ -351,6 +354,27 @@
                                 `<option value="${response.result[i].location_id }">${response.result[i].location_code}</option>`;
                         }
                         $("#select-location").html(opts);
+                    }
+                },
+            });
+        }
+        function getAssetApplication(company_id ) {
+            $.ajax({
+                url: "{{ route('assetmanagement.loadAssetApplication') }}",
+                type: "POST",
+                data: {
+                    company_id : company_id ,
+                    _token: "{{ csrf_token() }}"
+                },
+                success: function(response) {
+                    if (response) {
+                        var opts =
+                        `<option  disabled="" >Select Asset Application</option>`;
+                        for (var i = 0; i < response.result.length; i++) {
+                            opts +=
+                                `<option value="${response.result[i].asset_app_id }">${response.result[i].asset_app_code}</option>`;
+                        }
+                        $("#select-assetapplication").html(opts);
                     }
                 },
             });

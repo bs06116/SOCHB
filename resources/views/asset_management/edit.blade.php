@@ -97,7 +97,9 @@
                         <div class="col-lg-6">
                             <div class="form-group">
                                 {{ Form::label('asset_app_id', 'Application', ['class' => 'form-control-label']) }}
-                                {{ Form::select('asset_app_id',$assetapplication,  $assetmanagement->asset_app_id, ['class' => 'form-control']) }}
+                                {{-- {{ Form::select('asset_app_id',$assetapplication,  $assetmanagement->asset_app_id, ['class' => 'form-control']) }} --}}
+                                <select name="asset_app_id"  id="select-assetapplication" data-required="required" class="form-control" >
+                                </select>
 
                             </div>
                         </div>
@@ -141,9 +143,9 @@
                                 <td>{{ $value->siem_code }}</td>
                                 <td>{{ $value->siem_reference }}</td>
                                 <td><a href="javascript:void(0)" onclick="deleteRef(this)">Delete</a></td>
+                                <input type="hidden" name="siem[]" value="{{$value->siem_code}}">
+                                <input type="hidden" name="ref[]" value="{{$value->siem_reference}}">
                             </tr>
-                            <input type="hidden" name="siem[]" value="{{$value->siem_code}}">
-                            <input type="hidden" name="ref[]" value="{{$value->siem_reference}}">
                             @endforeach
 
                         </tbody>
@@ -158,6 +160,9 @@
                     </div>
                 </div>
                 {!! Form::close() !!}
+                <input  type="hidden" value="{{$assetmanagement->asset_app_id}}" id="asset_app_id">
+                <input  type="hidden" value="{{$assetmanagement->location_id}}" id="location_id">
+
             </div>
         </div>
     </div>
@@ -183,6 +188,7 @@
         function getOhterData(id){
             getSIEM(id);
             getLocation(id);
+            getAssetApplication(id);
         }
         function getLocation(company_id ) {
             $.ajax({
@@ -197,11 +203,33 @@
                         var opts =
                         `<option  disabled="" >Select Location</option>`;
                         for (var i = 0; i < response.result.length; i++) {
-                            if(company_id== response.result[i].location_id){ selected_subtype = 'selected';}else{ selected_subtype = '';}
+                            if($("#location_id").val()== response.result[i].location_id){ selected_subtype = 'selected';}else{ selected_subtype = '';}
                             opts +=
                                 `<option ${selected_subtype} value="${response.result[i].location_id }">${response.result[i].location_code}</option>`;
                         }
                         $("#select-location").html(opts);
+                    }
+                },
+            });
+        }
+        function getAssetApplication(company_id ) {
+            $.ajax({
+                url: "{{ route('assetmanagement.loadAssetApplication') }}",
+                type: "POST",
+                data: {
+                    company_id : company_id ,
+                    _token: "{{ csrf_token() }}"
+                },
+                success: function(response) {
+                    if (response) {
+                        var opts =
+                        `<option  disabled="" >Select Asset Application</option>`;
+                        for (var i = 0; i < response.result.length; i++) {
+                            if($("#asset_app_id").val()== response.result[i].asset_app_id){ selected_subtype = 'selected';}else{ selected_subtype = '';}
+                            opts +=
+                                `<option value="${response.result[i].asset_app_id }">${response.result[i].asset_app_code}</option>`;
+                        }
+                        $("#select-assetapplication").html(opts);
                     }
                 },
             });

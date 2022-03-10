@@ -13,8 +13,6 @@ use Spatie\Permission\Models\Role;
 use App\Http\Requests\CompanyStoreRequest;
 use Carbon\Carbon;
 
-
-
 class AssetApplicationController extends Controller
 {
     /**
@@ -35,6 +33,10 @@ class AssetApplicationController extends Controller
             $search = request('search');
             $query = AssetApplication::query()->join('tbl_vendor', 'tbl_vendor.vendor_id', "=", "tbl_asset_application.vendor_id")
             ->join('tbl_company', 'tbl_company.company_id', "=", "tbl_asset_application.company_id");
+            $query->when(Auth::id() !=1, function ($q) {
+                $q->join('tbl_user_company', 'tbl_company.company_id', '=', 'tbl_user_company.company_id');
+                    $q->where('tbl_user_company.user_id',Auth::id());
+            });
             $query->orderBy('asset_app_id', 'DESC')->get();
             $recordsTotal = $query->count();
             if (isset($search['value'])) {

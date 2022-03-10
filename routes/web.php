@@ -61,6 +61,8 @@ Route::group(['prefix' => 'admin','namespace' => 'Admin', 'middleware' => ['auth
     Route::post('load-subtype', 'AssetCategoryDetailController@loadSubType')->name('assetcategorydetail.loadSubType');
     Route::post('load-siem', 'AssetManagementController@loadSIEM')->name('assetmanagement.loadSIEM');
     Route::post('load-location', 'AssetManagementController@loadLocation')->name('assetmanagement.loadLocation');
+    Route::post('load-assetapplication', 'AssetManagementController@loadAssetApplication')->name('assetmanagement.loadAssetApplication');
+
 
 
 

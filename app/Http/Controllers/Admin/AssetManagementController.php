@@ -39,11 +39,15 @@ class AssetManagementController extends Controller
             $skip = request('start');
             $take = request('length');
             $search = request('search');
-            $query = AssetManagement::query()->join('tbl_company', 'tbl_company.company_id', "=", "tbl_asset.company_id")
-            ->join('tbl_location', 'tbl_location.location_id', "=", "tbl_asset.location_id")
-            ->join('tbl_asset_category_detail', 'tbl_asset_category_detail.asset_cat_detail_id', "=", "tbl_asset.asset_cat_detail_id")
-            ->join('tbl_app_resource_sub_cat', 'tbl_app_resource_sub_cat.app_res_sub_cat_id', "=", "tbl_asset.app_res_sub_cat_id")
-            ->join('tbl_asset_application', 'tbl_asset_application.asset_app_id', "=", "tbl_asset.asset_app_id");
+            $query = AssetManagement::query()->join('tbl_company', 'tbl_company.company_id', "=", "tbl_asset.company_id");
+                $query->when(Auth::id() !=1, function ($q) {
+                $q->join('tbl_user_company', 'tbl_company.company_id', '=', 'tbl_user_company.company_id');
+                    $q->where('tbl_user_company.user_id',Auth::id());
+            });
+            $query->leftjoin('tbl_location', 'tbl_location.location_id', "=", "tbl_asset.location_id");
+            $query->join('tbl_asset_category_detail', 'tbl_asset_category_detail.asset_cat_detail_id', "=", "tbl_asset.asset_cat_detail_id");
+            $query->join('tbl_app_resource_sub_cat', 'tbl_app_resource_sub_cat.app_res_sub_cat_id', "=", "tbl_asset.app_res_sub_cat_id");
+            $query->leftjoin('tbl_asset_application', 'tbl_asset_application.asset_app_id', "=", "tbl_asset.asset_app_id");
 
             $query->orderBy('asset_id', 'DESC')->get();
             $recordsTotal = $query->count();
@@ -260,6 +264,12 @@ class AssetManagementController extends Controller
     {
         $company_id  = $request->company_id ;
         $result = Location::where('company_id', $company_id )->get();
+        return response()->json(['result' => $result]);
+    }
+    public function loadAssetApplication(Request $request)
+    {
+        $company_id  = $request->company_id ;
+        $result = AssetApplication::where('company_id', $company_id )->get();
         return response()->json(['result' => $result]);
     }
 
