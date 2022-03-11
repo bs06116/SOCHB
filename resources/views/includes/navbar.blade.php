@@ -1,15 +1,16 @@
-<nav class="sidenav navbar navbar-vertical  fixed-left  navbar-expand-xs navbar-light bg-white" id="sidenav-main">
+<nav class="sidenav navbar navbar-vertical fixed-left navbar-expand-xs navbar-light bg-white" id="sidenav-main">
     <div class="scrollbar-inner">
         <!-- Brand -->
         <div class="sidenav-header  d-flex  align-items-center">
             <a class="navbar-brand" href="{{ route('home') }}" data-toggle="tooltip"
                 data-original-title="{{ setting('company_name') }}">
-                @if (setting('company_logo'))
+                {{-- @if (setting('company_logo'))
                     <img alt="{{ setting('company_name') }}" height="45" class="navbar-brand-img"
                         src="{{ asset(setting('company_logo')) }}">
                 @else
                     {{ substr(setting('company_name'), 0, 15) }}...
-                @endif
+                @endif --}}
+                <img src="{{ asset('assets/img/logo.png') }}">
             </a>
             <div class=" ml-auto ">
                 <!-- Sidenav toggler -->
@@ -93,7 +94,8 @@
                         <li class="nav-item">
                             <a class="nav-link" href="#navbar-users"
                                 data-toggle="collapse" role="button" aria-expanded="true" aria-controls="navbar-users">
-                                <i class="fas text-primary fa-tasks"></i>
+                                {{-- <i class="fas text-primary fa-tasks"></i> --}}
+                                <i class="fa text-primary fa-th"></i>
                                 <span class="nav-link-text">System</span>
                             </a>
                             <?php if(request()->is('admin/users*') || request()->is('admin/permissions*') ||  request()->is('admin/roles*')){
@@ -103,6 +105,8 @@
                                 <ul class="nav nav-sm flex-column">
                                     @can('view-user')
                                         <li class="nav-item">
+                                            <a class="nav-link" href="{{ route('users.index') }}">
+                                                <i class="fa fa-user text-primary"></i>
                                             <a class="nav-link {{ request()->is('admin/users*') ? 'active' : '' }}" href="{{ route('users.index') }}">
                                                 <i class="fas fa-lock-open text-primary"></i>
                                                 <span class="nav-link-text">Users</span>
@@ -113,7 +117,7 @@
                                         <li class="nav-item">
                                             <a class="nav-link {{ request()->is('admin/permissions*') ? 'active' : '' }}"
                                                 href="{{ route('permissions.index') }}">
-                                                <i class="fas fa-lock-open text-primary"></i>
+                                                <i class="fas fa-thumbs-up text-primary"></i>
                                                 <span class="nav-link-text">Manage Permissions</span>
                                             </a>
                                         </li>
@@ -122,7 +126,7 @@
                                         <li class="nav-item">
                                             <a class="nav-link {{ request()->is('admin/roles*') ? 'active' : '' }}"
                                                 href="{{ route('roles.index') }}">
-                                                <i class="fas fa-lock text-primary"></i>
+                                                <i class="fas fa-users text-primary"></i>
                                                 <span class="nav-link-text">Manage Roles</span>
                                             </a>
                                         </li>
@@ -141,7 +145,7 @@
                     <li class="nav-item">
                         <a class="nav-link" href="#navbar-basic"
                             data-toggle="collapse" role="button" aria-expanded="true" aria-controls="navbar-users">
-                            <i class="fas text-primary fa-tasks"></i>
+                            <i class="fa text-primary fa-cog"></i>
                             <span class="nav-link-text">Basic Configurations</span>
                         </a>
                         <?php if(request()->is('admin/companies*') || request()->is('admin/locations*') ||  request()->is('admin/vendors*') ||  request()->is('admin/siem*')){
@@ -151,30 +155,31 @@
                                 @canany(['manage-company'])
 
                                     <li class="nav-item">
-                                        <a href="{{ route('companies.index') }}" class="nav-link"><span
-                                                class="sidenav-mini-icon"></span><span
-                                                class="sidenav-normal">Company</span></a>
+                                        <a href="{{ route('companies.index') }}" class="nav-link">
+                                            <i class="fa fa-building text-primary"></i>
+                                            <span class="sidenav-normal">Company</span></a>
                                     </li>
                                 @endcan
                                 @canany(['manage-location'])
                                     <li class="nav-item">
-                                        <a href="{{ route('locations.index') }}" class="nav-link"><span
-                                                class="sidenav-mini-icon"></span><span
-                                                class="sidenav-normal">Location</span></a>
+                                        <a href="{{ route('locations.index') }}" class="nav-link">
+                                            <i class="fa fa-map-marker text-primary"></i>
+                                            <span class="sidenav-normal">Location</span></a>
                                     </li>
                                 @endcan
 
                                 @canany(['manage-vendor'])
                                 <li class="nav-item">
-                                    <a href="{{ route('vendors.index') }}" class="nav-link"><span
-                                            class="sidenav-mini-icon"></span><span
-                                            class="sidenav-normal">Vendor</span></a>
+                                    <a href="{{ route('vendors.index') }}" class="nav-link">
+                                        <i class="fa fa-sitemap text-primary"></i>
+                                        <span class="sidenav-normal">Vendor</span></a>
                                 </li>
                             @endcan
                             @canany(['manage-sem'])
                             <li class="nav-item">
-                                <a href="{{ route('siem.index') }}" class="nav-link"><span
-                                        class="sidenav-mini-icon"></span><span class="sidenav-normal">Manage SIEM</span></a>
+                                <a href="{{ route('siem.index') }}" class="nav-link">
+                                    <i class="fa fa-vote-yea text-primary"></i>
+                                    <span class="sidenav-normal">Manage SIEM</span></a>
                             </li>
                         @endcan
 
@@ -185,7 +190,7 @@
                     <li class="nav-item">
                         <a class="nav-link" href="#navbar-assets"
                             data-toggle="collapse" role="button" aria-expanded="true" aria-controls="navbar-assets">
-                            <i class="fas text-primary fa-tasks"></i>
+                            <i class="fa text-primary fa-cubes"></i>
                             <span class="nav-link-text">Assets Management</span>
                         </a>
                         <?php if(request()->is('admin/assetcategorydetail*') || request()->is('admin/applicationresourcecategory*') ||  request()->is('admin/assetapplication*') ||  request()->is('admin/assetmanagement*')){
@@ -194,31 +199,38 @@
                             <ul class="nav nav-sm flex-column">
                                 @canany(['manage-asset-category-details'])
                                     <li class="nav-item">
-                                        <a href="{{ route('assetcategorydetail.index') }}" class="nav-link"><span
-                                                class="sidenav-mini-icon"></span><span class="sidenav-normal">Assets
-                                                Category Details</span></a>
+                                        <a href="{{ route('assetcategorydetail.index') }}" class="nav-link">
+                                            <i class="fa text-primary fa-list-ul"></i>
+                                            <span class="sidenav-normal">Assets Category Details</span></a>
                                     </li>
                                 @endcan
                                 @canany(['manage-application-resource-category'])
                                     <li class="nav-item">
                                         <a href="{{ route('applicationresourcecategory.index') }}"
-                                            class="nav-link"><span class="sidenav-mini-icon"></span><span
+                                            class="nav-link">
+                                            <i class="fa text-primary fa-window-restore"></i>
+                                            <span
                                                 class="sidenav-normal">Application Resource Category
                                             </span></a>
                                     </li>
                                 @endcan
                                 @canany(['manage-asset-application'])
                                     <li class="nav-item">
-                                        <a href="{{ route('assetapplication.index') }}" class="nav-link"><span
-                                                class="sidenav-mini-icon"></span><span class="sidenav-normal">Asset
+                                        <a href="{{ route('assetapplication.index') }}" class="nav-link">
+
+                                            <i class="fa text-primary fa-keyboard"></i>
+
+                                            <span class="sidenav-normal">Asset
                                                 Application
                                             </span></a>
                                     </li>
                                 @endcan
                                 @canany(['manage-asset-management'])
                                     <li class="nav-item">
-                                        <a href="{{ route('assetmanagement.index') }}" class="nav-link"><span
-                                                class="sidenav-mini-icon"></span><span class="sidenav-normal">Asset
+                                        <a href="{{ route('assetmanagement.index') }}" class="nav-link">
+                                            <i class="fa text-primary fa-list-alt"></i>
+
+                                            <span class="sidenav-normal">Asset
                                                 Management
                                             </span></a>
                                     </li>
