@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="{{asset('assets/css/dashboard.css')}}" type="text/css">
 </head>
 
-<body class="bg-white">
+<body class="bg-white bg-login">
     <div class="main-content">
         @yield('content')
     </div>

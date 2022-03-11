@@ -11,12 +11,12 @@
                 <div class="card-header bg-transparent">
                     <div class="row">
                         <div class="col-lg-8">
-                            <h3 class="mb-0">All Categories</h3>
+                            <h3 class="mb-0 sub-heading-es">All Categories</h3>
                         </div>
                         <div class="col-lg-4">
                     {!! Form::open(['route' => 'users.index', 'method'=>'get']) !!}
                         <div class="form-group mb-0">
-                        {{ Form::text('search', request()->query('search'), ['class' => 'form-control form-control-sm', 'placeholder'=>'Search users']) }}
+                        {{ Form::text('search', request()->query('search'), ['class' => 'form-control form-control-md', 'placeholder'=>'Search users']) }}
                     </div>
                     {!! Form::close() !!}
                 </div>

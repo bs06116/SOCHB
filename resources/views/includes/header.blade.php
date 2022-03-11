@@ -1,4 +1,4 @@
-<nav class="navbar navbar-top navbar-expand navbar-dark bg-primary border-bottom">
+<nav class="navbar navbar-top navbar-expand navbar-dark navbar-all border-bottom">
     <div class="container-fluid">
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <!-- Search form -->
@@ -29,12 +29,12 @@
                     <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
                         aria-expanded="false">
                         <div class="media align-items-center">
-                            <span class="avatar avatar-sm rounded-circle">
+                            <span class="avatar rounded-circle">
                                 @if (Auth::user()->img_path)
                                     <img width="45" height="45" class="img-fluid rounded-pill"
                                         src="{{ Auth::user()->img_path }}" alt="">
                                 @else
-                                    <i class="far avatar avatar-sm rounded-circle fa-user"></i>
+                                    <i class="far avatar rounded-circle fa-user"></i>
 
                                 @endif
                             </span>

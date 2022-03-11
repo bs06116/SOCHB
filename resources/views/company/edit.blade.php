@@ -6,10 +6,11 @@
 <div class="row">
     <div class="col-md-12">
         <div class="card mb-5">
+            <div class="card-header bg-transparent"><h3 class="mb-0">Company information</h3></div>
             <div class="card-body">
                 {!! Form::open(['route' => ['companies.update', $company], 'method'=>'put', 'files' => false]) !!}
-                <h6 class="heading-small text-muted mb-4">Company information</h6>
-                    <div class="pl-lg-4">
+                {{-- <h6 class="heading-small text-muted mb-4">Company information</h6> --}}
+                    <div class="pl-lg-0">
                         <div class="row">
                             <div class="col-lg-6">
                                 <div class="form-group">
@@ -57,12 +58,12 @@
 
                         </div>
                         <hr class="my-4" />
-                        <div class="pl-lg-4">
+                        <div class="pl-lg-0">
                             <div class="row">
 
                                 <div class="col-md-12">
-                                    {{ Form::submit('Submit', ['class'=> 'mt-5 btn btn-primary']) }}
-                                    <a href="{{route('companies.index')}}">{{  Form::button('Back', ['class' => 'mt-5 btn btn-primary']) }}</a>
+                                    {{ Form::submit('Submit', ['class'=> 'mt-0 btn btn-primary']) }}
+                                    <a href="{{route('companies.index')}}">{{  Form::button('Back', ['class' => 'mt-0 btn btn-primary']) }}</a>
 
                                 </div>
                             </div>

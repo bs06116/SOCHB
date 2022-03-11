@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @push('pg_btn')
     @can('update-user')
-        <a class="btn btn-info btn-sm m-1" data-toggle="tooltip" data-placement="top" title="Edit user details" href="{{route('users.edit',$user)}}">
+        <a class="btn btn-primary btn-sm m-1" data-toggle="tooltip" data-placement="top" title="Edit user details" href="{{route('users.edit',$user)}}">
             <i class="fa fa-edit" aria-hidden="true"></i> Edit User
         </a>
     @endcan
@@ -60,7 +60,7 @@
                             Status
                         </div>
                         <div class="col-sm-3">
-                            {{ $user->active ? 'Active' : 'Disable'}}
+                            <strong>{{ $user->active ? 'Active' : 'Disable'}}</strong>
                         </div>
                     </div>
                 </div>

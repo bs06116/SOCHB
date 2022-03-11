@@ -8,10 +8,10 @@
     <div class="row">
         <div class="col-md-12">
             <div class="card mb-5">
+                <div class="card-header bg-transparent"><h3 class="mb-0">Location information</h3></div>
                 <div class="card-body">
                     {!! Form::open(['route' => 'locations.store']) !!}
-                    <h6 class="heading-small text-muted mb-4">Location information</h6>
-                    <div class="pl-lg-4">
+                    <div class="pl-lg-0">
                         <div class="row">
                             <div class="col-lg-6">
                                 <div class="form-group">
@@ -54,7 +54,7 @@
 
                                 </div>
                             </div>
-                            <a href="{{ route('locationstype.index')}}" class="form-group">Add</a>
+                            <a href="{{ route('locationstype.index')}}" class="form-group form-group-add">Add</a>
 
                         </div>
                         <div class="row">
@@ -68,11 +68,11 @@
 
                         </div>
                         <hr class="my-4" />
-                        <div class="pl-lg-4">
+                        <div class="pl-lg-0">
                             <div class="row">
 
                                 <div class="col-md-12">
-                                    {{ Form::submit('Submit', ['class' => 'mt-5 btn btn-primary']) }}
+                                    {{ Form::submit('Submit', ['class' => 'mt-0 btn btn-primary']) }}
                                 </div>
                             </div>
                         </div>
