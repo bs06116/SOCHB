@@ -105,10 +105,9 @@
                                 <ul class="nav nav-sm flex-column">
                                     @can('view-user')
                                         <li class="nav-item">
-                                            <a class="nav-link" href="{{ route('users.index') }}">
-                                                <i class="fa fa-user text-primary"></i>
+
                                             <a class="nav-link {{ request()->is('admin/users*') ? 'active' : '' }}" href="{{ route('users.index') }}">
-                                                <i class="fas fa-lock-open text-primary"></i>
+                                                <i class="fa fa-user text-primary"></i>
                                                 <span class="nav-link-text">Users</span>
                                             </a>
                                         </li>

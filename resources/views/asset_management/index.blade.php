@@ -122,7 +122,7 @@
 
                         </div>
 
-                    <div class="col-lg-6">
+                    <div class="col-lg-6 pl-0">
                         <div class="form-group">
                             {{ Form::label('process_siem', 'SIEM', ['class' => 'form-control-label']) }}
                             <select name="siem"  id="select-siem" data-required="required" class="form-control" >
@@ -130,7 +130,7 @@
                             </select>
                         </div>
                     </div>
-                    <div class="col-lg-6">
+                    <div class="col-lg-6 pl-0">
                         <div class="form-group">
                             {{ Form::label('refer', 'Ref', ['class' => 'form-control-label']) }}
                             {{ Form::text('process_ref', null, ['class' => 'form-control','id'=>"ref"]) }}
@@ -139,18 +139,20 @@
                     <div class="row">
 
                         <div class="col-md-12">
-                            <input class="mt-5 btn btn-primary" onclick="saveRef()" type="button" value="Add">
+                            <input class="mt-0 btn btn-primary" onclick="saveRef()" type="button" value="Add">
                         </div>
                     </div>
-                    <table>
-                        <tr>
-                          <th>SIEM</th>
-                          <th>Ref</th>
-                          <th>Delete</th>
-                        </tr>
+                    <table id="seim-ref" class="table table-hover">
+                        <thead class="thead-light">
+                            <tr>
+                            <th>SIEM</th>
+                            <th>Ref</th>
+                            <th>Delete</th>
+                            </tr>
+                        </thead>
                         <tbody id="tbody">
                         </tbody>
-                      </table>
+                    </table>
                         <hr class="my-4" />
 
 
@@ -165,7 +167,7 @@
                         </div>
 
                     </div>
-<br><br>
+<br>
                     {!! Form::close() !!}
 
                 </div>
