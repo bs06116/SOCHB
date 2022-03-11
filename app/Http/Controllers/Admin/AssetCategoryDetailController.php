@@ -36,8 +36,8 @@ class AssetCategoryDetailController extends Controller
             $take = request('length');
             $search = request('search');
             $query = AssetCategoryDetail::query()->join('tbl_vendor', 'tbl_vendor.vendor_id', "=", "tbl_asset_category_detail.vendor_id")
-            ->join('tbl_asset_main_category', 'tbl_asset_main_category.asset_main_cat_id', "=", "tbl_asset_category_detail.asset_sub_main_id")
-            ->join('tbl_asset_sub_category', 'tbl_asset_sub_category.asset_sub_cat_id', "=", "tbl_asset_category_detail.asset_sub_cat_id");
+            ->leftjoin('tbl_asset_main_category', 'tbl_asset_main_category.asset_main_cat_id', "=", "tbl_asset_category_detail.asset_sub_main_id")
+            ->leftjoin('tbl_asset_sub_category', 'tbl_asset_sub_category.asset_sub_cat_id', "=", "tbl_asset_category_detail.asset_sub_cat_id");
             $query->orderBy('asset_cat_detail_id', 'DESC')->get();
             $recordsTotal = $query->count();
             if (isset($search['value'])) {

@@ -58,7 +58,15 @@
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     {{ Form::label('company_id', 'Company', ['class' => 'form-control-label']) }}
-                                    {{ Form::select('company_id',$company, null, ['class' => 'form-control']) }}
+                                    <select name="company_id"  onchange="getOhterData(this.value)"
+                                        class="form-control">
+                                        <option value="" selected>Select Company</option>
+                                        @foreach ($company as $c)
+                                        <option value="{{ $c->company_id }}">{{ $c->company_code }}</option>
+                                        @endforeach
+
+                                </select>
+                                    {{-- {{ Form::select('company_id',$company, null, ['class' => 'form-control']) }} --}}
 
                                 </div>
                             </div>
@@ -68,7 +76,10 @@
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     {{ Form::label('location_id', 'Location', ['class' => 'form-control-label']) }}
-                                    {{ Form::select('location_id',$location, null, ['class' => 'form-control']) }}
+                                    {{-- {{ Form::select('location_id',$location, null, ['class' => 'form-control']) }} --}}
+                                    <select name="location_id"  id="select-location" data-required="required" class="form-control" >
+                                        {{-- <option selected disabled>Select City</option> --}}
+                                    </select>
 
                                 </div>
                             </div>
@@ -92,7 +103,9 @@
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     {{ Form::label('asset_app_id', 'Application', ['class' => 'form-control-label']) }}
-                                    {{ Form::select('asset_app_id',$assetapplication, null, ['class' => 'form-control']) }}
+                                    {{-- {{ Form::select('asset_app_id',$assetapplication, null, ['class' => 'form-control']) }} --}}
+                                    <select name="asset_app_id"  id="select-assetapplication" data-required="required" class="form-control" >
+                                    </select>
 
                                 </div>
                             </div>
@@ -108,22 +121,38 @@
                             </div>
 
                         </div>
-                        <hr class="my-4" />
-                        {{-- {!! Form::open(['route' => 'storeSIEMRef']) !!}
-                        <div class="row">
-                            <div class="col-lg-6">
-                                <div class="form-group">
-                                    {{ Form::label('refer', 'Ref', ['class' => 'form-control-label']) }}
-                                    {{ Form::text('process_ref', null, ['class' => 'form-control']) }}
 
-                                </div>
-                            </div>
-
-
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            {{ Form::label('process_siem', 'SIEM', ['class' => 'form-control-label']) }}
+                            <select name="siem"  id="select-siem" data-required="required" class="form-control" >
+                                {{-- <option selected disabled>Select City</option> --}}
+                            </select>
                         </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            {{ Form::label('refer', 'Ref', ['class' => 'form-control-label']) }}
+                            {{ Form::text('process_ref', null, ['class' => 'form-control','id'=>"ref"]) }}
+                        </div>
+                    </div>
+                    <div class="row">
 
-                        {{ Form::submit('Save', ['class' => 'mt-5 btn btn-primary']) }}
-                        {!! Form::close() !!} --}}
+                        <div class="col-md-12">
+                            <input class="mt-5 btn btn-primary" onclick="saveRef()" type="button" value="Add">
+                        </div>
+                    </div>
+                    <table>
+                        <tr>
+                          <th>SIEM</th>
+                          <th>Ref</th>
+                          <th>Delete</th>
+                        </tr>
+                        <tbody id="tbody">
+                        </tbody>
+                      </table>
+                        <hr class="my-4" />
+
 
 
                         <div class="pl-lg-0">
@@ -139,59 +168,9 @@
 <br><br>
                     {!! Form::close() !!}
 
-                    {!! Form::open(['route' => 'storeSIEMRef']) !!}
-
-
-                    <div class="col-lg-6 pl-0">
-                        <div class="form-group">
-                            {{ Form::label('process_seq', 'SIEM', ['class' => 'form-control-label']) }}
-                            {{ Form::select('process_seq',$siem, null, ['class' => 'form-control']) }}
-                        </div>
-                    </div>
-                    <div class="col-lg-6 pl-0">
-                        <div class="form-group">
-                            {{ Form::label('refer', 'Ref', ['class' => 'form-control-label']) }}
-                            {{ Form::text('process_ref', null, ['class' => 'form-control']) }}
-                        </div>
-                    </div>
-                    {{ Form::submit('Save', ['class' => 'mt-0 btn btn-primary']) }}
-                    {!! Form::close() !!}
                 </div>
 
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="card mb-5">
-                            <div class="card-header bg-transparent">
-                                <div class="row">
-                                    <div class="col-lg-8">
-                                        <h3 class="mb-0">All Asset Management</h3>
-                                    </div>
 
-                                </div>
-                            </div>
-                            <div class="card-body p-0">
-                                <div class="table-responsive">
-                                    <div>
-                                        <table class="table table-hover align-items-center data-table-siem-reff">
-                                            <thead class="thead-light">
-                                                <tr>
-                                                    <th scope="col">Id</th>
-                                                    <th scope="col">Ref</th>
-                                                    <th scope="col">Action</th>
-
-                                                </tr>
-                                            </thead>
-                                            <tbody class="list">
-
-                                            </tbody>
-
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
@@ -223,6 +202,7 @@
                                         <th scope="col">Category</th>
                                         <th scope="col">Application Resource</th>
                                         <th scope="col">Application</th>
+                                        <th scope="col">Reffernce</th>
                                         <th scope="col">Status</th>
                                         <th scope="col" class="text-center">Action</th>
                                     </tr>
@@ -240,45 +220,6 @@
     </div>
 @endsection
 @push('scripts')
-
-<script type="text/javascript">
-    $(function() {
-        var table = $('.data-table-siem-reff').DataTable({
-            processing: true,
-            serverSide: true,
-            ajax: {
-                url: "{{ route('assetmanagement.loadSIEMRef') }}",
-                data: function(d) {
-                    //   d.approved = $('#approved').val(),
-                    //  d.search = $('input[type="search"]').val()
-                }
-            },
-            columns: [
-                {
-                    data: 'siem_data_process_id',
-                    name: 'siem_data_process_id'
-                },
-                {
-                    data: 'process_ref',
-                    name: 'process_ref'
-                },
-                {
-                    data: 'action',
-                    name: 'actions'
-                },
-
-            ]
-
-        }
-
-        );
-
-        //   $('#approved').change(function(){
-        //       table.draw();
-        //   });
-
-    });
-</script>
     <script type="text/javascript">
         $(function() {
             var table = $('.data-table').DataTable({
@@ -337,18 +278,19 @@
                         name: 'asset_app_code'
                     },
                     {
+                        data: 'siem_reffernce',
+                        name: 'siem_reffernce'
+                    },
+                    {
                         data: 'asset_enabled',
                         name: 'asset_enabled'
                     },
-
                     {
                         data: 'action',
                         name: 'actions'
                     }
                 ]
-
             }
-
             );
 
             //   $('#approved').change(function(){
@@ -358,28 +300,6 @@
         });
     </script>
     <script>
-        $('.data-table-siem-reff tbody').on('click', '.delete', function(e) {
-                e.preventDefault();
-                let that = jQuery(this);
-                jQuery.confirm({
-                    icon: 'fas fa-wind-warning',
-                    closeIcon: true,
-                    title: 'Are you sure!',
-                    content: 'You can not undo this action.!',
-                    type: 'red',
-                    typeAnimated: true,
-                    buttons: {
-                        confirm: function() {
-                            that.parent('form').submit();
-                            //$.alert('Confirmed!');
-                        },
-                        cancel: function() {
-                            //$.alert('Canceled!');
-                        }
-                    }
-                });
-
-        });
         $('.data-table tbody').on('click', '.delete', function(e) {
                 e.preventDefault();
                 let that = jQuery(this);
@@ -400,7 +320,86 @@
                         }
                     }
                 });
-
         });
+        function saveRef(){
+            var siem = $('#select-siem').children(':selected').text();
+            var siemVal = $('#select-siem').children(':selected').val();
+            var ref = $('#ref').val();
+            var append_html = '<tr><input type="hidden" name="siem[]" value="'+siemVal+'"><input type="hidden" name="ref[]" value="'+ref+'"><td>'+siem+'</td><td>'+ref+'</td><td><button onclick="deleteRef(this)">Delete</button></td></tr>';
+            $('#tbody').append(append_html);
+            $('#ref').val('');
+        }
+        function deleteRef(e){
+            $(e).parent().parent().remove();
+        }
+        function getOhterData(id){
+            getSIEM(id);
+            getLocation(id);
+            getAssetApplication(id);
+
+        }
+        function getLocation(company_id ) {
+            $.ajax({
+                url: "{{ route('assetmanagement.loadLocation') }}",
+                type: "POST",
+                data: {
+                    company_id : company_id ,
+                    _token: "{{ csrf_token() }}"
+                },
+                success: function(response) {
+                    if (response) {
+                        var opts =
+                        `<option  disabled="" >Select Location</option>`;
+                        for (var i = 0; i < response.result.length; i++) {
+                            opts +=
+                                `<option value="${response.result[i].location_id }">${response.result[i].location_code}</option>`;
+                        }
+                        $("#select-location").html(opts);
+                    }
+                },
+            });
+        }
+        function getAssetApplication(company_id ) {
+            $.ajax({
+                url: "{{ route('assetmanagement.loadAssetApplication') }}",
+                type: "POST",
+                data: {
+                    company_id : company_id ,
+                    _token: "{{ csrf_token() }}"
+                },
+                success: function(response) {
+                    if (response) {
+                        var opts =
+                        `<option  disabled="" >Select Asset Application</option>`;
+                        for (var i = 0; i < response.result.length; i++) {
+                            opts +=
+                                `<option value="${response.result[i].asset_app_id }">${response.result[i].asset_app_code}</option>`;
+                        }
+                        $("#select-assetapplication").html(opts);
+                    }
+                },
+            });
+        }
+        function getSIEM(company_id ) {
+            $.ajax({
+                url: "{{ route('assetmanagement.loadSIEM') }}",
+                type: "POST",
+                data: {
+                    company_id : company_id ,
+                    _token: "{{ csrf_token() }}"
+                },
+                success: function(response) {
+                    if (response) {
+                        var opts =
+                        `<option  disabled="" >Select SIEM</option>`;
+                        for (var i = 0; i < response.result.length; i++) {
+                            opts +=
+                                `<option value="${response.result[i].siem_id }">${response.result[i].siem_code}</option>`;
+                        }
+                        $("#select-siem").html(opts);
+                    }
+                },
+            });
+        }
     </script>
 @endpush

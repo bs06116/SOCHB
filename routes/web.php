@@ -55,10 +55,16 @@ Route::group(['prefix' => 'admin','namespace' => 'Admin', 'middleware' => ['auth
     Route::get('/activity-log', 'SettingController@activity')->name('activity-log.index');
     Route::get('/settings', 'SettingController@index')->name('settings.index');
     Route::post('/settings', 'SettingController@update')->name('settings.update');
-    Route::post('/AssetManagement/storeSIEMRef', 'AssetManagementController@storeSIEMRef')->name('storeSIEMRef');
-    Route::get('/AssetManagement/loadSIEMRef', 'AssetManagementController@loadSIEMRef')->name('assetmanagement.loadSIEMRef');
-    Route::delete('/AssetManagement/SIEMRefDestory', 'AssetManagementController@SIEMRefDestory')->name('assetmanagement.SIEMRefDestory');
+    // Route::post('/AssetManagement/storeSIEMRef', 'AssetManagementController@storeSIEMRef')->name('storeSIEMRef');
+    // Route::get('/AssetManagement/loadSIEMRef', 'AssetManagementController@loadSIEMRef')->name('assetmanagement.loadSIEMRef');
+    // Route::delete('/AssetManagement/SIEMRefDestory', 'AssetManagementController@SIEMRefDestory')->name('assetmanagement.SIEMRefDestory');
     Route::post('load-subtype', 'AssetCategoryDetailController@loadSubType')->name('assetcategorydetail.loadSubType');
+    Route::post('load-siem', 'AssetManagementController@loadSIEM')->name('assetmanagement.loadSIEM');
+    Route::post('load-location', 'AssetManagementController@loadLocation')->name('assetmanagement.loadLocation');
+    Route::post('load-assetapplication', 'AssetManagementController@loadAssetApplication')->name('assetmanagement.loadAssetApplication');
+
+
+
 
 
 
