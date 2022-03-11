@@ -147,11 +147,11 @@ class AssetManagementController extends Controller
         ]);
         $siem = $request->siem;
         $ref = $request->ref;
-        $data = array();
-        for( $i = 0; $i<count($siem); $i++){
-            $data [] = array('asset_id'=>$asset_last_id,'siem_id'=>$siem[$i], 'siem_reference'=>$ref[$i],'user_name'=>Auth::user()->username, 'time_stamp'=>Carbon::now());
-        }
-        if(count($data)>0){
+        if(isset($siem) && count($siem)>0){
+            $data = array();
+            for( $i = 0; $i<count($siem); $i++){
+                $data [] = array('asset_id'=>$asset_last_id,'siem_id'=>$siem[$i], 'siem_reference'=>$ref[$i],'user_name'=>Auth::user()->username, 'time_stamp'=>Carbon::now());
+            }
             AssetSiem::insert($data);
         }
         flash('Asset management created successfully!')->success();
@@ -204,7 +204,7 @@ class AssetManagementController extends Controller
     {
         $request->validate([
             'asset_code' => 'required|unique:tbl_asset,asset_code,' . $assetmanagement->asset_id . ',asset_id|max:15',
-             'ip_address' => 'max:50',
+            'ip_address' => 'max:50',
             'host_name' => 'max:50',
             'domain_name' => 'max:50',
             'asset_desc' => 'max:50',
@@ -225,16 +225,16 @@ class AssetManagementController extends Controller
             'last_user_name' =>   Auth::user()->username,
             'last_time_stamp' => Carbon::now()
         ]);
+        AssetSiem::where('asset_id',$assetmanagement->asset_id)->delete();
         $siem = $request->siem;
         $ref = $request->ref;
         $data = array();
+        if(isset($siem) && count($siem)>0){
         for( $i = 0; $i<count($siem); $i++){
             $data [] = array('asset_id'=>$assetmanagement->asset_id,'siem_id'=>$siem[$i], 'siem_reference'=>$ref[$i],
             'last_user_name'=>Auth::user()->username,
             'last_time_stamp'=>Carbon::now());
         }
-        if(count($data)>0){
-            AssetSiem::where('asset_id',$assetmanagement->asset_id)->delete();
             AssetSiem::insert($data);
         }
         flash('Asset management updated successfully!')->success();

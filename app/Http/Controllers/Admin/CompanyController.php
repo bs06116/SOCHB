@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\AssetApplication;
+use App\AssetManagement;
 use App\Http\Controllers\Controller;
 use App\Company;
 use Illuminate\Http\Request;
@@ -10,6 +12,8 @@ use Illuminate\Support\Facades\Storage;
 use Spatie\Permission\Models\Role;
 use App\Http\Requests\CompanyStoreRequest;
 use App\User;
+use App\Location;
+use App\SIEM;
 use Carbon\Carbon;
 use DB;
 
@@ -192,6 +196,10 @@ class CompanyController extends Controller
     public function destroy(Company $company)
     {
         $company->delete();
+        Location::where('company_id',$company->company_id)->delete();
+        SIEM::where('company_id',$company->company_id)->delete();
+        AssetApplication::where('company_id',$company->company_id)->delete();
+        AssetManagement::where('company_id',$company->company_id)->delete();
         flash('Company deleted successfully!')->info();
         return back();
     }

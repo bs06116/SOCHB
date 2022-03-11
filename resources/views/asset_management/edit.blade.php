@@ -108,7 +108,7 @@
                         <div class="col-lg-6">
                             <div class="form-group">
                                 {{ Form::label('asset_enabled', 'Enabled', ['class' => 'form-control-label']) }}
-                                {{ Form::checkbox('asset_enabled', 'Y', true) }}
+                                {{ Form::checkbox('asset_enabled', 'Y',  $assetmanagement->siem_enabled!=''?true:false) }}
                             </div>
                         </div>
                     </div>
@@ -143,7 +143,7 @@
                                 <td>{{ $value->siem_code }}</td>
                                 <td>{{ $value->siem_reference }}</td>
                                 <td><a href="javascript:void(0)" onclick="deleteRef(this)">Delete</a></td>
-                                <input type="hidden" name="siem[]" value="{{$value->siem_code}}">
+                                <input type="hidden" name="siem[]" value="{{$value->siem_id}}">
                                 <input type="hidden" name="ref[]" value="{{$value->siem_reference}}">
                             </tr>
                             @endforeach
