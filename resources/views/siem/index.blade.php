@@ -58,6 +58,10 @@
                                     </div>
                                 </div>
                             </div>
+                            @can('manage-siem-type')
+                            <a href="{{ route('siemtype.index')}}" class="form-group form-group-add">Add</a>
+                            @endcan
+
                         </div>
 
                         <hr class="my-4" />

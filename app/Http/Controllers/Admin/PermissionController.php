@@ -55,7 +55,7 @@ class PermissionController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required|unique:permissions|max:15',
+            'name' => 'required|unique:permissions|max:150',
         ]);
         activity('permission')
         ->causedBy(Auth::user())

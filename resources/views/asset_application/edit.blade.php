@@ -34,17 +34,25 @@
                                         <div class="form-group">
                                             {{ Form::label('company_id', 'Company', ['class' => 'form-control-label']) }}
                                     {{ Form::select('company_id',$company, $assetapplication->company_id, ['class' => 'form-control']) }}
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-12">
-                                        <div class="form-group add-form-group">
-                                            {{ Form::label('vendor_id', 'Vednor', ['class' => 'form-control-label']) }}
-                                    {{ Form::select('vendor_id',$vendor,  $assetapplication->vendor_id, ['class' => 'form-control']) }}
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-12">
-                                        <div class="form-group">
-                                            {{ Form::label('asset_app_enabled', 'Enabled', ['class' => 'form-control-label']) }}
+
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    {{ Form::label('vendor_id', 'Vendor', ['class' => 'form-control-label']) }}
+                                    {{ Form::select('principal_id',$vendor,  $assetapplication->principal_id, ['class' => 'form-control']) }}
+
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    {{ Form::label('asset_app_enabled', 'Enabled', ['class' => 'form-control-label']) }}
                                     {{ Form::checkbox('asset_app_enabled', 'Y', $assetapplication->asset_app_enabled!=''?true:false) }}
                                         </div>
                                     </div>

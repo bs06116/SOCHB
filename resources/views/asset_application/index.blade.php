@@ -30,25 +30,34 @@
                                 </div>
                             </div>
                             <div class="col-lg-6">
-                                <div class="row">
-
-                                    <div class="col-lg-12 add-form-col">
-                                        <div class="form-group add-form-group">
-                                            {{ Form::label('company_id', 'Company', ['class' => 'form-control-label']) }}
+                                <div class="form-group">
+                                    {{ Form::label('company_id', 'Company', ['class' => 'form-control-label']) }}
                                     {{ Form::select('company_id',$company, null, ['class' => 'form-control']) }}
-                                        </div>
-                                        <a href="{{ route('companies.index')}}" class="form-group form-group-add">Add</a>
-                                    </div>
-                                    <div class="col-lg-12 add-form-col">
-                                        <div class="form-group add-form-group">
-                                            {{ Form::label('vendor_id', 'Vednor', ['class' => 'form-control-label']) }}
-                                    {{ Form::select('vendor_id',$vendor, null, ['class' => 'form-control']) }}
-                                        </div>
-                                        <a href="{{ route('vendors.index')}}" class="form-group form-group-add">Add</a>
-                                    </div>
-                                    <div class="col-lg-12">
-                                        <div class="form-group">
-                                            {{ Form::label('asset_app_enabled', 'Enabled', ['class' => 'form-control-label']) }}
+
+                                </div>
+                            </div>
+                            @can('manage-company')
+                            <a href="{{ route('companies.index')}}" class="form-group form-group-add">Add</a>
+                            @endcan
+
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    {{ Form::label('vendor_id', 'Vednor', ['class' => 'form-control-label']) }}
+                                    {{ Form::select('principal_id',$vendor, null, ['class' => 'form-control']) }}
+
+                                </div>
+                            </div>
+                            @can('manage-vednor')
+                            <a href="{{ route('vendors.index')}}" class="form-group form-group-add">Add</a>
+                            @endcan
+
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    {{ Form::label('asset_app_enabled', 'Enabled', ['class' => 'form-control-label']) }}
                                     {{ Form::checkbox('asset_app_enabled', 'Y', true) }}
                                         </div>
                                     </div>
@@ -143,8 +152,8 @@
                         name: 'asset_app_enabled'
                     },
                     {
-                        data: 'vendor_code',
-                        name: 'vendor_code'
+                        data: 'principal_code',
+                        name: 'principal_code'
                     },
                     {
                         data: 'company_code',

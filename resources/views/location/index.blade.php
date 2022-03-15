@@ -77,7 +77,10 @@
 
                                 </div>
                             </div>
+                            @can('manage-location-type')
+
                             <a href="{{ route('locationstype.index')}}" class="form-group form-group-add">Add</a>
+                            @endcan
 
                         </div>
                         <div class="row">

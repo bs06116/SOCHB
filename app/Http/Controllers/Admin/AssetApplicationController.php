@@ -15,6 +15,13 @@ use Carbon\Carbon;
 
 class AssetApplicationController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('permission:manage-asset-application');
+        // $this->middleware('permission:create-role', ['only' => ['create','store']]);
+        $this->middleware('permission:edit-asset-application', ['only' => ['edit','update']]);
+        $this->middleware('permission:delete-asset-application', ['only' => ['destroy']]);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -23,6 +30,16 @@ class AssetApplicationController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
+            if(!auth()->user()->can("delete-asset-application")){
+                $classDelete = 'd-none';
+            }else{
+                $classDelete = '';
+            }
+            if(!auth()->user()->can("edit-asset-application")){
+                $classEdit = 'd-none';
+            }else{
+                $classEdit = '';
+            }
             $_order = request('order');
             $_columns = request('columns');
             $order_by = $_columns[$_order[0]['column']]['name'];
@@ -31,7 +48,7 @@ class AssetApplicationController extends Controller
             $skip = request('start');
             $take = request('length');
             $search = request('search');
-            $query = AssetApplication::query()->join('tbl_vendor', 'tbl_vendor.vendor_id', "=", "tbl_asset_application.vendor_id")
+            $query = AssetApplication::query()->join('tbl_principal', 'tbl_principal.principal_id', "=", "tbl_asset_application.principal_id")
             ->join('tbl_company', 'tbl_company.company_id', "=", "tbl_asset_application.company_id");
             $query->when(Auth::id() !=1, function ($q) {
                 $q->join('tbl_user_company', 'tbl_company.company_id', '=', 'tbl_user_company.company_id');
@@ -47,17 +64,17 @@ class AssetApplicationController extends Controller
             $recordsFiltered = $query->count();
             $data = $query->orderBy($order_by, $order_dir)->skip($skip)->take($take)->get();
             foreach ($data as $index=>&$d) {
-                $d->vendor_code =   $d->vendor_code;
+                $d->principal_code =   $d->principal_code;
                 $d->company_code =   $d->company_code;
                 $d->asset_app_enabled =   $d->asset_app_enabled == 'Y'? "Yes":"No";
                 $d->action = '
                 <form method="POST" action="' . route('assetapplication.destroy', $d->asset_app_id) . '" accept-charset="UTF-8" class="d-inline-block dform">
                 <input name="_method" type="hidden" value="DELETE">
                 <input name="_token" type="hidden" value="' . csrf_token() . '">
-                <a class="btn btn-info btn-sm m-1" data-toggle="tooltip" data-placement="top" title="Edit company details" href="' . route('assetapplication.edit', $d->asset_app_id) . '">
+                <a class="btn btn-info btn-sm m-1 '.$classEdit.'" data-toggle="tooltip" data-placement="top" title="Edit company details" href="' . route('assetapplication.edit', $d->asset_app_id) . '">
                 <i class="fa fa-edit" aria-hidden="true"></i>
             </a>
-            <button type="submit" class="btn delete btn-danger btn-sm m-1" data-toggle="tooltip" data-placement="top" title="Delete company" href="javascript:void()">
+            <button type="submit" class="btn delete btn-danger btn-sm m-1 '.$classDelete.'" data-toggle="tooltip" data-placement="top" title="Delete company" href="javascript:void()">
             <i class="fas fa-trash"></i>
         </button> </form>';
             }
@@ -74,7 +91,8 @@ class AssetApplicationController extends Controller
             $company = $companies->pluck('tbl_company.company_code','tbl_company.company_id');
         }else{
             $company = Company::pluck('company_code', 'company_id');
-        }        $vendor = Vendors::pluck('vendor_code', 'vendor_id');
+        }
+        $vendor = Vendors::pluck('principal_code', 'principal_id');
         return view('asset_application.index',compact('company','vendor'));
     }
 
@@ -102,7 +120,7 @@ class AssetApplicationController extends Controller
 
          AssetApplication::create([
             'company_id' => $request->company_id,
-            'vendor_id' => $request->vendor_id,
+            'principal_id' => $request->principal_id,
             'asset_app_code' => strtoupper($request->asset_app_code),
             'asset_app_desc' => $request->asset_app_desc,
             'asset_app_enabled' => $request->asset_app_enabled,
@@ -140,7 +158,7 @@ class AssetApplicationController extends Controller
         }else{
             $company = Company::pluck('company_code', 'company_id');
         }
-         $vendor = Vendors::pluck('vendor_code', 'vendor_id');
+         $vendor = Vendors::pluck('principal_code', 'principal_id');
         return view('asset_application.edit',compact('assetapplication','company','vendor'));
     }
 
@@ -160,7 +178,7 @@ class AssetApplicationController extends Controller
 
         $assetapplication->update([
             'company_id' => $request->company_id,
-            'vendor_id' => $request->vendor_id,
+            'principal_id' => $request->principal_id,
             'asset_app_code' => strtoupper($request->asset_app_code),
             'asset_app_desc' => $request->asset_app_desc,
             'asset_app_enabled' => $request->asset_app_enabled,

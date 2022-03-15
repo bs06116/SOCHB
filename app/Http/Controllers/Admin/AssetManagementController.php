@@ -23,6 +23,13 @@ use Carbon\Carbon;
 
 class AssetManagementController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('permission:manage-asset-management');
+        // $this->middleware('permission:create-role', ['only' => ['create','store']]);
+        $this->middleware('permission:edit-asset-management', ['only' => ['edit','update']]);
+        $this->middleware('permission:delete-asset-management', ['only' => ['destroy']]);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -31,6 +38,16 @@ class AssetManagementController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
+            if(!auth()->user()->can("delete-asset-management")){
+                $classDelete = 'd-none';
+            }else{
+                $classDelete = '';
+            }
+            if(!auth()->user()->can("edit-asset-management")){
+                $classEdit = 'd-none';
+            }else{
+                $classEdit = '';
+            }
             $_order = request('order');
             $_columns = request('columns');
             $order_by = $_columns[$_order[0]['column']]['name'];
@@ -77,10 +94,10 @@ class AssetManagementController extends Controller
                 <form method="POST" action="' . route('assetmanagement.destroy', $d->asset_id) . '" accept-charset="UTF-8" class="d-inline-block dform">
                 <input name="_method" type="hidden" value="DELETE">
                 <input name="_token" type="hidden" value="' . csrf_token() . '">
-                <a class="btn btn-info btn-sm m-1" data-toggle="tooltip" data-placement="top" title="Edit company details" href="' . route('assetmanagement.edit', $d->asset_id) . '">
+                <a class="btn btn-info btn-sm m-1 '.$classEdit.'" data-toggle="tooltip" data-placement="top" title="Edit company details" href="' . route('assetmanagement.edit', $d->asset_id) . '">
                 <i class="fa fa-edit" aria-hidden="true"></i>
             </a>
-            <button type="submit" class="btn delete btn-danger btn-sm m-1" data-toggle="tooltip" data-placement="top" title="Delete company" href="javascript:void()">
+            <button type="submit" class="btn delete btn-danger btn-sm m-1 '.$classDelete.'" data-toggle="tooltip" data-placement="top" title="Delete company" href="javascript:void()">
             <i class="fas fa-trash"></i>
         </button> </form>';
             }
@@ -129,6 +146,12 @@ class AssetManagementController extends Controller
             'host_name' => 'max:50',
             'domain_name' => 'max:50',
             'asset_desc' => 'max:50',
+            'company_id' => 'required',
+            'location_id' => 'required',
+            'asset_cat_detail_id' => 'required',
+            'app_res_sub_cat_id' => 'required',
+            'asset_app_id' => 'required',
+            'ref.0' => 'required|min:1'
          ]);
         $asset_last_id = AssetManagement::insertGetId([
             'asset_code' => strtoupper($request->asset_code),
@@ -147,7 +170,7 @@ class AssetManagementController extends Controller
         ]);
         $siem = $request->siem;
         $ref = $request->ref;
-        if(isset($siem) && count($siem)>0){
+        if(isset($ref) && count($ref)>0){
             $data = array();
             for( $i = 0; $i<count($siem); $i++){
                 $data [] = array('asset_id'=>$asset_last_id,'siem_id'=>$siem[$i], 'siem_reference'=>$ref[$i],'user_name'=>Auth::user()->username, 'time_stamp'=>Carbon::now());
@@ -208,6 +231,12 @@ class AssetManagementController extends Controller
             'host_name' => 'max:50',
             'domain_name' => 'max:50',
             'asset_desc' => 'max:50',
+            'company_id' => 'required',
+            'location_id' => 'required',
+            'asset_cat_detail_id' => 'required',
+            'app_res_sub_cat_id' => 'required',
+            'asset_app_id' => 'required',
+            'ref.0' => 'required|min:1'
         ]);
 
         $assetmanagement->update([

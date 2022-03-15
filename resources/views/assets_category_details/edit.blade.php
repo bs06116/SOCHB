@@ -28,22 +28,9 @@
                                 </div>
                             </div>
                             <div class="col-lg-6">
-                                <div class="row">
-                                    <div class="col-lg-12">
-                                        <div class="form-group">
-                                            {{ Form::label('vendor_id', 'Vendor', ['class' => 'form-control-label']) }}
-                                    {{ Form::select('vendor_id',$vendors,$assetcategorydetail->vendor_id, ['class' => 'form-control']) }}
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-12">
-                                        <div class="form-group add-form-group">
-                                            {{ Form::label('asset_sub_main_id', 'Main Type', ['class' => 'form-control-label']) }}
-                                            {{-- {{ Form::select('asset_sub_main_id',$assetcategorymaintype,$assetcategorydetail->asset_main_cat_id, ['class' => 'form-control']) }} --}}
-                                            <select name="asset_sub_main_id" id="main_catgory" onchange="getSubCategory(this.value)"
-                                            class="form-control">
-                                            @foreach ($assetcategorymaintype as $acm)
-                                                <option <?php if($assetcategorydetail->asset_sub_main_id ==  $acm->asset_main_cat_id){echo 'selected';} ?>  value="{{ $acm->asset_main_cat_id }}">{{ $acm->main_cat_code }}</option>
-                                            @endforeach
+                                <div class="form-group">
+                                    {{ Form::label('vendor_id', 'Vendor', ['class' => 'form-control-label']) }}
+                                    {{ Form::select('principal_id',$vendors,$assetcategorydetail->principal_id, ['class' => 'form-control']) }}
 
                                         </select>
                                         </div>

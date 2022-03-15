@@ -143,7 +143,7 @@
                                 <td>{{ $value->siem_code }}</td>
                                 <td>{{ $value->siem_reference }}</td>
                                 <td><a href="javascript:void(0)" onclick="deleteRef(this)">Delete</a></td>
-                                <input type="hidden" name="siem[]" value="{{$value->siem_id}}">
+                                <input type="hidden" class="siem_id" name="siem[]" value="{{$value->siem_id}}">
                                 <input type="hidden" name="ref[]" value="{{$value->siem_reference}}">
                             </tr>
                             @endforeach
@@ -178,6 +178,18 @@
             var siem = $('#select-siem').children(':selected').text();
             var siemVal = $('#select-siem').children(':selected').val();
             var ref = $('#ref').val();
+            var siem = $('#select-siem').children(':selected').text();
+            var siemVal = $('#select-siem').children(':selected').val();
+            var bit  = 0;
+            $('.siem_id').each(function(){
+                if($(this).val() == siemVal){
+                    alert('SIEM already added');
+                    bit = 1;
+                }
+             });
+             if(bit  == 1){
+                return false;
+             }
             var append_html = '<tr><input type="hidden" name="siem[]" value="'+siemVal+'"><input type="hidden" name="ref[]" value="'+ref+'"><td>'+siem+'</td><td>'+ref+'</td><td><button onclick="deleteRef(this)">Delete</button></td></tr>';
             $('#tbody').append(append_html);
             $('#ref').val('');

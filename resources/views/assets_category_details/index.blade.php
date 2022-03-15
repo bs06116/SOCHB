@@ -30,50 +30,28 @@
                                 </div>
                             </div>
                             <div class="col-lg-6">
-                                <div class="row">
-                                    <div class="col-lg-12">
-                                        <div class="form-group">
-                                            {{ Form::label('vendor_id', 'Vendor', ['class' => 'form-control-label']) }}
-                                    {{ Form::select('vendor_id', $vendors,null, ['class' => 'form-control']) }}
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-12 add-form-col">
-                                        <div class="form-group add-form-group">
-                                            {{ Form::label('asset_sub_main_id', 'Main Type', ['class' => 'form-control-label']) }}
-                                            <select name="asset_sub_main_id" id="main_catgory" onchange="getSubCategory(this.value)"
-                                            class="form-control">
-                                            <option value="" selected disabled>Select Main Category</option>
-                                            @foreach ($assetcategorymaintype as $acm)
-                                                <option value="{{ $acm->asset_main_cat_id }}">{{ $acm->main_cat_code }}</option>
-                                            @endforeach
+                                <div class="form-group">
+                                    {{ Form::label('vendor_id', 'Vendor', ['class' => 'form-control-label']) }}
+                                    {{ Form::select('principal_id', $vendors,null, ['class' => 'form-control']) }}
 
-                                        </select>
-                                        </div>
-                                        <a href="{{ route('assetcategorymaintype.index')}}" class="form-group form-group-add">Add</a>
-                                    </div>
-                                    <div class="col-lg-12 add-form-col">
-                                        <div class="form-group add-form-group">
-                                            {{ Form::label('asset_sub_cat_id', 'Sub Type', ['class' => 'form-control-label']) }}
-                                            <select name="asset_sub_cat_id"  id="select-subcategory" data-required="required" class="form-control" >
-                                                {{-- <option selected disabled>Select City</option> --}}
-
-                                            </select>
-                                        </div>
-                                        <a href="{{ route('assetcategorysubtype.index')}}" class="form-group form-group-add">Add</a>
-                                    </div>
-                                    <div class="col-lg-12">
-                                        <div class="form-group">
-                                            {{ Form::label('cat_detail_enabled', 'Enabled', ['class' => 'form-control-label']) }}
-                                    {{ Form::checkbox('cat_detail_enabled', 'Y', true) }}
-                                        </div>
-                                    </div>
                                 </div>
                             </div>
 
 
+                                </div>
+                            </div>
+                            @can('manage-asset-category-main-type')
+
+                            <a href="{{ route('assetcategorymaintype.index')}}" class="form-group form-group-add">Add</a>
+                            @endcan
 
 
 
+                                </div>
+                            </div>
+                            @can('manage-asset-category-sub-type')
+                            <a href="{{ route('assetcategorysubtype.index')}}" class="form-group form-group-add">Add</a>
+                            @endcan
 
 
 
@@ -172,7 +150,7 @@
                         name: 'cat_detail_enabled'
                     },
                     {
-                        data: 'vendor_code',
+                        data: 'principal_code',
                         name: 'vendor_code_txt'
                     },
                     {

@@ -46,8 +46,17 @@
                                     </div>
                                 </div>
                             </div>
+                            @can('manage-asset-category-main-type')
+                            <a href="{{ route('assetcategorymaintype.index')}}" class="form-group form-group-add">Add</a>
+                            @endcan
 
 
+
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    {{ Form::label('sub_cat_enabled', 'Enabled', ['class' => 'form-control-label']) }}
+                                    {{ Form::checkbox('sub_cat_enabled', 'Y', true) }}
 
 
 
