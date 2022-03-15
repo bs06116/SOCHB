@@ -2,8 +2,7 @@
     <div class="scrollbar-inner">
         <!-- Brand -->
         <div class="sidenav-header  d-flex  align-items-center">
-            <a class="navbar-brand" href="{{ route('home') }}" data-toggle="tooltip"
-                data-original-title="{{ setting('company_name') }}">
+            <a class="navbar-brand" href="{{ route('home') }}" data-original-title="{{ setting('company_name') }}">
                 {{-- @if (setting('company_logo'))
                     <img alt="{{ setting('company_name') }}" height="45" class="navbar-brand-img"
                         src="{{ asset(setting('company_logo')) }}">
@@ -12,7 +11,7 @@
                 @endif --}}
                 <img src="{{ asset('assets/img/logo.png') }}">
             </a>
-            {{-- <div class=" ml-auto ">
+            <div class=" ml-auto ">
                 <!-- Sidenav toggler -->
                 <div class="sidenav-toggler d-none d-xl-block" data-action="sidenav-unpin" data-target="#sidenav-main">
                     <div class="sidenav-toggler-inner">
@@ -21,7 +20,7 @@
                         <i class="sidenav-toggler-line"></i>
                     </div>
                 </div>
-            </div> --}}
+            </div>
         </div>
         <div class="navbar-inner">
             <!-- Collapse -->
@@ -101,7 +100,7 @@
                             <?php if(request()->is('admin/users*') || request()->is('admin/permissions*') ||  request()->is('admin/roles*')){
                                 $active = 'show';}else{$active = '';} ?>
 
-                            <div class="collapse {{$active}}" id="navbar-users">
+                            <div class="collapse-subNav collapse {{$active}}" id="navbar-users">
                                 <ul class="nav nav-sm flex-column">
                                     @can('view-user')
                                         <li class="nav-item">

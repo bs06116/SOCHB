@@ -6,10 +6,10 @@
     <div class="row">
         <div class="col-md-12">
             <div class="card mb-5">
+                <div class="card-header bg-transparent"><h3 class="mb-0">Permission information</h3></div>
                 <div class="card-body">
                     {!! Form::open(['route' => 'permissions.store']) !!}
-                    <h6 class="heading-small text-muted mb-4">Permission information</h6>
-                        <div class="pl-lg-4">
+                        <div class="pl-lg-0">
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="form-group">

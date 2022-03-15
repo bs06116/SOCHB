@@ -6,10 +6,10 @@
     <div class="row">
         <div class="col-md-12">
             <div class="card mb-5">
+                <div class="card-header bg-transparent"><h3 class="mb-0">User information</h3></div>
                 <div class="card-body">
                     {!! Form::open(['route' => 'users.store', 'files' => true]) !!}
-                    <h6 class="heading-small text-muted mb-4">User information</h6>
-                        <div class="pl-lg-4">
+                        <div class="pl-lg-0">
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="form-group">
@@ -82,8 +82,8 @@
                         </div>
                         <hr class="my-4" />
                         <!-- Address -->
-                        <h6 class="heading-small text-muted mb-4">Password information</h6>
-                        <div class="pl-lg-4">
+                        <div class="card-header bg-transparent border-0"><h3 class="mb-0">Password information</h3></div>
+                        <div class="pl-lg-0">
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">

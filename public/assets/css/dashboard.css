@@ -384,11 +384,11 @@ h1, .h1 {
 }
 
 h2, .h2 {
-    font-size: 1.25rem;
+    font-size: 1.55rem;
 }
 
 h3, .h3 {
-    font-size: 1.0625rem;
+    font-size: 1.3rem;
 }
 
 h4, .h4 {
@@ -2303,7 +2303,7 @@ select.form-control[size], select.form-control[multiple] {
 }
 
 textarea.form-control {
-    height: auto;
+    height: 150px;
 }
 
 .form-group {
@@ -2362,6 +2362,14 @@ textarea.form-control {
     margin-right: 0.3125rem;
     margin-left: 0;
 }
+.add-form-col{
+    display: flex;
+    gap: 20px;
+}
+.add-form-col .form-group.add-form-group{
+    width: 100%;
+}
+
 .padd-l-0{
     padding-left: 0;
 }
@@ -3068,7 +3076,7 @@ fieldset:disabled a.btn {
     background-color: #1b74e4;
     border-color: #1b74e4;
     box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
-    font-size: 15px !important;
+    font-size: 16px !important;
     padding: 10px 20px 10px 20px;
 }
 
@@ -3572,7 +3580,7 @@ fieldset:disabled a.btn {
 }
 
 .btn-sm, .btn-group-sm > .btn {
-    padding: 0.25rem 0.5rem;
+    padding: 0.4rem 1rem;
     font-size: 0.75rem;
     line-height: 1.5;
     border-radius: 0.25rem;
@@ -5067,7 +5075,7 @@ input[type="button"].btn-block {
 .navbar-light .navbar-nav .active > .nav-link,
 .navbar-light .navbar-nav .nav-link.show,
 .navbar-light .navbar-nav .nav-link.active {
-    color: rgba(0, 0, 0, 0.9);
+    color: #1b74e4;
 }
 
 .navbar-light .navbar-toggler {
@@ -16218,7 +16226,7 @@ a.text-darker:hover, a.text-darker:focus {
     text-transform: none;
     transition: all 0.15s ease;
     letter-spacing: 0.025em;
-    font-size: 0.875rem;
+    font-size: 1.05rem;
     will-change: transform;
 
 }
@@ -17785,7 +17793,7 @@ a.btn-icon-only {
 
 .form-control-label {
     color: #525f7f;
-    font-size: 0.875rem;
+    font-size: 0.97rem;
     font-weight: 600;
 }
 
@@ -19152,8 +19160,8 @@ textarea[resize="horizontal"] {
 .navbar-vertical .navbar-nav .nav-link {
     padding-left: 1rem;
     padding-right: 1rem;
-    font-size: 0.875rem;
-    font-weight: 500;
+    font-size: 0.93rem;
+font-weight: 600;
 }
 
 .navbar-vertical .navbar-nav .nav-link.active {
@@ -19161,8 +19169,8 @@ textarea[resize="horizontal"] {
 }
 
 .navbar-vertical .navbar-nav .nav-link > i {
-    min-width: 2rem;
-    font-size: .9375rem;
+    min-width: 1.7rem;
+    font-size: 1.1rem;
     line-height: 1.5rem;
 }
 
@@ -19174,9 +19182,9 @@ textarea[resize="horizontal"] {
     margin-left: 0.5rem;
 }
 
-.navbar-vertical .navbar-nav .nav-sm .nav-link {
+/*.navbar-vertical .navbar-nav .nav-sm .nav-link {
     font-size: .8125rem;
-}
+}*/
 
 .navbar-vertical .navbar-nav .nav-link {
     display: flex;
@@ -19319,11 +19327,11 @@ textarea[resize="horizontal"] {
 .navbar-vertical.navbar-expand-xs .navbar-nav .nav .nav-link {
     padding-top: 0.45rem;
     padding-bottom: 0.45rem;
-    padding-left: 15px;
+    padding-left: 10px;
 }
 
 .navbar-vertical.navbar-expand-xs .navbar-nav .nav .nav-link span.sidenav-normal {
-    padding-left: 8px;
+    padding-left: 5px;
     transition: all .1s ease 0s;
 }
 
@@ -21325,7 +21333,7 @@ textarea[resize="horizontal"] {
 .table thead th {
     padding-top: 0.75rem;
     padding-bottom: 0.75rem;
-    font-size: 0.9rem;
+    font-size: .97rem;
     text-transform: uppercase;
     letter-spacing: 1px;
     border-bottom: 1px solid #e9ecef;
@@ -21343,7 +21351,7 @@ textarea[resize="horizontal"] {
 
 .table td,
 .table th {
-    font-size: .9rem;
+    font-size: .97rem;
     white-space: nowrap;
 }
 
@@ -23543,7 +23551,7 @@ a.text-lighter:hover, a.text-lighter:focus {
 }
 
 .dataTables_wrapper {
-    font-size: 0.875rem;
+    font-size: .97rem;
 }
 
 table.dataTable {
@@ -26622,7 +26630,7 @@ input.datetimepicker[data-color="yellow"] + .bootstrap-datetimepicker-widget tab
     line-height: 46px;
 }
 .nav-item > div.collapse, .nav-item > div.collapsing{
-    padding-left: 15px;
+    padding-left: 20px;
 }
 .select2-container--default .select2-selection--multiple .select2-selection__choice {
     background-color: #1b74e4 !important;
@@ -26691,6 +26699,13 @@ align-items: center;
   .text-back-to-login:hover{
     color: #1b74e4;
     text-decoration: underline;
+  }
+  .dashboard-img{
+    display: flex;
+    justify-content: center;
+  }
+  .dashboard-img img{
+    width: 800px;
   }
   #seim-ref{
 

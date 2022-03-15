@@ -17,11 +17,45 @@
                     <div class="pl-lg-0">
                         <div class="row">
                             <div class="col-lg-6">
-                                <div class="form-group">
-                                    {{ Form::label('company_code', 'Code', ['class' => 'form-control-label']) }}
-                                    {{ Form::text('company_code', null, ['class' => 'form-control captail_word']) }}
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="form-group">
+                                            {{ Form::label('company_code', 'Code', ['class' => 'form-control-label']) }}
+                                            {{ Form::text('company_code', null, ['class' => 'form-control captail_word']) }}
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <div class="form-group">
+                                            {{ Form::label('company_desc', 'Company Description', ['class' => 'form-control-label']) }}
+                                            {{ Form::textarea('company_desc', null, ['class' => 'form-control']) }}
+
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
+
+                            <div class="col-lg-6">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="form-group">
+                                            {{ Form::label('company_desc', 'Users', ['class' => 'form-control-label']) }}
+                                            <select class="js-example-basic-multiple" name="users[]" multiple="multiple">
+                                                @foreach($users as $u):
+                                                <option value="{{$u->id}}">{{$u->first_name}} {{$u->last_name}}</option>
+                                                @endforeach
+                                              </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <div class="form-group">
+                                            {{ Form::label('company_enabled', 'Enabled', ['class' => 'form-control-label']) }}
+                                            {{ Form::checkbox('company_enabled', 'Y', true) }}
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
                             {{-- <div class="col-lg-6">
                                 <div class="form-group">
                                     {{ Form::label('email', 'E-mail', ['class' => 'form-control-label']) }}
@@ -29,7 +63,7 @@
                                 </div>
                             </div> --}}
                         </div>
-                        <div class="row">
+                        {{-- <div class="row">
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     {{ Form::label('company_desc', 'Company Description', ['class' => 'form-control-label']) }}
@@ -41,28 +75,17 @@
                         </div>
                         <div class="row">
                             <div class="col-lg-6">
-                                <div class="form-group">
-                                    {{ Form::label('company_desc', 'Users', ['class' => 'form-control-label']) }}
-                                    <select class="js-example-basic-multiple" name="users[]" multiple="multiple">
-                                        @foreach($users as $u):
-                                        <option value="{{$u->id}}">{{$u->first_name}} {{$u->last_name}}</option>
-                                        @endforeach
-                                      </select>
-                                </div>
+
                             </div>
 
                         </div>
 
                         <div class="row">
                             <div class="col-lg-6">
-                                <div class="form-group">
-                                    {{ Form::label('company_enabled', 'Enabled', ['class' => 'form-control-label']) }}
-                                    {{ Form::checkbox('company_enabled', 'Y', true) }}
 
-                                </div>
                             </div>
 
-                        </div>
+                        </div> --}}
                         <hr class="my-4" />
                         <div class="pl-lg-0">
                             <div class="row">

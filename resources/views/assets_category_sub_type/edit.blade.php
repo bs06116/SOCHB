@@ -12,48 +12,39 @@
                     <div class="pl-lg-0">
                         <div class="row">
                             <div class="col-lg-6">
-                                <div class="form-group">
-                                    {{ Form::label('sub_cat_code', 'Code', ['class' => 'form-control-label']) }}
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="form-group">
+                                            {{ Form::label('sub_cat_code', 'Code', ['class' => 'form-control-label']) }}
                                     {{ Form::text('sub_cat_code', $assetcategorysubtype->sub_cat_code, ['class' => 'form-control captail_word']) }}
-                                </div>
-                            </div>
-                            {{-- <div class="col-lg-6">
-                                <div class="form-group">
-                                    {{ Form::label('email', 'E-mail', ['class' => 'form-control-label']) }}
-                                    {{ Form::email('email', null, ['class' => 'form-control']) }}
-                                </div>
-                            </div> --}}
-                        </div>
-                        <div class="row">
-                            <div class="col-lg-6">
-                                <div class="form-group">
-                                    {{ Form::label('sub_cat_desc', 'Description', ['class' => 'form-control-label']) }}
-                                    {{ Form::textarea('sub_cat_desc', $assetcategorysubtype->sub_cat_desc, ['class' => 'form-control']) }}
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="row">
-                            <div class="col-lg-6">
-                                <div class="form-group">
-                                    {{ Form::label('asset_main_cat_id', 'Main Category', ['class' => 'form-control-label']) }}
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <div class="form-group">
+                                            {{ Form::label('asset_main_cat_id', 'Main Category', ['class' => 'form-control-label']) }}
                                     {{ Form::select('asset_main_cat_id',$assetcategorymaintype,$assetcategorysubtype->asset_main_cat_id, ['class' => 'form-control']) }}
-
-                                </div>
-                            </div>
-
-                        </div>
-
-                        <div class="row">
-                            <div class="col-lg-6">
-                                <div class="form-group">
-                                    {{ Form::label('sub_cat_enabled', 'Enabled', ['class' => 'form-control-label']) }}
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <div class="form-group">
+                                            {{ Form::label('sub_cat_enabled', 'Enabled', ['class' => 'form-control-label']) }}
                                     {{ Form::checkbox('sub_cat_enabled', 'Y', $assetcategorysubtype->sub_cat_enabled!=''?true:false) }}
-
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-
+                            <div class="col-lg-6">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="form-group">
+                                            {{ Form::label('sub_cat_desc', 'Description', ['class' => 'form-control-label']) }}
+                                    {{ Form::textarea('sub_cat_desc', $assetcategorysubtype->sub_cat_desc, ['class' => 'form-control']) }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
+
                         <hr class="my-4" />
                         <div class="pl-lg-0">
                             <div class="row">

@@ -14,69 +14,52 @@
                     <div class="pl-lg-0">
                         <div class="row">
                             <div class="col-lg-6">
-                                <div class="form-group">
-                                    {{ Form::label('siem_code', 'Code', ['class' => 'form-control-label']) }}
-                                    {{ Form::text('siem_code', null, ['class' => 'form-control captail_word']) }}
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="form-group">
+                                            {{ Form::label('siem_code', 'Code', ['class' => 'form-control-label']) }}
+                                            {{ Form::text('siem_code', null, ['class' => 'form-control captail_word']) }}
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <div class="form-group">
+                                            {{ Form::label('siem_desc', 'SIEM Description', ['class' => 'form-control-label']) }}
+                                            {{ Form::textarea('siem_desc', null, ['class' => 'form-control']) }}
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                            {{-- <div class="col-lg-6">
-                                <div class="form-group">
-                                    {{ Form::label('email', 'E-mail', ['class' => 'form-control-label']) }}
-                                    {{ Form::email('email', null, ['class' => 'form-control']) }}
-                                </div>
-                            </div> --}}
-                        </div>
-                        <div class="row">
                             <div class="col-lg-6">
-                                <div class="form-group">
-                                    {{ Form::label('siem_desc', 'SIEM Description', ['class' => 'form-control-label']) }}
-                                    {{ Form::textarea('siem_desc', null, ['class' => 'form-control']) }}
-
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="form-group">
+                                            {{ Form::label('company_id', 'Company', ['class' => 'form-control-label']) }}
+                                            {{ Form::select('company_id', $companies,null, ['class' => 'form-control']) }}
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <div class="form-group">
+                                            {{ Form::label('location_id', 'Location', ['class' => 'form-control-label']) }}
+                                            {{ Form::select('location_id',$location, null, ['class' => 'form-control']) }}
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12 add-form-col">
+                                        <div class="form-group add-form-group">
+                                            {{ Form::label('siem_type_id', 'SIEM Type', ['class' => 'form-control-label']) }}
+                                            {{ Form::select('siem_type_id',$siemType, null, ['class' => 'form-control']) }}
+                                        </div>
+                                        <a href="{{ route('siemtype.index')}}" class="form-group form-group-add">Add</a>
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <div class="form-group">
+                                            {{ Form::label('siem_enabled', 'Enabled', ['class' => 'form-control-label']) }}
+                                            {{ Form::checkbox('siem_enabled', 'Y', true) }}
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-
                         </div>
-                        <div class="row">
-                            <div class="col-lg-6">
-                                <div class="form-group">
-                                    {{ Form::label('company_id', 'Company', ['class' => 'form-control-label']) }}
-                                    {{ Form::select('company_id', $companies,null, ['class' => 'form-control']) }}
 
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="row">
-                            <div class="col-lg-6">
-                                <div class="form-group">
-                                    {{ Form::label('location_id', 'Location', ['class' => 'form-control-label']) }}
-                                    {{ Form::select('location_id',$location, null, ['class' => 'form-control']) }}
-
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="row">
-                            <div class="col-lg-6">
-                                <div class="form-group">
-                                    {{ Form::label('siem_type_id', 'SIEM Type', ['class' => 'form-control-label']) }}
-                                    {{ Form::select('siem_type_id',$siemType, null, ['class' => 'form-control']) }}
-
-                                </div>
-                            </div>
-                            <a href="{{ route('siemtype.index')}}" class="form-group form-group-add">Add</a>
-
-                        </div>
-                        <div class="row">
-                            <div class="col-lg-6">
-                                <div class="form-group">
-                                    {{ Form::label('siem_enabled', 'Enabled', ['class' => 'form-control-label']) }}
-                                    {{ Form::checkbox('siem_enabled', 'Y', true) }}
-
-                                </div>
-                            </div>
-
-                        </div>
                         <hr class="my-4" />
                         <div class="pl-lg-0">
                             <div class="row">

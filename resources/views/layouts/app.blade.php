@@ -45,7 +45,10 @@
     <script src="{{asset('assets/js/jquery-confirm.min.js')}}"></script>
     <script src="{{asset('assets/js/dashboard.js')}}"></script>
     <script src="https://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js" defer ></script>
+<script>
 
+
+</script>
     @stack('scripts')
 </body>
 </html>

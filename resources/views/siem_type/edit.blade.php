@@ -13,38 +13,40 @@
                     <div class="pl-lg-0">
                         <div class="row">
                             <div class="col-lg-6">
-                                <div class="form-group">
-                                    {{ Form::label('siem_type_code', 'Code', ['class' => 'form-control-label']) }}
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="form-group">
+                                            {{ Form::label('siem_type_code', 'Code', ['class' => 'form-control-label']) }}
                                     {{ Form::text('siem_type_code', $siemtype->loc_type_code, ['class' => 'form-control captail_word']) }}
-                                </div>
-                            </div>
-                            {{-- <div class="col-lg-6">
-                                <div class="form-group">
-                                    {{ Form::label('email', 'E-mail', ['class' => 'form-control-label']) }}
-                                    {{ Form::email('email', null, ['class' => 'form-control']) }}
-                                </div>
-                            </div> --}}
-                        </div>
-                        <div class="row">
-                            <div class="col-lg-6">
-                                <div class="form-group">
-                                    {{ Form::label('siem_type_desc', 'SIEM TYPE Description', ['class' => 'form-control-label']) }}
-                                    {{ Form::textarea('siem_type_desc', $siemtype->siem_type_desc, ['class' => 'form-control']) }}
-                                </div>
-                            </div>
-
-                        </div>
-
-                        <div class="row">
-                            <div class="col-lg-6">
-                                <div class="form-group">
-                                    {{ Form::label('siem_type_enabled', 'Enabled', ['class' => 'form-control-label']) }}
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <div class="form-group">
+                                            {{ Form::label('siem_type_enabled', 'Enabled', ['class' => 'form-control-label']) }}
                                     {{ Form::checkbox('siem_type_enabled', 'Y', $siemtype->siem_type_enabled!=''?true:false) }}
-
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="form-group">
+                                            {{ Form::label('siem_type_desc', 'SIEM TYPE Description', ['class' => 'form-control-label']) }}
+                                    {{ Form::textarea('siem_type_desc', $siemtype->siem_type_desc, ['class' => 'form-control']) }}
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
 
+
+
+
+
+
+
                         </div>
+
                         <hr class="my-4" />
                         <div class="pl-lg-0">
                             <div class="row">
