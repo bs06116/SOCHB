@@ -44,7 +44,9 @@
 
                                 </div>
                             </div>
+                            @can('manage-company')
                             <a href="{{ route('companies.index')}}" class="form-group form-group-add">Add</a>
+                            @endcan
 
                         </div>
                         <div class="row">
@@ -55,7 +57,9 @@
 
                                 </div>
                             </div>
+                            @can('manage-vednor')
                             <a href="{{ route('vendors.index')}}" class="form-group form-group-add">Add</a>
+                            @endcan
 
                         </div>
                         <div class="row">

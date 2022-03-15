@@ -43,7 +43,9 @@
 
                                 </div>
                             </div>
+                            @can('manage-asset-category-main-type')
                             <a href="{{ route('assetcategorymaintype.index')}}" class="form-group form-group-add">Add</a>
+                            @endcan
 
                         </div>
 
