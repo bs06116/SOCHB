@@ -14,7 +14,7 @@
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     {{ Form::label('vendor_code', 'Code', ['class' => 'form-control-label']) }}
-                                    {{ Form::text('vendor_code', $vendor->vendor_code, ['class' => 'form-control captail_word']) }}
+                                    {{ Form::text('principal_code', $vendor->principal_code, ['class' => 'form-control captail_word']) }}
                                 </div>
                             </div>
                             {{-- <div class="col-lg-6">
@@ -28,7 +28,7 @@
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     {{ Form::label('vendor_desc', 'Vendor Description', ['class' => 'form-control-label']) }}
-                                    {{ Form::textarea('vendor_desc', $vendor->vendor_desc, ['class' => 'form-control']) }}
+                                    {{ Form::textarea('principal_desc', $vendor->principal_desc, ['class' => 'form-control']) }}
                                 </div>
                             </div>
 
@@ -38,7 +38,7 @@
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     {{ Form::label('vendor_enabled', 'Enabled', ['class' => 'form-control-label']) }}
-                                    {{ Form::checkbox('vendor_enabled', 'Y', $vendor->vendor_enabled!=''?true:false) }}
+                                    {{ Form::checkbox('principal_enabled', 'Y', $vendor->principal_enabled!=''?true:false) }}
 
                                 </div>
                             </div>

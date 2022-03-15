@@ -47,8 +47,8 @@
                         <div class="row">
                             <div class="col-lg-6">
                                 <div class="form-group">
-                                    {{ Form::label('vendor_id', 'Vednor', ['class' => 'form-control-label']) }}
-                                    {{ Form::select('vendor_id',$vendor,  $assetapplication->vendor_id, ['class' => 'form-control']) }}
+                                    {{ Form::label('vendor_id', 'Vendor', ['class' => 'form-control-label']) }}
+                                    {{ Form::select('principal_id',$vendor,  $assetapplication->principal_id, ['class' => 'form-control']) }}
 
                                 </div>
                             </div>

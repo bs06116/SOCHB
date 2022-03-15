@@ -28,7 +28,7 @@
                             <table class="table table-hover align-items-center">
                                 <thead class="thead-light">
                                 <tr>
-                                    <th scope="col">First Name</th>
+                                    <th scope="col">Full Name</th>
                                     <th scope="col">Email</th>
                                     <th scope="col">Status</th>
                                     <th scope="col">Roles</th>
@@ -41,7 +41,7 @@
                                 @foreach($users as $user)
                                     <tr>
                                         <th scope="row">
-                                            {{$user->first_name}}
+                                            {{$user->first_name. ' '. $user->last_name}}
                                         </th>
                                         <td class="budget">
                                             {{$user->email}}
@@ -91,9 +91,13 @@
                                             </a>
                                             @endcan
                                             @can('destroy-user')
+                                            @if($user->id != 1)
+
                                                 <button type="submit" class="btn delete btn-danger btn-sm m-1" data-toggle="tooltip" data-placement="top" title="Delete user" href="">
                                                     <i class="fas fa-trash"></i>
                                                 </button>
+                                                @endif
+
                                             {!! Form::close() !!}
                                             @endcan
                                         </td>

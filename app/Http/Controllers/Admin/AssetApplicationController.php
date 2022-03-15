@@ -31,7 +31,7 @@ class AssetApplicationController extends Controller
             $skip = request('start');
             $take = request('length');
             $search = request('search');
-            $query = AssetApplication::query()->join('tbl_vendor', 'tbl_vendor.vendor_id', "=", "tbl_asset_application.vendor_id")
+            $query = AssetApplication::query()->join('tbl_principal', 'tbl_principal.principal_id', "=", "tbl_asset_application.principal_id")
             ->join('tbl_company', 'tbl_company.company_id', "=", "tbl_asset_application.company_id");
             $query->when(Auth::id() !=1, function ($q) {
                 $q->join('tbl_user_company', 'tbl_company.company_id', '=', 'tbl_user_company.company_id');
@@ -47,7 +47,7 @@ class AssetApplicationController extends Controller
             $recordsFiltered = $query->count();
             $data = $query->orderBy($order_by, $order_dir)->skip($skip)->take($take)->get();
             foreach ($data as $index=>&$d) {
-                $d->vendor_code =   $d->vendor_code;
+                $d->principal_code =   $d->principal_code;
                 $d->company_code =   $d->company_code;
                 $d->asset_app_enabled =   $d->asset_app_enabled == 'Y'? "Yes":"No";
                 $d->action = '
@@ -74,7 +74,8 @@ class AssetApplicationController extends Controller
             $company = $companies->pluck('tbl_company.company_code','tbl_company.company_id');
         }else{
             $company = Company::pluck('company_code', 'company_id');
-        }        $vendor = Vendors::pluck('vendor_code', 'vendor_id');
+        }
+        $vendor = Vendors::pluck('principal_code', 'principal_id');
         return view('asset_application.index',compact('company','vendor'));
     }
 
@@ -102,7 +103,7 @@ class AssetApplicationController extends Controller
 
          AssetApplication::create([
             'company_id' => $request->company_id,
-            'vendor_id' => $request->vendor_id,
+            'principal_id' => $request->principal_id,
             'asset_app_code' => strtoupper($request->asset_app_code),
             'asset_app_desc' => $request->asset_app_desc,
             'asset_app_enabled' => $request->asset_app_enabled,
@@ -140,7 +141,7 @@ class AssetApplicationController extends Controller
         }else{
             $company = Company::pluck('company_code', 'company_id');
         }
-         $vendor = Vendors::pluck('vendor_code', 'vendor_id');
+         $vendor = Vendors::pluck('principal_code', 'principal_id');
         return view('asset_application.edit',compact('assetapplication','company','vendor'));
     }
 
@@ -160,7 +161,7 @@ class AssetApplicationController extends Controller
 
         $assetapplication->update([
             'company_id' => $request->company_id,
-            'vendor_id' => $request->vendor_id,
+            'principal_id' => $request->principal_id,
             'asset_app_code' => strtoupper($request->asset_app_code),
             'asset_app_desc' => $request->asset_app_desc,
             'asset_app_enabled' => $request->asset_app_enabled,

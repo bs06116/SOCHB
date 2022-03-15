@@ -125,7 +125,7 @@
                     <div class="col-lg-6 pl-0">
                         <div class="form-group">
                             {{ Form::label('process_siem', 'SIEM', ['class' => 'form-control-label']) }}
-                            <select name="siem"  id="select-siem" data-required="required" class="form-control" >
+                            <select   id="select-siem" data-required="required" class="form-control" >
                                 {{-- <option selected disabled>Select City</option> --}}
                             </select>
                         </div>
@@ -326,8 +326,24 @@
         function saveRef(){
             var siem = $('#select-siem').children(':selected').text();
             var siemVal = $('#select-siem').children(':selected').val();
+            //alert($('.siem_id').val());
+            var bit  = 0;
+            $('.siem_id').each(function(){
+                if($(this).val() == siemVal){
+                    alert('SIEM already added');
+                    bit = 1;
+                }
+             });
+             if(bit  == 1){
+                return false;
+             }
+            // if($('.siem_id').val() == siemVal){
+            //     alert("SIEM already added again this code");
+            //     return false;
+            // }
+
             var ref = $('#ref').val();
-            var append_html = '<tr><input type="hidden" name="siem[]" value="'+siemVal+'"><input type="hidden" name="ref[]" value="'+ref+'"><td>'+siem+'</td><td>'+ref+'</td><td><button onclick="deleteRef(this)">Delete</button></td></tr>';
+            var append_html = '<tr><input type="hidden" name="siem[]" class="siem_id" value="'+siemVal+'"><input type="hidden" name="ref[]" value="'+ref+'"><td>'+siem+'</td><td>'+ref+'</td><td><button onclick="deleteRef(this)">Delete</button></td></tr>';
             $('#tbody').append(append_html);
             $('#ref').val('');
         }

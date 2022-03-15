@@ -129,6 +129,12 @@ class AssetManagementController extends Controller
             'host_name' => 'max:50',
             'domain_name' => 'max:50',
             'asset_desc' => 'max:50',
+            'company_id' => 'required',
+            'location_id' => 'required',
+            'asset_cat_detail_id' => 'required',
+            'app_res_sub_cat_id' => 'required',
+            'asset_app_id' => 'required',
+            'ref.0' => 'required|min:1'
          ]);
         $asset_last_id = AssetManagement::insertGetId([
             'asset_code' => strtoupper($request->asset_code),
@@ -147,7 +153,7 @@ class AssetManagementController extends Controller
         ]);
         $siem = $request->siem;
         $ref = $request->ref;
-        if(isset($siem) && count($siem)>0){
+        if(isset($ref) && count($ref)>0){
             $data = array();
             for( $i = 0; $i<count($siem); $i++){
                 $data [] = array('asset_id'=>$asset_last_id,'siem_id'=>$siem[$i], 'siem_reference'=>$ref[$i],'user_name'=>Auth::user()->username, 'time_stamp'=>Carbon::now());
@@ -208,6 +214,12 @@ class AssetManagementController extends Controller
             'host_name' => 'max:50',
             'domain_name' => 'max:50',
             'asset_desc' => 'max:50',
+            'company_id' => 'required',
+            'location_id' => 'required',
+            'asset_cat_detail_id' => 'required',
+            'app_res_sub_cat_id' => 'required',
+            'asset_app_id' => 'required',
+            'ref.0' => 'required|min:1'
         ]);
 
         $assetmanagement->update([

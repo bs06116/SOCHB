@@ -30,14 +30,14 @@
                         @include('flash::message')
                     </div>
                     <div class="card-body px-5 py-5 pt-2">
-                        <form method="POST" action="{{ route('login') }}">
+                        <form method="POST" action="{{ route('login') }}" autocomplete="nope">
                             @csrf
                             <div class="form-group">
                                 <div class="input-group input-group-merge input-group-alternative input-group-login mb-3">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="ni ni-email-83"></i></span>
                                     </div>
-                                    <input id="email" type="email"  class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                                    <input id="email" type="email"  class="form-control @error('email') is-invalid @enderror" name="email" autocomplete="nope" value="{{ old('email') }}" required autocomplete="email" autofocus>
 
 
                                 </div>
@@ -79,13 +79,13 @@
                                 </label>
                             </div> --}}
                             <div class="row">
-                                <div class="col-12 text-right">
+                                {{-- <div class="col-12 text-right">
                                     @if (Route::has('password.request'))
                                         <a class="text-forgot" href="{{ route('password.request') }}">
                                             Forgot Your Password?
                                         </a>
                                     @endif
-                                </div>
+                                </div> --}}
                                 {{-- <div class="col-6 text-right">
                                     @if (Route::has('register'))
                                         <a class="text-gray" href="{{ route('register') }}">

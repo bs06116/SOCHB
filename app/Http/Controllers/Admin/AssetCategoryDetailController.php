@@ -35,7 +35,7 @@ class AssetCategoryDetailController extends Controller
             $skip = request('start');
             $take = request('length');
             $search = request('search');
-            $query = AssetCategoryDetail::query()->join('tbl_vendor', 'tbl_vendor.vendor_id', "=", "tbl_asset_category_detail.vendor_id")
+            $query = AssetCategoryDetail::query()->join('tbl_principal', 'tbl_principal.principal_id', "=", "tbl_asset_category_detail.principal_id")
             ->leftjoin('tbl_asset_main_category', 'tbl_asset_main_category.asset_main_cat_id', "=", "tbl_asset_category_detail.asset_sub_main_id")
             ->leftjoin('tbl_asset_sub_category', 'tbl_asset_sub_category.asset_sub_cat_id', "=", "tbl_asset_category_detail.asset_sub_cat_id");
             $query->orderBy('asset_cat_detail_id', 'DESC')->get();
@@ -48,7 +48,7 @@ class AssetCategoryDetailController extends Controller
             $recordsFiltered = $query->count();
             $data = $query->orderBy($order_by, $order_dir)->skip($skip)->take($take)->get();
             foreach ($data as &$d) {
-                $d->vendor_code_txt = $d->vendor_code;
+                $d->vendor_code_txt = $d->principal_code;
                 $d->main_cat_txt =  $d->main_cat_code;
                 $d->sub_cat_text =  $d->sub_cat_code;
                 $d->cat_detail_enabled =   $d->cat_detail_enabled == 'Y'? "Yes":"No";
@@ -70,7 +70,7 @@ class AssetCategoryDetailController extends Controller
                 "data" => $data,
             ];
         }
-        $vendors = Vendors::pluck('vendor_code', 'vendor_id');
+        $vendors = Vendors::pluck('principal_code', 'principal_id');
         $assetcategorymaintype = AssetCategoryMainType::select('main_cat_code', 'asset_main_cat_id')->get();
         $assetcategorysubtype = AssetCategorySubType::pluck('sub_cat_code', 'asset_sub_cat_id');
         return view('assets_category_details.index',compact('vendors','assetcategorymaintype','assetcategorysubtype'));
@@ -95,10 +95,12 @@ class AssetCategoryDetailController extends Controller
     {
          $request->validate([
             'cat_detail_code' => 'required|unique:tbl_asset_category_detail,cat_detail_code|max:15',
+            'cat_detail_desc' => 'max:50',
+
          ]);
 
          AssetCategoryDetail::create([
-            'vendor_id' => $request->vendor_id,
+            'principal_id' => $request->principal_id,
             'asset_sub_main_id' => $request->asset_sub_main_id,
             'asset_sub_cat_id' => $request->asset_sub_cat_id,
             'cat_detail_code' => strtoupper($request->cat_detail_code),
@@ -130,7 +132,7 @@ class AssetCategoryDetailController extends Controller
      */
     public function edit(AssetCategoryDetail $assetcategorydetail)
     {
-        $vendors = Vendors::pluck('vendor_code', 'vendor_id');
+        $vendors = Vendors::pluck('principal_code', 'principal_id');
         $assetcategorymaintype = AssetCategoryMainType::select('main_cat_code', 'asset_main_cat_id')->get();
         $assetcategorysubtype = AssetCategorySubType::pluck('sub_cat_code', 'asset_sub_cat_id');
         return view('assets_category_details.edit',compact('assetcategorydetail','vendors','assetcategorymaintype','assetcategorysubtype'));
@@ -148,9 +150,10 @@ class AssetCategoryDetailController extends Controller
     {
         $request->validate([
             'cat_detail_code' => 'required|unique:tbl_asset_category_detail,cat_detail_code,' . $assetcategorydetail->asset_cat_detail_id . ',asset_cat_detail_id|max:15',
+            'cat_detail_desc' => 'max:50'
         ]);
         $assetcategorydetail->update([
-            'vendor_id' => $request->vendor_id,
+            'principal_id' => $request->principal_id,
             'asset_sub_main_id' => $request->asset_sub_main_id,
             'asset_sub_cat_id' => $request->asset_sub_cat_id,
             'cat_detail_code' => $request->cat_detail_code,

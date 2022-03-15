@@ -16,7 +16,7 @@
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     {{ Form::label('vendor_code', 'Code', ['class' => 'form-control-label']) }}
-                                    {{ Form::text('vendor_code', null, ['class' => 'form-control captail_word']) }}
+                                    {{ Form::text('principal_code', null, ['class' => 'form-control captail_word']) }}
                                 </div>
                             </div>
                             {{-- <div class="col-lg-6">
@@ -30,7 +30,7 @@
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     {{ Form::label('vendor_desc', 'vendor Description', ['class' => 'form-control-label']) }}
-                                    {{ Form::textarea('vendor_desc', null, ['class' => 'form-control']) }}
+                                    {{ Form::textarea('principal_desc', null, ['class' => 'form-control']) }}
 
                                 </div>
                             </div>
@@ -41,7 +41,7 @@
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     {{ Form::label('vendor_enabled', 'Enabled', ['class' => 'form-control-label']) }}
-                                    {{ Form::checkbox('vendor_enabled', 'Y', true) }}
+                                    {{ Form::checkbox('principal_enabled', 'Y', true) }}
 
                                 </div>
                             </div>
@@ -116,19 +116,19 @@
                 },
                 columns: [
                     {
-                        data: 'vendor_id',
-                        name: 'vendor_id'
+                        data: 'principal_id',
+                        name: 'principal_id'
                     },{
-                        data: 'vendor_code',
-                        name: 'vendor_code'
+                        data: 'principal_code',
+                        name: 'principal_code'
                     },
                     {
-                        data: 'vendor_desc',
-                        name: 'vendor_desc'
+                        data: 'principal_desc',
+                        name: 'principal_desc'
                     },
                     {
-                        data: 'vendor_enabled',
-                        name: 'vendor_enabled'
+                        data: 'principal_enabled',
+                        name: 'principal_enabled'
                     },
                     {
                         data: 'action',

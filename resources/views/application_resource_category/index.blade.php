@@ -43,8 +43,10 @@
 
                                 </div>
                             </div>
+                            <a href="{{ route('assetcategorymaintype.index')}}" class="form-group form-group-add">Add</a>
 
                         </div>
+
 
                         <div class="row">
                             <div class="col-lg-6">

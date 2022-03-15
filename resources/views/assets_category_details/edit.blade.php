@@ -37,7 +37,7 @@
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     {{ Form::label('vendor_id', 'Vendor', ['class' => 'form-control-label']) }}
-                                    {{ Form::select('vendor_id',$vendors,$assetcategorydetail->vendor_id, ['class' => 'form-control']) }}
+                                    {{ Form::select('principal_id',$vendors,$assetcategorydetail->principal_id, ['class' => 'form-control']) }}
 
                                 </div>
                             </div>
