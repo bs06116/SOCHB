@@ -15,6 +15,13 @@ use Carbon\Carbon;
 
 class VendorsController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('permission:manage-vendor');
+        // $this->middleware('permission:create-role', ['only' => ['create','store']]);
+        $this->middleware('permission:edit-vendor', ['only' => ['edit','update']]);
+        $this->middleware('permission:delete-vendor', ['only' => ['destroy']]);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -23,6 +30,16 @@ class VendorsController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
+            if(!auth()->user()->can("delete-vendor")){
+                $classDelete = 'd-none';
+            }else{
+                $classDelete = '';
+            }
+            if(!auth()->user()->can("edit-vendor")){
+                $classEdit = 'd-none';
+            }else{
+                $classEdit = '';
+            }
             $_order = request('order');
             $_columns = request('columns');
             $order_by = $_columns[$_order[0]['column']]['name'];
@@ -47,10 +64,10 @@ class VendorsController extends Controller
                 <form method="POST" action="' . route('vendors.destroy', $d->principal_id ) . '" accept-charset="UTF-8" class="d-inline-block dform">
                 <input name="_method" type="hidden" value="DELETE">
                 <input name="_token" type="hidden" value="' . csrf_token() . '">
-                <a class="btn btn-info btn-sm m-1" data-toggle="tooltip" data-placement="top" title="Edit company details" href="' . route('vendors.edit', $d->principal_id) . '">
+                <a class="btn btn-info btn-sm m-1 '.$classEdit.'" data-toggle="tooltip" data-placement="top" title="Edit company details" href="' . route('vendors.edit', $d->principal_id) . '">
                 <i class="fa fa-edit" aria-hidden="true"></i>
             </a>
-            <button type="submit" class="btn delete btn-danger btn-sm m-1" data-toggle="tooltip" data-placement="top" title="Delete company" href="javascript:void()">
+            <button type="submit" class="btn delete btn-danger btn-sm m-1 '.$classDelete.'" data-toggle="tooltip" data-placement="top" title="Delete company" href="javascript:void()">
             <i class="fas fa-trash"></i>
         </button> </form>';
             }

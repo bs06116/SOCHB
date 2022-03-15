@@ -19,6 +19,13 @@ use DB;
 
 class CompanyController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('permission:manage-company');
+        // $this->middleware('permission:create-role', ['only' => ['create','store']]);
+        $this->middleware('permission:edit-company', ['only' => ['edit','update']]);
+        $this->middleware('permission:delete-company', ['only' => ['destroy']]);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -27,7 +34,18 @@ class CompanyController extends Controller
     public function index(Request $request)
     {
         $title =  'Company';
+
         if ($request->ajax()) {
+            if(!auth()->user()->can("delete-company")){
+                $classDelete = 'd-none';
+            }else{
+                $classDelete = '';
+            }
+            if(!auth()->user()->can("edit-company")){
+                $classEdit = 'd-none';
+            }else{
+                $classEdit = '';
+            }
             $_order = request('order');
             $_columns = request('columns');
             $order_by = $_columns[$_order[0]['column']]['name'];
@@ -44,6 +62,7 @@ class CompanyController extends Controller
                     $q->whereRaw("company_code LIKE '%" . $search['value'] . "%' ");
                 });
             }
+
             $recordsFiltered = $query->count();
             $data = $query->orderBy($order_by, $order_dir)->skip($skip)->take($take)->get();
             foreach ($data as &$d) {
@@ -59,12 +78,13 @@ class CompanyController extends Controller
                 <input name="_method" type="hidden" value="DELETE">
                 <input name="_token" type="hidden" value="' . csrf_token() . '">
 
-                <a class="btn btn-info btn-sm m-1" data-toggle="tooltip" data-placement="top" title="Edit company details" href="' . route('companies.edit', $d->company_id) . '">
+                <a class="btn btn-info btn-sm m-1 '.$classEdit.'" data-toggle="tooltip" data-placement="top" title="Edit company details" href="' . route('companies.edit', $d->company_id) . '">
                 <i class="fa fa-edit" aria-hidden="true"></i>
             </a>
-            <button type="submit" class="btn delete btn-danger btn-sm m-1" data-toggle="tooltip" data-placement="top" title="Delete company" href="javascript:void()">
+            <button type="submit" class="btn delete btn-danger btn-sm m-1 '.$classDelete.' " data-toggle="tooltip" data-placement="top" title="Delete company" href="javascript:void()">
             <i class="fas fa-trash"></i>
-        </button> </form>';
+        </button>
+          </form>';
             }
             return [
                 "draw" => request('draw'),
