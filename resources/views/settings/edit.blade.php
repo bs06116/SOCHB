@@ -123,6 +123,7 @@
                         </div>
                         <div class="col-md-12 mt-4">
                             {!! Form::submit('Update Settings', ['class'=> 'btn btn-primary']) !!}
+                            <a href="{{route('companies.index')}}">{{  Form::button('Back', ['class' => 'mt-0 btn btn-primary']) }}</a>
                         </div>
                     </div>
                 </div>

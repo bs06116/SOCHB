@@ -146,6 +146,7 @@
                                 @can('update-user')
                                 <div class="col-md-12 pl-0">
                                     {{ Form::submit('Submit', ['class'=> 'mt-0 btn btn-primary']) }}
+                                    <a href="{{route('companies.index')}}">{{  Form::button('Back', ['class' => 'mt-0 btn btn-primary']) }}</a>
                                 </div>
                                 @endcan
                                 <br><br>
