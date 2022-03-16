@@ -14,52 +14,50 @@
                     <div class="pl-lg-0">
                         <div class="row">
                             <div class="col-lg-6">
-                                <div class="form-group">
-                                    {{ Form::label('sub_cat_code', 'Code', ['class' => 'form-control-label']) }}
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="form-group">
+                                            {{ Form::label('sub_cat_code', 'Code', ['class' => 'form-control-label']) }}
                                     {{ Form::text('sub_cat_code', null, ['class' => 'form-control captail_word']) }}
-                                </div>
-                            </div>
-                            {{-- <div class="col-lg-6">
-                                <div class="form-group">
-                                    {{ Form::label('email', 'E-mail', ['class' => 'form-control-label']) }}
-                                    {{ Form::email('email', null, ['class' => 'form-control']) }}
-                                </div>
-                            </div> --}}
-                        </div>
-                        <div class="row">
-                            <div class="col-lg-6">
-                                <div class="form-group">
-                                    {{ Form::label('sub_cat_desc', 'Description', ['class' => 'form-control-label']) }}
-                                    {{ Form::textarea('sub_cat_desc', null, ['class' => 'form-control']) }}
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12 add-form-col">
+                                        <div class="form-group add-form-group">
+                                            {{ Form::label('app_res_cat_id', 'Main Type', ['class' => 'form-control-label']) }}
+                                            {{ Form::select('app_res_cat_id', $assetresourcemaintype,null, ['class' => 'form-control']) }}
+                                        </div>
+                                        @can('manage-asset-category-main-type')
+                                            <a href="{{ route('assetcategorymaintype.index')}}" class="form-group form-group-add">Add</a>
+                                        @endcan
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <div class="form-group">
 
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-lg-6">
-                                <div class="form-group">
-                                    {{ Form::label('app_res_cat_id', 'Main Type', ['class' => 'form-control-label']) }}
-                                    {{ Form::select('app_res_cat_id', $assetresourcemaintype,null, ['class' => 'form-control']) }}
-
-                                </div>
-                            </div>
-                            @can('manage-asset-category-main-type')
-                            <a href="{{ route('assetcategorymaintype.index')}}" class="form-group form-group-add">Add</a>
-                            @endcan
-
-                        </div>
-
-
-                        <div class="row">
-                            <div class="col-lg-6">
-                                <div class="form-group">
-                                    {{ Form::label('sub_cat_enabled', 'Enabled', ['class' => 'form-control-label']) }}
+                                            {{ Form::label('sub_cat_enabled', 'Enabled', ['class' => 'form-control-label']) }}
                                     {{ Form::checkbox('sub_cat_enabled', 'Y', true) }}
-
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
+                            <div class="col-lg-6">
+                                <div class="row">
+                                    {{-- <div class="col-lg-12">
+                                        <div class="form-group">
+                                            {{ Form::label('company_id', 'Company', ['class' => 'form-control-label']) }}
+                                            {{ Form::select('company_id', $companies,null, ['class' => 'form-control']) }}
+                                        </div>
+                                    </div> --}}
 
+                                    <div class="col-lg-12">
+                                        <div class="form-group">
+                                            {{ Form::label('sub_cat_desc', 'Description', ['class' => 'form-control-label']) }}
+                                            {{ Form::textarea('sub_cat_desc', null, ['class' => 'form-control']) }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
+
                         <hr class="my-4" />
                         <div class="pl-lg-0">
                             <div class="row">

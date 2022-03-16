@@ -21,8 +21,23 @@
                                     </div>
                                     <div class="col-lg-12">
                                         <div class="form-group">
-                                            {{ Form::label('location_desc', 'Company Description', ['class' => 'form-control-label']) }}
-                                            {{ Form::textarea('location_desc', $location->location_desc, ['class' => 'form-control']) }}
+
+                                            {{ Form::label('company_id', 'Company', ['class' => 'form-control-label']) }}
+                                            {{ Form::select('company_id',$companies,$location->company_id, ['class' => 'form-control']) }}
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <div class="form-group">
+                                            {{ Form::label('location_type_id', 'Location Type', ['class' => 'form-control-label']) }}
+                                            {{ Form::select('location_type_id',$locationType, $location->location_type_id, ['class' => 'form-control']) }}
+
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <div class="form-group">
+                                            {{ Form::label('location_enabled', 'Enabled', ['class' => 'form-control-label']) }}
+                                            {{ Form::checkbox('location_enabled', 'Y', $location->location_enabled!=''?true:false) }}
+
                                         </div>
                                     </div>
                                 </div>
@@ -31,20 +46,8 @@
                                 <div class="row">
                                     <div class="col-lg-12">
                                         <div class="form-group">
-                                            {{ Form::label('company_id', 'Company', ['class' => 'form-control-label']) }}
-                                            {{ Form::select('company_id',$companies,$location->company_id, ['class' => 'form-control']) }}
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-12">
-                                        <div class="form-group add-form-group">
-                                            {{ Form::label('location_type_id', 'Location Type', ['class' => 'form-control-label']) }}
-                                            {{ Form::select('location_type_id',$locationType, $location->location_type_id, ['class' => 'form-control']) }}
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-12">
-                                        <div class="form-group">
-                                            {{ Form::label('location_enabled', 'Enabled', ['class' => 'form-control-label']) }}
-                                            {{ Form::checkbox('location_enabled', 'Y', $location->location_enabled!=''?true:false) }}
+                                            {{ Form::label('location_desc', 'Company Description', ['class' => 'form-control-label']) }}
+                                            {{ Form::textarea('location_desc', $location->location_desc, ['class' => 'form-control']) }}
                                         </div>
                                     </div>
                                 </div>

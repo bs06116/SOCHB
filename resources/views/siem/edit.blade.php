@@ -21,16 +21,6 @@
                                     </div>
                                     <div class="col-lg-12">
                                         <div class="form-group">
-                                            {{ Form::label('siem_desc', 'Company Description', ['class' => 'form-control-label']) }}
-                                    {{ Form::textarea('siem_desc', $siem->siem_desc, ['class' => 'form-control']) }}
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-6">
-                                <div class="row">
-                                    <div class="col-lg-12">
-                                        <div class="form-group">
                                             {{ Form::label('company_id', 'Company', ['class' => 'form-control-label']) }}
                                     {{ Form::select('company_id',$companies,$siem->company_id, ['class' => 'form-control']) }}
                                         </div>
@@ -53,6 +43,17 @@
                                     {{ Form::checkbox('siem_enabled', 'Y', $siem->siem_enabled!=''?true:false) }}
                                         </div>
                                     </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="form-group">
+                                            {{ Form::label('siem_desc', 'Company Description', ['class' => 'form-control-label']) }}
+                                            {{ Form::textarea('siem_desc', $siem->siem_desc, ['class' => 'form-control']) }}
+                                        </div>
+                                    </div>
+
                                 </div>
                             </div>
                         </div>

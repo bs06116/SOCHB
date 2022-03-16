@@ -23,16 +23,7 @@
                                     </div>
                                     <div class="col-lg-12">
                                         <div class="form-group">
-                                            {{ Form::label('location_desc', 'Location Description', ['class' => 'form-control-label']) }}
-                                            {{ Form::textarea('location_desc', null, ['class' => 'form-control']) }}
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-6">
-                                <div class="row">
-                                    <div class="col-lg-12">
-                                        <div class="form-group">
+
                                             {{ Form::label('company_id', 'Company', ['class' => 'form-control-label']) }}
                                             {{ Form::select('company_id', $companies,null, ['class' => 'form-control']) }}
                                         </div>
@@ -41,6 +32,7 @@
                                         <div class="form-group add-form-group">
                                             {{ Form::label('location_type_id', 'Location Type', ['class' => 'form-control-label']) }}
                                             {{ Form::select('location_type_id',$locationType, null, ['class' => 'form-control']) }}
+
                                         </div>
                                         <a href="{{ route('locationstype.index')}}" class="form-group form-group-add">Add</a>
                                     </div>
@@ -48,8 +40,20 @@
                                         <div class="form-group">
                                             {{ Form::label('location_enabled', 'Enabled', ['class' => 'form-control-label']) }}
                                             {{ Form::checkbox('location_enabled', 'Y', true) }}
+
                                         </div>
                                     </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="form-group">
+                                            {{ Form::label('location_desc', 'Location Description', ['class' => 'form-control-label']) }}
+                                            {{ Form::textarea('location_desc', null, ['class' => 'form-control']) }}
+                                        </div>
+                                    </div>
+
                                 </div>
                             </div>
                             {{-- <div class="col-lg-6">

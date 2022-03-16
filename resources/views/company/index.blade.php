@@ -26,8 +26,19 @@
                                     </div>
                                     <div class="col-lg-12">
                                         <div class="form-group">
-                                            {{ Form::label('company_desc', 'Company Description', ['class' => 'form-control-label']) }}
-                                            {{ Form::textarea('company_desc', null, ['class' => 'form-control']) }}
+                                            {{ Form::label('company_desc', 'Users', ['class' => 'form-control-label']) }}
+                                            <select class="js-example-basic-multiple" name="users[]" multiple="multiple">
+                                                @foreach($users as $u):
+                                                <option value="{{$u->id}}">{{$u->first_name}} {{$u->last_name}}</option>
+                                                @endforeach
+                                              </select>
+
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <div class="form-group">
+                                            {{ Form::label('company_enabled', 'Enabled', ['class' => 'form-control-label']) }}
+                                            {{ Form::checkbox('company_enabled', 'Y', true) }}
 
                                         </div>
                                     </div>
@@ -38,21 +49,12 @@
                                 <div class="row">
                                     <div class="col-lg-12">
                                         <div class="form-group">
-                                            {{ Form::label('company_desc', 'Users', ['class' => 'form-control-label']) }}
-                                            <select class="js-example-basic-multiple" name="users[]" multiple="multiple">
-                                                @foreach($users as $u):
-                                                <option value="{{$u->id}}">{{$u->first_name}} {{$u->last_name}}</option>
-                                                @endforeach
-                                              </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-12">
-                                        <div class="form-group">
-                                            {{ Form::label('company_enabled', 'Enabled', ['class' => 'form-control-label']) }}
-                                            {{ Form::checkbox('company_enabled', 'Y', true) }}
 
+                                              {{ Form::label('company_desc', 'Company Description', ['class' => 'form-control-label']) }}
+                                            {{ Form::textarea('company_desc', null, ['class' => 'form-control']) }}
                                         </div>
                                     </div>
+
                                 </div>
                             </div>
 

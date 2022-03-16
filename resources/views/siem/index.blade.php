@@ -23,16 +23,6 @@
                                     </div>
                                     <div class="col-lg-12">
                                         <div class="form-group">
-                                            {{ Form::label('siem_desc', 'SIEM Description', ['class' => 'form-control-label']) }}
-                                            {{ Form::textarea('siem_desc', null, ['class' => 'form-control']) }}
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-6">
-                                <div class="row">
-                                    <div class="col-lg-12">
-                                        <div class="form-group">
                                             {{ Form::label('company_id', 'Company', ['class' => 'form-control-label']) }}
                                             {{ Form::select('company_id', $companies,null, ['class' => 'form-control']) }}
                                         </div>
@@ -60,6 +50,17 @@
                                             {{ Form::checkbox('siem_enabled', 'Y', true) }}
                                         </div>
                                     </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="form-group">
+                                            {{ Form::label('siem_desc', 'SIEM Description', ['class' => 'form-control-label']) }}
+                                            {{ Form::textarea('siem_desc', null, ['class' => 'form-control']) }}
+                                        </div>
+                                    </div>
+
                                 </div>
                             </div>
 

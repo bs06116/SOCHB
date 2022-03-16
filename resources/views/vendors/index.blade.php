@@ -14,31 +14,37 @@
                     <div class="pl-lg-0">
                         <div class="row">
                             <div class="col-lg-6">
-                                <div class="form-group">
-                                    {{ Form::label('vendor_code', 'Code', ['class' => 'form-control-label']) }}
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="form-group">
+                                            {{ Form::label('vendor_code', 'Code', ['class' => 'form-control-label']) }}
                                     {{ Form::text('principal_code', null, ['class' => 'form-control captail_word']) }}
-                                </div>
-                            </div>
-                            <div class="col-lg-6">
-                                <div class="form-group">
-                                    {{ Form::label('vendor_desc', 'vendor Description', ['class' => 'form-control-label']) }}
-                                    {{ Form::textarea('principal_desc', null, ['class' => 'form-control']) }}
-
-                                </div>
-                            </div>
-
-                        </div>
-
-                        <div class="row">
-                            <div class="col-lg-6">
-                                <div class="form-group">
-                                    {{ Form::label('vendor_enabled', 'Enabled', ['class' => 'form-control-label']) }}
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <div class="form-group">
+                                            {{ Form::label('vendor_enabled', 'Enabled', ['class' => 'form-control-label']) }}
                                     {{ Form::checkbox('principal_enabled', 'Y', true) }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="form-group">
+                                            {{ Form::label('vendor_desc', 'vendor Description', ['class' => 'form-control-label']) }}
+                                    {{ Form::textarea('principal_desc', null, ['class' => 'form-control']) }}
+                                        </div>
+                                    </div>
+
 
                                 </div>
                             </div>
 
                         </div>
+
+
                         <hr class="my-4" />
                         <div class="pl-lg-0">
                             <div class="row">
