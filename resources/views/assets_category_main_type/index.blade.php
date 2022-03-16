@@ -14,40 +14,39 @@
                     <div class="pl-lg-0">
                         <div class="row">
                             <div class="col-lg-6">
-                                <div class="row">
-                                    <div class="col-lg-12">
-                                        <div class="form-group">
-                                            {{ Form::label('main_cat_code', 'Code', ['class' => 'form-control-label']) }}
+                                <div class="form-group">
+                                    {{ Form::label('main_cat_code', 'Code', ['class' => 'form-control-label']) }}
                                     {{ Form::text('main_cat_code', null, ['class' => 'form-control captail_word']) }}
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-12">
-                                        <div class="form-group">
-                                            {{ Form::label('main_cat_enabled', 'Enabled', ['class' => 'form-control-label']) }}
-                                    {{ Form::checkbox('main_cat_enabled', 'Y', true) }}
-                                        </div>
-                                    </div>
                                 </div>
                             </div>
+                            {{-- <div class="col-lg-6">
+                                <div class="form-group">
+                                    {{ Form::label('email', 'E-mail', ['class' => 'form-control-label']) }}
+                                    {{ Form::email('email', null, ['class' => 'form-control']) }}
+                                </div>
+                            </div> --}}
+                        </div>
+                        <div class="row">
                             <div class="col-lg-6">
-                                <div class="row">
-                                    <div class="col-lg-12">
-                                        <div class="form-group">
-                                            {{ Form::label('main_cat_desc', 'Description', ['class' => 'form-control-label']) }}
+                                <div class="form-group">
+                                    {{ Form::label('main_cat_desc', 'Description', ['class' => 'form-control-label']) }}
                                     {{ Form::textarea('main_cat_desc', null, ['class' => 'form-control']) }}
-                                        </div>
-                                    </div>
+
                                 </div>
                             </div>
-
-
-
-
-
-
 
                         </div>
 
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    {{ Form::label('main_cat_enabled', 'Enabled', ['class' => 'form-control-label']) }}
+                                    {{ Form::checkbox('main_cat_enabled', 'Y', true) }}
+
+                                </div>
+                            </div>
+
+                        </div>
                         <hr class="my-4" />
                         <div class="pl-lg-0">
                             <div class="row">
