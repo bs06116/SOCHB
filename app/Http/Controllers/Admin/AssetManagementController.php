@@ -140,7 +140,7 @@ class AssetManagementController extends Controller
      */
     public function store(Request $request)
     {
-         $request->validate([
+         $rules = [
             'asset_code' => 'required|unique:tbl_asset,asset_code|max:15',
             'ip_address' => 'max:50',
             'host_name' => 'max:50',
@@ -152,7 +152,12 @@ class AssetManagementController extends Controller
             'app_res_sub_cat_id' => 'required',
             'asset_app_id' => 'required',
             'ref.0' => 'required|min:1'
-         ]);
+         ];
+         $customMessages = [
+            'ref.0.required' => 'The ref field is required.'
+        ];
+
+        $this->validate($request, $rules, $customMessages);
         $asset_last_id = AssetManagement::insertGetId([
             'asset_code' => strtoupper($request->asset_code),
             'ip_address' => $request->ip_address,
@@ -225,7 +230,7 @@ class AssetManagementController extends Controller
      */
     public function update(Request $request, AssetManagement $assetmanagement)
     {
-        $request->validate([
+        $rules = [
             'asset_code' => 'required|unique:tbl_asset,asset_code,' . $assetmanagement->asset_id . ',asset_id|max:15',
             'ip_address' => 'max:50',
             'host_name' => 'max:50',
@@ -236,9 +241,11 @@ class AssetManagementController extends Controller
             'asset_cat_detail_id' => 'required',
             'app_res_sub_cat_id' => 'required',
             'asset_app_id' => 'required',
-            'ref.0' => 'required|min:1'
-        ]);
-
+        ];
+        $customMessages = [
+            'ref.0.required' => 'The ref field is required.'
+        ];
+        $this->validate($request, $rules, $customMessages);
         $assetmanagement->update([
             'asset_code' => strtoupper($request->asset_code),
             'ip_address' => $request->ip_address,

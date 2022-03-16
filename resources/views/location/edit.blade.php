@@ -60,7 +60,7 @@
 
                                 <div class="col-md-12">
                                     {{ Form::submit('Submit', ['class'=> 'mt-0 btn btn-primary']) }}
-                                    <a href="{{route('companies.index')}}">{{  Form::button('Back', ['class' => 'mt-0 btn btn-primary']) }}</a>
+                                    <a href="{{route('locations.index')}}">{{  Form::button('Back', ['class' => 'mt-0 btn btn-primary']) }}</a>
                                 </div>
                             </div>
                         </div>
