@@ -131,12 +131,14 @@
                             <input class="mt-5 btn btn-primary" onclick="saveRef()" type="button" value="Add">
                         </div>
                     </div>
-                    <table>
-                        <tr>
-                          <th>SIEM</th>
-                          <th>Ref</th>
-                          <th>Delete</th>
-                        </tr>
+                    <table id="seim-ref" class="table table-hover">
+                        <thead class="thead-light">
+                            <tr>
+                            <th>SIEM</th>
+                            <th>Ref</th>
+                            <th>Delete</th>
+                            </tr>
+                        </thead>
                         <tbody id="tbody">
                             @foreach ($assetref as $key => $value)
                             <tr>
