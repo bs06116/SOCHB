@@ -14,21 +14,29 @@
                     <div class="pl-lg-0">
                         <div class="row">
                             <div class="col-lg-6">
-                                <div class="row">
-                                    <div class="col-lg-12">
-                                        <div class="form-group">
-                                            {{ Form::label('asset_app_code', 'Code', ['class' => 'form-control-label']) }}
+                                <div class="form-group">
+                                    {{ Form::label('asset_app_code', 'Code', ['class' => 'form-control-label']) }}
                                     {{ Form::text('asset_app_code', null, ['class' => 'form-control']) }}
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-12">
-                                        <div class="form-group">
-                                            {{ Form::label('asset_app_desc', 'Description', ['class' => 'form-control-label']) }}
-                                    {{ Form::textarea('asset_app_desc', null, ['class' => 'form-control']) }}
-                                        </div>
-                                    </div>
                                 </div>
                             </div>
+                            {{-- <div class="col-lg-6">
+                                <div class="form-group">
+                                    {{ Form::label('email', 'E-mail', ['class' => 'form-control-label']) }}
+                                    {{ Form::email('email', null, ['class' => 'form-control']) }}
+                                </div>
+                            </div> --}}
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    {{ Form::label('asset_app_desc', 'Description', ['class' => 'form-control-label']) }}
+                                    {{ Form::textarea('asset_app_desc', null, ['class' => 'form-control']) }}
+
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row">
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     {{ Form::label('company_id', 'Company', ['class' => 'form-control-label']) }}
@@ -59,12 +67,11 @@
                                 <div class="form-group">
                                     {{ Form::label('asset_app_enabled', 'Enabled', ['class' => 'form-control-label']) }}
                                     {{ Form::checkbox('asset_app_enabled', 'Y', true) }}
-                                        </div>
-                                    </div>
+
                                 </div>
                             </div>
-                        </div>
 
+                        </div>
                         <hr class="my-4" />
                         <div class="pl-lg-0">
                             <div class="row">

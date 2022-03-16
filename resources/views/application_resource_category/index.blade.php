@@ -35,8 +35,12 @@
                                         <div class="form-group">
                                             {{ Form::label('app_res_cat_id', 'Main Type', ['class' => 'form-control-label']) }}
                                     {{ Form::select('app_res_cat_id', $assetresourcemaintype,null, ['class' => 'form-control']) }}
-                                        </div>
-                                    </div>
+                                    @can('manage-asset-category-main-type')
+                                    <a href="{{ route('assetcategorymaintype.index')}}" class="form-group form-group-add">Add</a>
+                                    @endcan
+                                </div>
+                                </div>
+
 
                                     <div class="col-lg-12">
                                         <div class="form-group">
@@ -46,21 +50,11 @@
                                     </div>
                                 </div>
                             </div>
-                            @can('manage-asset-category-main-type')
-                            <a href="{{ route('assetcategorymaintype.index')}}" class="form-group form-group-add">Add</a>
-                            @endcan
 
 
 
-                        <div class="row">
-                            <div class="col-lg-6">
-                                <div class="form-group">
-                                    {{ Form::label('sub_cat_enabled', 'Enabled', ['class' => 'form-control-label']) }}
-                                    {{ Form::checkbox('sub_cat_enabled', 'Y', true) }}
 
 
-
-                        </div>
 
                         <hr class="my-4" />
                         <div class="pl-lg-0">

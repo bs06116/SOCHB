@@ -48,7 +48,11 @@
                                             {{ Form::label('siem_type_id', 'SIEM Type', ['class' => 'form-control-label']) }}
                                             {{ Form::select('siem_type_id',$siemType, null, ['class' => 'form-control']) }}
                                         </div>
+                                        @can('manage-siem-type')
+
                                         <a href="{{ route('siemtype.index')}}" class="form-group form-group-add">Add</a>
+                                        @endcan
+
                                     </div>
                                     <div class="col-lg-12">
                                         <div class="form-group">
@@ -58,9 +62,7 @@
                                     </div>
                                 </div>
                             </div>
-                            @can('manage-siem-type')
-                            <a href="{{ route('siemtype.index')}}" class="form-group form-group-add">Add</a>
-                            @endcan
+
 
                         </div>
 

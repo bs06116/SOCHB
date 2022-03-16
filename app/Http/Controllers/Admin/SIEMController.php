@@ -165,7 +165,7 @@ class SIEMController extends Controller
         }else{
             $companies = Company::pluck('company_code', 'company_id');
         }
-        $location = Location::pluck('location_code', 'id');
+        $location = Location::pluck('location_code', 'location_id');
         $siemType = SIEMType::pluck('siem_type_code', 'siem_type_id');
         return view('siem.edit',compact('siem','companies','location','siemType'));
 

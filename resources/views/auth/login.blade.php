@@ -37,7 +37,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="ni ni-email-83"></i></span>
                                     </div>
-                                    <input id="email" type="email"  class="form-control @error('email') is-invalid @enderror" name="email" autocomplete="nope" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                                    <input id="email" type="email"  class="form-control @error('email') is-invalid @enderror" name="email"  value="{{ old('email') }}" required autocomplete="false" autofocus>
 
 
                                 </div>
@@ -52,7 +52,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
                                     </div>
-                                    <input id="password" type="password"  class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+                                    <input id="password" type="password"  class="form-control @error('password') is-invalid @enderror" name="password" required   autocomplete="false">
 
                                 </div>
                                 @error('password')
@@ -115,17 +115,16 @@
             {{-- </div>
         </div>
     </div> --}}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
+    <script type="text/javascript">
+         $(document).ready(function() {
+            $('input[type="password"]').val('');
+           $("form").attr('autocomplete', 'off'); // Switching form autocomplete attribute to off
+
+           $("input").attr("autocomplete", "new-password");
+});
+
+    </script>
 @endsection
 
-{{-- <script>
-         grecaptcha.ready(function() {
-             grecaptcha.execute('{{ config('services.recaptcha.sitekey') }}', {action: 'contact'}).then(function(token) {
-                console.info("Adfs");
-
-                if (token) {
-                  document.getElementById('recaptcha').value = token;
-                }
-             });
-         });
-</script> --}}
