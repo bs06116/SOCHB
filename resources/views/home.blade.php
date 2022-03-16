@@ -1,5 +1,26 @@
 @extends('layouts.app')
 @section('content')
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card mb-5">
+            <div class="card-header bg-transparent">
+                <div class="row">
+                    <div class="col-lg-8">
+                        <h3 class="mb-0 sub-heading-es">Welcome</h3>
+                    </div>
+
+                </div>
+            </div>
+            <div class="card-body p-0">
+                <div class="dashboard-img">
+                    <img src="{{ asset('assets/img/dashboard.png') }}">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
     {{-- <div class="row">
         <div class="col-xl-3 col-md-6">
             <div class="card card-stats">

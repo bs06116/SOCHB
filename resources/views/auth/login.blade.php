@@ -29,7 +29,7 @@
                         <h3 class="text-muted text-center my-2">Sign In</h3>
                         @include('flash::message')
                     </div>
-                    <div class="card-body px-5 py-5 pt-2">
+                    <div class="card-body px-5 pt-5 pb-4 pt-2">
                         <form method="POST" action="{{ route('login') }}" autocomplete="nope">
                             @csrf
                             <div class="form-group">
@@ -97,7 +97,9 @@
                             <div class="text-center">
                                 <button type="submit" class="btn btn-primary btn--login mt-4">Login</button>
                             </div>
-
+                            <div class="copyright">
+                                Copyright &copy; 2020. All rights reserved.
+                            </div>
                             {{-- <div class="form-group mt-4 mb-0">
                                 <div class="alert alert-info">
                                    Admin Email : admin@email.com , Password: secret
