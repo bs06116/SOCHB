@@ -98,7 +98,7 @@
                                 <button type="submit" class="btn btn-primary btn--login mt-4">Login</button>
                             </div>
                             <div class="copyright">
-                                Copyright &copy; 2020. All rights reserved.
+                                Copyright &copy; 2022. All rights reserved.
                             </div>
                             {{-- <div class="form-group mt-4 mb-0">
                                 <div class="alert alert-info">
