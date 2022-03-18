@@ -25,11 +25,13 @@
         <div class="row justify-content-center">
             <div class="col-lg-6 col-md-8"> --}}
                 <div class="card bg-secondary border-soft login-container">
-                    <div class="card-header bg-signin">
+                    <img src="{{ asset('assets/img/logo.png') }}">
+                    {{-- <div class="card-header bg-signin">
                         <h3 class="text-muted text-center my-2">Sign In</h3>
+
+                    </div> --}}
+                    <div class="card-body px-5 pb-4">
                         @include('flash::message')
-                    </div>
-                    <div class="card-body px-5 pt-5 pb-4 pt-2">
                         <form method="POST" action="{{ route('login') }}" autocomplete="nope">
                             @csrf
                             <div class="form-group">
@@ -95,10 +97,10 @@
                                 </div> --}}
                             </div>
                             <div class="text-center">
-                                <button type="submit" class="btn btn-primary btn--login mt-4">Login</button>
+                                <button type="submit" class="btn btn-primary btn--login mt-0">Login</button>
                             </div>
                             <div class="copyright">
-                                Copyright &copy; 2022. All rights reserved.
+                                Copyright &copy; 2022. Version 1.
                             </div>
                             {{-- <div class="form-group mt-4 mb-0">
                                 <div class="alert alert-info">

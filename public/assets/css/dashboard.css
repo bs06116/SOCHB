@@ -22187,6 +22187,8 @@ button.section-darker:focus {
     border-radius: .5rem;
     overflow: hidden;
     background-color: #fff !important;
+    align-items: center;
+    padding-top: 30px;
 }
 .input-group-login{
     border: 1px solid #c7c7c7;
@@ -26658,6 +26660,10 @@ input.datetimepicker[data-color="yellow"] + .bootstrap-datetimepicker-widget tab
 .card-body{
     overflow: hidden;
 }
+.login-container .card-body{
+    width: 100%;
+    padding-top: 30px;
+}
 .form-group-add{
     display: flex;
     align-items: center;
@@ -26685,6 +26691,9 @@ align-items: center;
       left: 0;
       right: 0; */
       margin: auto;
+  }
+  .login-container img{
+    width: 300px;
   }
   .back-to-login{
       display: flex;
@@ -26734,7 +26743,18 @@ color: #404040;
 margin-top: 30px;
 font-size: 15px;
 }
-
+.copyright-sidebar{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    color: #404040;
+    margin-top: 30px;
+    font-size: 15px;
+    position: absolute;
+    bottom: 0;
+    padding-top: 10px;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
 
 @media (max-width: 991px) {
     .table-responsive {
