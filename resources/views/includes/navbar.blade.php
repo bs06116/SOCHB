@@ -268,5 +268,9 @@
                 </ul>
             </div>
         </div>
+        <div class="copyright-sidebar">
+            Copyright &copy; 2022. Version 1.
+        </div>
     </div>
+
 </nav>
