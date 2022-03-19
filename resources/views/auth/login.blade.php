@@ -25,7 +25,7 @@
         <div class="row justify-content-center">
             <div class="col-lg-6 col-md-8"> --}}
                 <div class="card bg-secondary border-soft login-container">
-                    <img src="{{ asset('assets/img/logo.png') }}">
+                    <img src="{{ asset('assets/img/logo.jpg') }}">
                     {{-- <div class="card-header bg-signin">
                         <h3 class="text-muted text-center my-2">Sign In</h3>
 

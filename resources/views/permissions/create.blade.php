@@ -13,7 +13,7 @@
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="form-group">
-                                        {{ Form::label('name', 'Name', ['class' => 'form-control-label']) }}
+                                        {{ Form::label('name', 'Name', ['class' => 'form-control-label required']) }}
                                         {{ Form::text('name', null, ['class' => 'form-control']) }}
                                         <small class="text-small text-muted">You can add multiple permission using comma. ex add-user, edit-user, update-user</small>
                                     </div>

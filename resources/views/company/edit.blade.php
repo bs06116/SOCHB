@@ -16,13 +16,13 @@
                                 <div class="row">
                                     <div class="col-lg-12">
                                         <div class="form-group">
-                                            {{ Form::label('company_code', 'Code', ['class' => 'form-control-label']) }}
+                                            {{ Form::label('company_code', 'Code', ['class' => 'form-control-label required']) }}
                                             {{ Form::text('company_code', $company->company_code, ['class' => 'form-control']) }}
                                         </div>
                                     </div>
                                     <div class="col-lg-12">
                                         <div class="form-group">
-                                            {{ Form::label('company_desc', 'Users', ['class' => 'form-control-label']) }}
+                                            {{ Form::label('company_desc', 'Users', ['class' => 'form-control-label required']) }}
                                             <select class="js-example-basic-multiple" name="users[]" multiple="multiple">
                                                 @foreach($users as $index=>$u):
                                                 <option <?php echo (in_array($u->id,$compyUser))?'selected':'';?> value="{{$u->id}}">{{$u->first_name}} {{$u->last_name}}</option>

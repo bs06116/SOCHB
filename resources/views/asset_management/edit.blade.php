@@ -13,7 +13,7 @@
                     <div class="row">
                         <div class="col-lg-6">
                             <div class="form-group">
-                                {{ Form::label('asset_code', 'Code', ['class' => 'form-control-label']) }}
+                                {{ Form::label('asset_code', 'Code', ['class' => 'form-control-label required']) }}
                                 {{ Form::text('asset_code', $assetmanagement->asset_code, ['class' => 'form-control captail_word']) }}
                             </div>
                         </div>
@@ -53,7 +53,7 @@
                         </div>
                         <div class="col-lg-6">
                             <div class="form-group">
-                                {{ Form::label('company_id', 'Company', ['class' => 'form-control-label']) }}
+                                {{ Form::label('company_id', 'Company', ['class' => 'form-control-label required']) }}
                                 {{-- {{ Form::select('company_id',$company,  $assetmanagement->company_id, ['class' => 'form-control']) }} --}}
                                 <select name="company_id"  onchange="getOhterData(this.value)"
                                 class="form-control">
@@ -70,7 +70,7 @@
                     <div class="row">
                         <div class="col-lg-6">
                             <div class="form-group">
-                                {{ Form::label('location_id', 'Location', ['class' => 'form-control-label']) }}
+                                {{ Form::label('location_id', 'Location', ['class' => 'form-control-label required']) }}
                                 {{-- {{ Form::select('location_id',$location,  $assetmanagement->location_id, ['class' => 'form-control']) }} --}}
                                 <select name="location_id"  id="select-location" data-required="required" class="form-control" >
                                     {{-- <option selected disabled>Select City</option> --}}
@@ -96,7 +96,7 @@
                         </div>
                         <div class="col-lg-6">
                             <div class="form-group">
-                                {{ Form::label('asset_app_id', 'Application', ['class' => 'form-control-label']) }}
+                                {{ Form::label('asset_app_id', 'Application', ['class' => 'form-control-label required']) }}
                                 {{-- {{ Form::select('asset_app_id',$assetapplication,  $assetmanagement->asset_app_id, ['class' => 'form-control']) }} --}}
                                 <select name="asset_app_id"  id="select-assetapplication" data-required="required" class="form-control" >
                                 </select>
@@ -112,46 +112,54 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-6">
-                        <div class="form-group">
-                            {{ Form::label('process_siem', 'SIEM', ['class' => 'form-control-label']) }}
-                            <select name="siem"  id="select-siem" data-required="required" class="form-control" >
-                                {{-- <option selected disabled>Select City</option> --}}
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-lg-6">
-                        <div class="form-group">
-                            {{ Form::label('refer', 'Ref', ['class' => 'form-control-label']) }}
-                            {{ Form::text('process_ref', null, ['class' => 'form-control','id'=>"ref"]) }}
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <input class="mt-5 btn btn-primary" onclick="saveRef()" type="button" value="Add">
-                        </div>
-                    </div>
-                    <table id="seim-ref" class="table table-hover">
-                        <thead class="thead-light">
-                            <tr>
-                            <th>SIEM</th>
-                            <th>Ref</th>
-                            <th>Delete</th>
-                            </tr>
-                        </thead>
-                        <tbody id="tbody">
-                            @foreach ($assetref as $key => $value)
-                            <tr>
-                                <td>{{ $value->siem_code }}</td>
-                                <td>{{ $value->siem_reference }}</td>
-                                <td><a href="javascript:void(0)" onclick="deleteRef(this)">Delete</a></td>
-                                <input type="hidden" class="siem_id" name="siem[]" value="{{$value->siem_id}}">
-                                <input type="hidden" name="ref[]" value="{{$value->siem_reference}}">
-                            </tr>
-                            @endforeach
 
-                        </tbody>
-                      </table>
+                    <div class="row inside-wrapper">
+                        <div class="col-lg-12 inside-box">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        {{ Form::label('process_siem', 'SIEM', ['class' => 'form-control-label']) }}
+                                        <select name="siem"  id="select-siem" data-required="required" class="form-control" >
+                                            {{-- <option selected disabled>Select City</option> --}}
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        {{ Form::label('refer', 'Ref', ['class' => 'form-control-label required']) }}
+                                        {{ Form::text('process_ref', null, ['class' => 'form-control','id'=>"ref"]) }}
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12">
+                                    <input class="mt-5 btn btn-primary" onclick="saveRef()" type="button" value="Add">
+                                </div>
+                                <div class="col-md-12">
+                                    <table id="seim-ref" class="table table-hover">
+                                        <thead class="thead-light">
+                                            <tr>
+                                            <th>SIEM</th>
+                                            <th>Ref</th>
+                                            <th>Delete</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="tbody">
+                                            @foreach ($assetref as $key => $value)
+                                            <tr>
+                                                <td>{{ $value->siem_code }}</td>
+                                                <td>{{ $value->siem_reference }}</td>
+                                                <td><a href="javascript:void(0)" onclick="deleteRef(this)">Delete</a></td>
+                                                <input type="hidden" class="siem_id" name="siem[]" value="{{$value->siem_id}}">
+                                                <input type="hidden" name="ref[]" value="{{$value->siem_reference}}">
+                                            </tr>
+                                            @endforeach
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <hr class="my-4" />
                     <div class="pl-lg-0">
                         <div class="row">

@@ -15,13 +15,13 @@
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="form-group">
-                                        {{ Form::label('first_name', 'First Name', ['class' => 'form-control-label']) }}
+                                        {{ Form::label('first_name', 'First Name', ['class' => 'form-control-label required']) }}
                                         {{ Form::text('first_name', $user->first_name, ['class' => 'form-control']) }}
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="form-group">
-                                        {{ Form::label('last_name', 'Last Name', ['class' => 'form-control-label']) }}
+                                        {{ Form::label('last_name', 'Last Name', ['class' => 'form-control-label required']) }}
                                         {{ Form::text('last_name', $user->last_name, ['class' => 'form-control']) }}
                                     </div>
                                 </div>
@@ -31,7 +31,7 @@
 
                                 <div class="col-lg-6">
                                     <div class="form-group">
-                                        {{ Form::label('email', 'E-mail', ['class' => 'form-control-label']) }}
+                                        {{ Form::label('email', 'E-mail', ['class' => 'form-control-label required']) }}
                                         {{ Form::email('email', $user->email, ['class' => 'form-control']) }}
                                     </div>
                                 </div>
@@ -45,7 +45,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        {{ Form::label('phone_number', 'Phone number', ['class' => 'form-control-label']) }}
+                                        {{ Form::label('phone_number', 'Phone number', ['class' => 'form-control-label required']) }}
                                         {{ Form::text('phone', $user->phone, ['class' => 'form-control']) }}
                                     </div>
                                 </div>
@@ -116,14 +116,14 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        {{ Form::label('password', 'Password', ['class' => 'form-control-label']) }}
+                                        {{ Form::label('password', 'Password', ['class' => 'form-control-label required']) }}
                                         {{ Form::password('password', ['class' => 'form-control']) }}
                                     </div>
                                 </div>
 
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        {{ Form::label('password_confirmation', 'Confirm password', ['class' => 'form-control-label']) }}
+                                        {{ Form::label('password_confirmation', 'Confirm password', ['class' => 'form-control-label required']) }}
                                         {{ Form::password('password_confirmation', ['class' => 'form-control']) }}
                                     </div>
                                 </div>

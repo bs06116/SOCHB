@@ -17,7 +17,7 @@
                                 <div class="row">
                                     <div class="col-lg-12">
                                         <div class="form-group">
-                                            {{ Form::label('asset_app_code', 'Code', ['class' => 'form-control-label']) }}
+                                            {{ Form::label('asset_app_code', 'Code', ['class' => 'form-control-label required']) }}
                                     {{ Form::text('asset_app_code', null, ['class' => 'form-control']) }}
                                         </div>
                                     </div>

@@ -15,7 +15,7 @@
                                 <div class="row">
                                     <div class="col-lg-12">
                                         <div class="form-group">
-                                            {{ Form::label('vendor_code', 'Code', ['class' => 'form-control-label']) }}
+                                            {{ Form::label('vendor_code', 'Code', ['class' => 'form-control-label required']) }}
                                     {{ Form::text('principal_code', $vendor->principal_code, ['class' => 'form-control captail_word']) }}
                                         </div>
                                     </div>

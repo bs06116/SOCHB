@@ -208,7 +208,7 @@
                                             class="nav-link">
                                             <i class="fa text-primary fa-window-restore"></i>
                                             <span
-                                                class="sidenav-normal">Application Resource Category
+                                                class="sidenav-normal">Application Resource
                                             </span></a>
                                     </li>
                                 @endcan

@@ -20,13 +20,13 @@
                                 <div class="row">
                                     <div class="col-lg-12">
                                         <div class="form-group">
-                                            {{ Form::label('company_code', 'Code', ['class' => 'form-control-label']) }}
+                                            {{ Form::label('company_code', 'Code', ['class' => 'form-control-label required']) }}
                                             {{ Form::text('company_code', null, ['class' => 'form-control captail_word']) }}
                                         </div>
                                     </div>
                                     <div class="col-lg-12">
                                         <div class="form-group">
-                                            {{ Form::label('company_desc', 'Users', ['class' => 'form-control-label']) }}
+                                            {{ Form::label('company_desc', 'Users', ['class' => 'form-control-label required']) }}
                                             <select class="js-example-basic-multiple" name="users[]" multiple="multiple">
                                                 @foreach($users as $u):
                                                 <option value="{{$u->id}}">{{$u->first_name}} {{$u->last_name}}</option>

@@ -16,7 +16,7 @@
                                 <div class="row">
                                     <div class="col-lg-12">
                                         <div class="form-group">
-                                            {{ Form::label('siem_type_code', 'Code', ['class' => 'form-control-label']) }}
+                                            {{ Form::label('siem_type_code', 'Code', ['class' => 'form-control-label required']) }}
                                     {{ Form::text('siem_type_code', $siemtype->loc_type_code, ['class' => 'form-control captail_word']) }}
                                         </div>
                                     </div>
